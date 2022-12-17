@@ -1,0 +1,26 @@
+{
+  "name": "root/givekindness",
+  "description": "To enhance givewp functionality to collect donation simultaneously",
+  "license": "GNU",
+  "autoload": {
+    "psr-4": {
+      "GiveKindness\\": "includes/"
+    },
+    "files": [
+      "includes/functions.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "beyond88",
+      "email": "muhin.cse.diu@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "config": {
+    "platform": {
+      "php": "7.4"
+    }
+  }
+}
