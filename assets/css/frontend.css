@@ -1,5 +1,5 @@
 :root {
-    --give-donor-dashboard-accent-color: #68bb6c;
+  --give-donor-dashboard-accent-color: #68bb6c;
 }
 
 svg:not(:root).svg-inline--fa {
@@ -1872,4 +1872,8 @@ img.emoji {
   #give-donor-dashboard {
     max-width: 90% !important;
   }
+}
+
+a:focus {
+  outline-color: transparent !important;
 }
