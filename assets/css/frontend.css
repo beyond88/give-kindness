@@ -1,3 +1,7 @@
+:root {
+    --give-donor-dashboard-accent-color: #68bb6c;
+}
+
 svg:not(:root).svg-inline--fa {
   overflow: visible;
 }

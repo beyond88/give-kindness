@@ -3,8 +3,8 @@
  * Plugin Name: GiveKindness
  * Description: An extension to enhance donation functionality to donate simultaneously based on GiveWP. 
  * Plugin URI: https://github.com/Getonnet/givekindness
- * Author: Getonnet
- * Author URI: https://github.com/Getonnet
+ * Author: Mohiuddin Abdul Kader
+ * Author URI: https://github.com/beyond88
  * Version: 1.0.0
  * Text Domain:       givekindness
  * Domain Path:       /languages
@@ -43,9 +43,36 @@ final class GiveKindness {
 
         $this->define_constants();
 
-        register_activation_hook( GIVEKINDNESS_FILE, [ $this, 'activate' ] );
+        if (!function_exists('is_plugin_active')) {
+            include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        }
+        if ( is_plugin_active( 'give/give.php' ) ) {
+            register_activation_hook( GIVEKINDNESS_FILE, [ $this, 'activate' ] );
+            add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 
-        add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+        } else {
+            add_action( 'admin_notices', [ $this, 'givewp_plugin_required' ] );
+        }
+
+    }
+
+    public function givewp_plugin_required()
+    {
+        ?>
+
+        <script>
+            (function($) {
+                'use strict';
+                $(document).on("click", '.notice-dismiss', function(){
+                    console.log('hhhh')
+                    $(this).parent().fadeOut();
+                });
+            })(jQuery);
+        </script>
+        <div id="message" class="error notice is-dismissible">
+            <p>GiveWP plugin is required for GiveKindness!</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
+        </div>
+        <?php
     }
 
     /**
@@ -94,10 +121,6 @@ final class GiveKindness {
         } else {
             new GiveKindness\Frontend();
         }
-
-        // if ( get_option('wc_settings_tab_GiveKindness_is_enable') == 'yes' ) {
-        //     WooCommerce::instance()->register_hooks();
-        // }
 
         new GiveKindness\API();
     }
