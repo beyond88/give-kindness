@@ -78,3 +78,12 @@ add_filter( 'display_post_states', function( $statuses ) {
     }
     return $statuses;
 });
+
+function givekindness_templates_part( $file ){
+
+    $template = '';
+    if( file_exists(GIVEKINDNESS_TEMPLATES . "{$file}.php") ) {
+        $template = require_once GIVEKINDNESS_TEMPLATES . "{$file}.php";
+    }
+    return $template; 
+}

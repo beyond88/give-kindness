@@ -72,6 +72,7 @@ final class GiveKindness {
         define( 'GIVEKINDNESS_VERSION', self::version );
         define( 'GIVEKINDNESS_FILE', __FILE__ );
         define( 'GIVEKINDNESS_PATH', __DIR__ );
+        define( 'GIVEKINDNESS_TEMPLATES', GIVEKINDNESS_PATH . '/includes/Templates/' );
         define( 'GIVEKINDNESS_URL', plugins_url( '', GIVEKINDNESS_FILE ) );
         define( 'GIVEKINDNESS_ASSETS', GIVEKINDNESS_URL . '/assets' );
     }
