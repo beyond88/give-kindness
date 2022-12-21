@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: GiveKindness
- * Description: An extension of givewp to enhance donation functionality to donate simultaneously. 
+ * Description: An extension to enhance donation functionality to donate simultaneously based on GiveWP. 
  * Plugin URI: https://github.com/Getonnet/givekindness
  * Author: Getonnet
  * Author URI: https://github.com/Getonnet

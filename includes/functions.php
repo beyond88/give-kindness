@@ -75,7 +75,6 @@ add_filter( 'display_post_states', function( $statuses ) {
                 return array( 'Suspend' );
             }
         }
-        
     }
     return $statuses;
 });

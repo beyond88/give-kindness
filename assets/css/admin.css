@@ -1,3 +1,7 @@
 #post-status-display {
   text-transform: capitalize;
 }
+
+.misc-pub-visibility {
+  display: none;
+}
