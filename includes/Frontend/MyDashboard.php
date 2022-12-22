@@ -5,12 +5,18 @@ namespace GiveKindness\Frontend;
 /**
  * Shortcode handler class
  */
-class Shortcode {
+class MyDashboard {
 
     /**
      * Initializes the class
      */
-    function __construct() {
+
+    protected $id;
+    function __construct() 
+    {
+
+        $this->id = get_current_user_id();
+
         add_shortcode( 'donor_dashboard', [ $this, 'donoar_dashboard' ] );
         add_shortcode( 'donor_authentication', [ $this, 'donor_authentication' ] );
     }
@@ -23,7 +29,8 @@ class Shortcode {
      *
      * @return string
      */
-    public function donoar_dashboard( $atts, $content = '' ) {
+    public function donoar_dashboard( $atts, $content = '' ) 
+    {
 
         ob_start();
 
@@ -40,6 +47,12 @@ class Shortcode {
 
     }
 
+    public function profile(){
+
+        $profile = new \Give\DonorDashboards\Profile($this->id);
+        return $profile->getProfileData();
+    }
+
 
     /**
      * Shortcode handler class
@@ -49,7 +62,8 @@ class Shortcode {
      *
      * @return string
      */
-    public function donor_authentication( $atts, $content = '' ) {
+    public function donor_authentication( $atts, $content = '' ) 
+    {
 
         ob_start();
             givekindness_templates_part('signin');
