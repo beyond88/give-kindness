@@ -39,6 +39,7 @@ class MyDashboard {
             wp_enqueue_style( 'give-google-font-montserrat' );
             
             if ( is_user_logged_in() ) {
+                
                 givekindness_templates_part('dashboard');
             } else {
                 givekindness_templates_part('authentication');
