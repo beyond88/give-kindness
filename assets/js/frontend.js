@@ -3,29 +3,48 @@
   (function($) {
     'use strict';
 
+
+    /************************
+     * 
+     * Sidebar handle
+     * 
+     ************************/
     $(".give-donor-dashboard-tab-link").click(function() {
-        $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
-        $(this).addClass("give-donor-dashboard-tab-link--is-active");
+      $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
+      $(this).addClass("give-donor-dashboard-tab-link--is-active");
+      const targetTabContent = $(this).data('tab-id');
+      $(".give-donor-dashboard-tab-link").each(function(index, item) {
+        let currentTabContent = $(this).data('tab-id');
+        if( currentTabContent !== undefined ){          
+          if( currentTabContent === targetTabContent ){
+            $('#'+currentTabContent).show();
+          } else {
+            $('#'+currentTabContent).hide();
+          }
+        }
+      });
     });
 
-    $(document).on('click', '.view-receipt-btn', function(){
-      
-      $('#givekindness-dashboard-content').hide();
-      let receiptNo = $(this).data('receipt-no');
-      let divId = '#receipt-no-'+receiptNo;
-      console.log('my data==>',divId);
-      $(divId).show();
-    });
-
-
-    $(document).on('click', '.close-receipt', function(){
-      
-      $('#givekindness-dashboard-content').show();
-      let receiptNo = $(this).data('receipt-no');
-      let divId = '#receipt-no-'+receiptNo;
-      console.log('my data==>',divId);
-      $(divId).hide();
-    });
-    
+    /************************
+     * 
+     * View receipt details
+     * 
+     ************************/
 
 })(jQuery);
+
+
+function viewReceipt(that, id) {
+  console.log('data==>', that);
+  jQuery('#'+id).hide();
+  let receiptNo = jQuery(that).data('receipt-no');
+  let divId = '#receipt-no-'+receiptNo;
+  jQuery(divId).show();
+};
+
+function closeReceipt(that, id) {
+  jQuery('#'+id).show();
+  let receiptNo = jQuery(that).data('receipt-no');
+  let divId = '#receipt-no-'+receiptNo;
+  jQuery(divId).hide();
+};

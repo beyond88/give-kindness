@@ -1877,3 +1877,7 @@ img.emoji {
 a:focus {
   outline-color: transparent !important;
 }
+
+#givekindness-donation-history {
+  display: none;
+}

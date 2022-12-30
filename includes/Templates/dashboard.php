@@ -5,7 +5,8 @@
 
       <div class="give-donor-dashboard-desktop-layout__tab-content">
          <div class="give-donor-dashboard-tab-content">
-            <?php givekindness_templates_part('dashboard/dashboard_content'); ?>
+            <?php givekindness_templates_part('dashboard/stats'); ?>
+            <?php givekindness_templates_part('dashboard/donation-history'); ?>
          </div>
       </div>
    </div>
