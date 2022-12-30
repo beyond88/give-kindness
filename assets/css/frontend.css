@@ -1878,6 +1878,7 @@ a:focus {
   outline-color: transparent !important;
 }
 
-#givekindness-donation-history {
+#givekindness-donation-history,
+#givekindness-profile {
   display: none;
 }
