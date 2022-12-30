@@ -21,6 +21,9 @@
           } else {
             $('#'+currentTabContent).hide();
           }
+
+          // Hide receipt details content
+          $('.view-receipt-details').hide();
         }
       });
     });
