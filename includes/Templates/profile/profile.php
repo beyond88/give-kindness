@@ -4,7 +4,7 @@
    <div class="give-donor-dashboard-avatar-control">
       <label class="give-donor-dashboard-avatar-control__label">Avatar</label>
       <div class="give-donor-dashboard-avatar-control__input" tabindex="0">
-         <input accept="image/jpeg, image/png, image/gif" multiple="" type="file" autocomplete="off" tabindex="-1" style="display: none;">
+         <input accept="image/jpeg, image/png, image/gif" multiple="" type="file" autocomplete="off" tabindex="-1" style="display: none;" id="givekindness-avatar" >
          <div class="give-donor-dashboard-avatar-control__preview"><img src="http://wordpress.test/wp-content/uploads/2022/12/IMG20221126161506.jpg"></div>
          <div class="give-donor-dashboard-avatar-control__dropzone">
             <div class="give-donor-dashboard-avatar-control__instructions">
@@ -41,6 +41,13 @@
                      </svg>
                   </div>
                </div>
+               <div class=" css-26l3qy-menu">
+                    <div class=" css-1ew0esf">
+                        <div class=" css-1fap0ja-option" id="react-select-2-option-0" tabindex="-1">Mr.</div>
+                        <div class=" css-i2jeyr-option" id="react-select-2-option-1" tabindex="-1">Ms.</div>
+                        <div class=" css-177jfp2-option" id="react-select-2-option-2" tabindex="-1">Mrs.</div>
+                    </div>
+                </div>
             </div>
          </div>
       </div>
@@ -77,80 +84,17 @@
          <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
       </svg>
    </button>
-   <div class="give-donor-dashboard-heading">Primary Address</div>
-   <div class="give-donor-dashboard-divider"></div>
-   <div class="give-donor-dashboard-select-control">
-      <label class="give-donor-dashboard-select-control__label" for="country-209">Country</label>
-      <div class=" css-2b097c-container">
-         <div class=" css-9ntxye-control">
-            <div class=" css-cjc81c">
-               <div class=" css-1wa3eu0-placeholder">Select...</div>
-               <div class="css-1j3wxsa">
-                  <div class="" style="display: inline-block;">
-                     <input autocapitalize="none" autocomplete="off" autocorrect="off" id="country-209" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
-                     <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: Arial; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
-                  </div>
-               </div>
-            </div>
-            <div class=" css-1wy0on6">
-               <span class=" css-1hyfx7x"></span>
-               <div aria-hidden="true" class=" css-6yl9nk-indicatorContainer">
-                  <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r">
-                     <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                  </svg>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="give-donor-dashboard-text-control">
-      <label class="give-donor-dashboard-text-control__label" for="address-1-190">Address 1</label>
-      <div class="give-donor-dashboard-text-control__input"><input id="address-1-190" type="text" value=""></div>
-   </div>
-   <div class="give-donor-dashboard-text-control">
-      <label class="give-donor-dashboard-text-control__label" for="address-2-46">Address 2</label>
-      <div class="give-donor-dashboard-text-control__input"><input id="address-2-46" type="text" value=""></div>
-   </div>
-   <div class="give-donor-dashboard-text-control">
-      <label class="give-donor-dashboard-text-control__label" for="city-1">City</label>
-      <div class="give-donor-dashboard-text-control__input"><input id="city-1" type="text" value=""></div>
-   </div>
-   <div class="give-donor-dashboard-field-row">
-      <div class="give-donor-dashboard-select-control">
-         <label class="give-donor-dashboard-select-control__label" for="state-562">State</label>
-         <div class=" css-2b097c-container">
-            <div class=" css-9ntxye-control">
-               <div class=" css-cjc81c">
-                  <div class=" css-1wa3eu0-placeholder">Select...</div>
-                  <div class="css-1j3wxsa">
-                     <div class="" style="display: inline-block;">
-                        <input autocapitalize="none" autocomplete="off" autocorrect="off" id="state-562" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
-                        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: Arial; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
-                     </div>
-                  </div>
-               </div>
-               <div class=" css-1wy0on6">
-                  <span class=" css-1hyfx7x"></span>
-                  <div aria-hidden="true" class=" css-6yl9nk-indicatorContainer">
-                     <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r">
-                        <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                     </svg>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="give-donor-dashboard-text-control">
-         <label class="give-donor-dashboard-text-control__label" for="zip-72">Zip</label>
-         <div class="give-donor-dashboard-text-control__input"><input id="zip-72" type="text" value=""></div>
-      </div>
-   </div>
-   <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
-      Add Address
-      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-         <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
-      </svg>
-   </button>
+
+    <div class="give-donor-dashboard__add-primary-address">
+        <div class="give-donor-dashboard-heading">Looks like you have not set up an address!</div>
+        <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+        Add Address
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+            </svg>
+        </button>
+    </div>
+
    <div class="give-donor-dashboard-heading">Additional Info</div>
    <div class="give-donor-dashboard-divider"></div>
    <fieldset class="give-donor-dashboard-radio-control">

@@ -28,17 +28,29 @@
       });
     });
 
-    /************************
-     * 
-     * View receipt details
-     * 
-     ************************/
+    $(document).on('click', '.give-donor-dashboard-avatar-control__dropzone', function(){
+      document.getElementById("givekindness-avatar").click();
+    });
+
+    $(document).on('click', '#givekindness-avatar', function(){
+      const file = this.files[0];
+      if (file){
+        let reader = new FileReader();
+        reader.onload = function(event){
+          $('.give-donor-dashboard-avatar-control__preview').children('img').attr('src', event.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    });
 
 })(jQuery);
 
-
+  /************************
+   * 
+   * View receipt details
+   * 
+   ************************/
 function viewReceipt(that, id) {
-  console.log('data==>', that);
   jQuery('#'+id).hide();
   let receiptNo = jQuery(that).data('receipt-no');
   let divId = '#receipt-no-'+receiptNo;
