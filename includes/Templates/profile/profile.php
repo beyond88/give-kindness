@@ -1,11 +1,22 @@
+<?php
+    $myProfile = new GiveKindness\Frontend\MyDashboard();
+    $myProfile = $myProfile->profile();
+
+    // echo "<pre>";
+    // print_r($myProfile);
+    // echo "</pre>";
+?>
+
 <div class="give-donor-dashboard-tab-content" id="givekindness-profile" data-tab-content="givekindness-profile">
    <div class="give-donor-dashboard-heading">Profile Information</div>
    <div class="give-donor-dashboard-divider"></div>
    <div class="give-donor-dashboard-avatar-control">
       <label class="give-donor-dashboard-avatar-control__label">Avatar</label>
       <div class="give-donor-dashboard-avatar-control__input" tabindex="0">
-         <input accept="image/jpeg, image/png, image/gif" multiple="" type="file" autocomplete="off" tabindex="-1" style="display: none;" id="givekindness-avatar" >
-         <div class="give-donor-dashboard-avatar-control__preview"><img src="http://wordpress.test/wp-content/uploads/2022/12/IMG20221126161506.jpg"></div>
+        <input accept="image/jpeg, image/png, image/gif" multiple="" type="file" autocomplete="off" tabindex="-1" style="display: none;" id="givekindness-avatar" >
+        <div class="give-donor-dashboard-avatar-control__preview">
+            <img src="<?php echo esc_url($myProfile['avatarUrl']); ?>">
+        </div>
          <div class="give-donor-dashboard-avatar-control__dropzone">
             <div class="give-donor-dashboard-avatar-control__instructions">
                <p>Drag image here to set <br>avatar or <span class="give-donor-dashboard-avatar-control__select-link">find image</span></p>
@@ -17,8 +28,8 @@
       <div class="give-donor-dashboard-select-control" style="max-width: 120px;">
          <label class="give-donor-dashboard-select-control__label" for="prefix-224">Prefix</label>
          <div class=" css-2b097c-container">
-            <div class=" css-9ntxye-control">
-               <div class=" css-cjc81c">
+            <div class="css-9ntxye-control">
+               <div class="css-cjc81c">
                   <div class=" css-1uccc91-singleValue">Ms.</div>
                   <div class="css-1j3wxsa">
                      <div class="" style="display: inline-block;">
@@ -28,7 +39,7 @@
                      </div>
                   </div>
                </div>
-               <div class=" css-1wy0on6">
+               <div class="css-1wy0on6">
                   <div aria-hidden="true" class=" css-1p95na5-indicatorContainer">
                      <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r">
                         <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
@@ -41,12 +52,12 @@
                      </svg>
                   </div>
                </div>
-               <div class=" css-26l3qy-menu">
-                    <div class=" css-1ew0esf">
-                        <div class=" css-1fap0ja-option" id="react-select-2-option-0" tabindex="-1">Mr.</div>
-                        <div class=" css-i2jeyr-option" id="react-select-2-option-1" tabindex="-1">Ms.</div>
-                        <div class=" css-177jfp2-option" id="react-select-2-option-2" tabindex="-1">Mrs.</div>
-                    </div>
+            </div>
+            <div class="css-26l3qy-menu">
+                <div class=" css-1ew0esf">
+                    <div class=" css-1fap0ja-option" id="react-select-2-option-0" tabindex="-1">Mr.</div>
+                    <div class=" css-i2jeyr-option" id="react-select-2-option-1" tabindex="-1">Ms.</div>
+                    <div class=" css-177jfp2-option" id="react-select-2-option-2" tabindex="-1">Mrs.</div>
                 </div>
             </div>
          </div>
@@ -57,17 +68,17 @@
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path>
             </svg>
-            <input id="first-name-699" type="text" value="Mohiuddin">
+            <input id="first-name-699" type="text" value="<?php echo $myProfile['firstName']; ?>">
          </div>
       </div>
       <div class="give-donor-dashboard-text-control">
          <label class="give-donor-dashboard-text-control__label" for="last-name-804">Last Name</label>
-         <div class="give-donor-dashboard-text-control__input"><input id="last-name-804" type="text" value="Abdul Kader"></div>
+         <div class="give-donor-dashboard-text-control__input"><input id="last-name-804" type="text" value="<?php echo $myProfile['lastName']; ?>"></div>
       </div>
    </div>
    <div class="give-donor-dashboard-text-control">
       <label class="give-donor-dashboard-text-control__label" for="company-783">Company</label>
-      <div class="give-donor-dashboard-text-control__input"><input id="company-783" type="text" value="TheNextWP"></div>
+      <div class="give-donor-dashboard-text-control__input"><input id="company-783" type="text" value="<?php echo $myProfile['company']; ?>"></div>
    </div>
    <div class="give-donor-dashboard-text-control">
       <label class="give-donor-dashboard-text-control__label" for="primary-email-194">Primary Email</label>
@@ -75,7 +86,7 @@
          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
          </svg>
-         <input id="primary-email-194" type="text" value="muhin.cse.diu@gmail.com">
+         <input id="primary-email-194" type="text" value="<?php echo $myProfile['emails']['primary']; ?>">
       </div>
    </div>
    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
