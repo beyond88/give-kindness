@@ -1,10 +1,10 @@
 {
-  "name": "root/givekindness",
+  "name": "root/give_kindness",
   "description": "To enhance givewp functionality to collect donation simultaneously",
   "license": "GNU",
   "autoload": {
     "psr-4": {
-      "GiveKindness\\": "includes/"
+      "Give_Kindness\\": "includes/"
     },
     "files": [
       "includes/functions.php"

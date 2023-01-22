@@ -29,10 +29,10 @@
     });
 
     $(document).on('click', '.give-donor-dashboard-avatar-control__dropzone', function(){
-      document.getElementById("givekindness-avatar").click();
+      document.getElementById("give_kindness-avatar").click();
     });
 
-    $(document).on('click', '#givekindness-avatar', function(){
+    $(document).on('click', '#give_kindness-avatar', function(){
       const file = this.files[0];
       if (file){
         let reader = new FileReader();
@@ -44,22 +44,22 @@
     });
 
     
-    $(document).on('click', ".givekindness-prefix-select", function(){
-      $('.givekindness-prefix-menu').toggle();
+    $(document).on('click', ".give_kindness-prefix-select", function(){
+      $('.give_kindness-prefix-menu').toggle();
     });
 
-    $(document).on('click', ".givekindness-prefix-selector", function(){
+    $(document).on('click', ".give_kindness-prefix-selector", function(){
       let getPrefix = $(this).text();
-      $('.givekindness-prefix-singleValue').text(getPrefix);
+      $('.give_kindness-prefix-singleValue').text(getPrefix);
     });
 
     $("body").click
     (
       function(e)
       {
-        if(e.target.className !== "givekindness-prefix-select")
+        if(e.target.className !== "give_kindness-prefix-select")
         {
-          $(".givekindness-prefix-menu").hide();
+          $(".give_kindness-prefix-menu").hide();
         }
       }
     );
@@ -72,7 +72,7 @@
     * 
     ***************************/
 
-    $(document).on('click', "#givekindness-add-email", function(){
+    $(document).on('click', "#give_kindness-add-email", function(){
       $(this).before(`
         <div class="give-donor-dashboard-field-row additional-emails-area">
           <div class="give-donor-dashboard-text-control">
@@ -98,10 +98,10 @@
     });
 
     $(document).on('click', ".give-donor-dashboard__make-primary-email", function(){
-      let primaryEmail = $('#givekindness-primary-email').val();
+      let primaryEmail = $('#give_kindness-primary-email').val();
       let getEmail = $(this).parent().siblings().closest('.give-donor-dashboard-text-control').find('.additional-emails').val();
 
-      $('#givekindness-primary-email').val(getEmail);
+      $('#give_kindness-primary-email').val(getEmail);
       $(this).parent().siblings().closest('.give-donor-dashboard-text-control').find('.additional-emails').val(primaryEmail);
     });
 
@@ -112,10 +112,10 @@
     * 
     * 
     ***************************/
-    $(document).on('click', ".givekindness-country", function(){
+    $(document).on('click', ".give_kindness-country", function(){
 
     })
-    $(document).on('click', "#givekindness-update-profile", function(){
+    $(document).on('click', "#give_kindness-update-profile", function(){
 
     });
 

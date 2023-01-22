@@ -1,6 +1,6 @@
 <?php
 
-namespace GiveKindness;
+namespace Give_Kindness;
 
 /**
  * Assets handlers class
@@ -22,24 +22,24 @@ class Assets {
      */
     public function get_scripts() {
         return [
-            'givekindness-script' => [
-                'src'     => GIVEKINDNESS_ASSETS . '/js/frontend.js',
-                'version' => filemtime( GIVEKINDNESS_PATH . '/assets/js/frontend.js' ),
+            'give_kindness-script' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/js/frontend.js',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/frontend.js' ),
                 'deps'    => [ 'jquery' ]
             ],
-            // 'givekindness-moment' => [
-            //     'src'     => GIVEKINDNESS_ASSETS . '/js/moment.min.js',
-            //     'version' => filemtime( GIVEKINDNESS_PATH . '/assets/js/moment.min.js' ),
+            // 'give_kindness-moment' => [
+            //     'src'     => GIVE_KINDNESS_ASSETS . '/js/moment.min.js',
+            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/moment.min.js' ),
             //     'deps'    => [ 'jquery' ]
             // ],    
-            // 'givekindness-daterangepicker' => [
-            //     'src'     => GIVEKINDNESS_ASSETS . '/js/daterangepicker.js',
-            //     'version' => filemtime( GIVEKINDNESS_PATH . '/assets/js/daterangepicker.js' ),
+            // 'give_kindness-daterangepicker' => [
+            //     'src'     => GIVE_KINDNESS_ASSETS . '/js/daterangepicker.js',
+            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/daterangepicker.js' ),
             //     'deps'    => []
             // ],
-            'givekindness-admin-script' => [
-                'src'     => GIVEKINDNESS_ASSETS . '/js/admin.js',
-                'version' => filemtime( GIVEKINDNESS_PATH . '/assets/js/admin.js' ),
+            'give_kindness-admin-script' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/js/admin.js',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/admin.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
             ],
         
@@ -54,17 +54,17 @@ class Assets {
      */
     public function get_styles() {
         return [
-            'givekindness-style' => [
-                'src'     => GIVEKINDNESS_ASSETS . '/css/frontend.css',
-                'version' => filemtime( GIVEKINDNESS_PATH . '/assets/css/frontend.css' )
+            'give_kindness-style' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/css/frontend.css',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/frontend.css' )
             ],
-            'givekindness-admin-style' => [
-                'src'     => GIVEKINDNESS_ASSETS . '/css/admin.css',
-                'version' => filemtime( GIVEKINDNESS_PATH . '/assets/css/admin.css' )
+            'give_kindness-admin-style' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/css/admin.css',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/admin.css' )
             ],
-            // 'givekindness-daterangepicker' => [
-            //     'src'     => GIVEKINDNESS_ASSETS . '/css/daterangepicker.css',
-            //     'version' => filemtime( GIVEKINDNESS_PATH . '/assets/css/daterangepicker.css' )
+            // 'give_kindness-daterangepicker' => [
+            //     'src'     => GIVE_KINDNESS_ASSETS . '/css/daterangepicker.css',
+            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/daterangepicker.css' )
             // ],
         ];
     }
@@ -90,11 +90,11 @@ class Assets {
             wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
         }
 
-        wp_localize_script( 'givekindness-admin-script', 'givekindness', [
+        wp_localize_script( 'give_kindness-admin-script', 'give_kindness', [
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce( 'givekindness-admin-nonce' ),
-            'confirm' => __( 'Are you sure?', 'givekindness' ),
-            'error' => __( 'Something went wrong', 'givekindness' )
+            'nonce' => wp_create_nonce( 'give_kindness-admin-nonce' ),
+            'confirm' => __( 'Are you sure?', 'give_kindness' ),
+            'error' => __( 'Something went wrong', 'give_kindness' )
         ] );
     }
 }

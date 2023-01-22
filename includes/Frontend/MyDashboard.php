@@ -1,6 +1,6 @@
 <?php
 
-namespace GiveKindness\Frontend;
+namespace Give_Kindness\Frontend;
 
 /**
  * Shortcode handler class
@@ -40,9 +40,9 @@ class MyDashboard {
             
             if ( is_user_logged_in() ) {
                 
-                givekindness_templates_part('dashboard');
+                give_kindness_templates_part('dashboard');
             } else {
-                givekindness_templates_part('authentication');
+                give_kindness_templates_part('authentication');
             }
         return ob_get_clean();
 
@@ -67,7 +67,7 @@ class MyDashboard {
     {
 
         ob_start();
-            givekindness_templates_part('signin');
+            give_kindness_templates_part('signin');
         return ob_get_clean();
 
     }

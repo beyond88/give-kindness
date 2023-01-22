@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: GiveKindness
+ * Plugin Name: Give Kindness
  * Description: An extension to enhance donation functionality to donate simultaneously based on GiveWP. 
- * Plugin URI: https://github.com/Getonnet/givekindness
+ * Plugin URI: https://github.com/beyond88/give-kindness
  * Author: Mohiuddin Abdul Kader
  * Author URI: https://github.com/beyond88
  * Version: 1.0.0
- * Text Domain:       givekindness
+ * Text Domain:       give-kindness
  * Domain Path:       /languages
  * Requires PHP:      5.6
  * Requires at least: 4.4
@@ -25,7 +25,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 /**
  * The main plugin class
  */
-final class GiveKindness {
+final class Give_Kindness {
 
     /**
      * Plugin version
@@ -47,7 +47,7 @@ final class GiveKindness {
             include_once(ABSPATH . 'wp-admin/includes/plugin.php');
         }
         if ( is_plugin_active( 'give/give.php' ) ) {
-            register_activation_hook( GIVEKINDNESS_FILE, [ $this, 'activate' ] );
+            register_activation_hook( GIVE_KINDNESS_FILE, [ $this, 'activate' ] );
             add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 
         } else {
@@ -59,18 +59,19 @@ final class GiveKindness {
     public function givewp_plugin_required()
     {
         ?>
-
         <script>
             (function($) {
                 'use strict';
                 $(document).on("click", '.notice-dismiss', function(){
-                    console.log('hhhh')
                     $(this).parent().fadeOut();
                 });
             })(jQuery);
         </script>
         <div id="message" class="error notice is-dismissible">
-            <p>GiveWP plugin is required for GiveKindness!</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
+            <p><?php echo __('GiveWP plugin is required for Give_Kindness!', 'give-kindness'); ?></p>
+            <button type="button" class="notice-dismiss">
+                <span class="screen-reader-text"><?php echo __('Dismiss this notice.', 'give-kindness'); ?></span>
+            </button>
         </div>
         <?php
     }
@@ -78,7 +79,7 @@ final class GiveKindness {
     /**
      * Initializes a singleton instance
      *
-     * @return \GiveKindness
+     * @return \Give_Kindness
      */
     public static function init() {
         static $instance = false;
@@ -96,12 +97,12 @@ final class GiveKindness {
      * @return void
      */
     public function define_constants() {
-        define( 'GIVEKINDNESS_VERSION', self::version );
-        define( 'GIVEKINDNESS_FILE', __FILE__ );
-        define( 'GIVEKINDNESS_PATH', __DIR__ );
-        define( 'GIVEKINDNESS_TEMPLATES', GIVEKINDNESS_PATH . '/includes/Templates/' );
-        define( 'GIVEKINDNESS_URL', plugins_url( '', GIVEKINDNESS_FILE ) );
-        define( 'GIVEKINDNESS_ASSETS', GIVEKINDNESS_URL . '/assets' );
+        define( 'GIVE_KINDNESS_VERSION', self::version );
+        define( 'GIVE_KINDNESS_FILE', __FILE__ );
+        define( 'GIVE_KINDNESS_PATH', __DIR__ );
+        define( 'GIVE_KINDNESS_TEMPLATES', GIVE_KINDNESS_PATH . '/includes/Templates/' );
+        define( 'GIVE_KINDNESS_URL', plugins_url( '', GIVE_KINDNESS_FILE ) );
+        define( 'GIVE_KINDNESS_ASSETS', GIVE_KINDNESS_URL . '/assets' );
     }
 
     /**
@@ -110,19 +111,19 @@ final class GiveKindness {
      * @return void
      */
     public function init_plugin() {
-        new GiveKindness\Assets();
+        new Give_Kindness\Assets();
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            new GiveKindness\Ajax();
+            new Give_Kindness\Ajax();
         }
 
         if ( is_admin() ) {
-            new GiveKindness\Admin();
+            new Give_Kindness\Admin();
         } else {
-            new GiveKindness\Frontend();
+            new Give_Kindness\Frontend();
         }
 
-        new GiveKindness\API();
+        new Give_Kindness\API();
     }
 
     /**
@@ -131,7 +132,7 @@ final class GiveKindness {
      * @return void
      */
     public function activate() {
-        $installer = new GiveKindness\Installer();
+        $installer = new Give_Kindness\Installer();
         $installer->run();
     }
 }
@@ -139,9 +140,9 @@ final class GiveKindness {
 /**
  * Initializes the main plugin
  */
-function GiveKindness() {
-    return GiveKindness::init();
+function Give_Kindness() {
+    return Give_Kindness::init();
 }
 
 // kick-off the plugin
-GiveKindness();
+Give_Kindness();

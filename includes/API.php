@@ -1,6 +1,6 @@
 <?php
 
-namespace GiveKindness;
+namespace Give_Kindness;
 
 /**
  * API Class

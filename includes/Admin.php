@@ -1,8 +1,8 @@
 <?php
 
-namespace GiveKindness;
+namespace Give_Kindness;
 
-// use GiveKindness\Admin\GiveKindnessSettings;
+// use Give_Kindness\Admin\GiveKindnessSettings;
 
 /**
  * The admin class

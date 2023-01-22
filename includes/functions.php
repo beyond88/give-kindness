@@ -1,6 +1,6 @@
 <?php 
 
-function givekindness_campaign_status(){
+function give_kindness_campaign_status(){
 	register_post_status( 'approved', array(
 		'label'                     => _x( 'Approved', 'give_forms' ),
 		'label_count'               => _n_noop( 'Approved <span class="count">(%s)</span>', 'Approved <span class="count">(%s)</span>'),
@@ -19,9 +19,9 @@ function givekindness_campaign_status(){
 		'show_in_admin_status_list' => true
 	));
 }
-add_action( 'init', 'givekindness_campaign_status' );
+add_action( 'init', 'give_kindness_campaign_status' );
 
-function givekindness_status_add_in_quick_edit() {
+function give_kindness_status_add_in_quick_edit() {
 
     global $post;
     if($post->post_type == 'give_forms') {
@@ -35,9 +35,9 @@ function givekindness_status_add_in_quick_edit() {
     }
 
 }
-add_action('admin_footer-edit.php','givekindness_status_add_in_quick_edit');
+add_action('admin_footer-edit.php','give_kindness_status_add_in_quick_edit');
 
-function givekindness_status_add_in_post_page() {
+function give_kindness_status_add_in_post_page() {
 
     global $post;
     if($post->post_type == 'give_forms') {
@@ -56,8 +56,8 @@ function givekindness_status_add_in_post_page() {
         </script>";
     }
 }
-add_action('admin_footer-post.php', 'givekindness_status_add_in_post_page');
-add_action('admin_footer-post-new.php', 'givekindness_status_add_in_post_page');
+add_action('admin_footer-post.php', 'give_kindness_status_add_in_post_page');
+add_action('admin_footer-post-new.php', 'give_kindness_status_add_in_post_page');
 
 add_filter( 'display_post_states', function( $statuses ) {
     global $post;
@@ -79,12 +79,12 @@ add_filter( 'display_post_states', function( $statuses ) {
     return $statuses;
 });
 
-function givekindness_templates_part( $file ){
+function give_kindness_templates_part( $file ){
 
     $template = '';
-    $file_exists = GIVEKINDNESS_TEMPLATES . $file. ".php";
+    $file_exists = GIVE_KINDNESS_TEMPLATES . $file. ".php";
     if( file_exists($file_exists) ) {
-        $template = require_once GIVEKINDNESS_TEMPLATES . $file . ".php";
+        $template = require_once GIVE_KINDNESS_TEMPLATES . $file . ".php";
     }
     return $template; 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace GiveKindness;
+namespace Give_Kindness;
 
 /**
  * Installer class
@@ -20,12 +20,12 @@ class Installer {
      * Add time and version on DB
      */
     public function add_version() {
-        $installed = get_option( 'givekindness_installed' );
+        $installed = get_option( 'give_kindness_installed' );
 
         if ( ! $installed ) {
-            update_option( 'givekindness_installed', time() );
+            update_option( 'give_kindness_installed', time() );
         }
 
-        update_option( 'givekindness_version', GIVEKINDNESS_VERSION );
+        update_option( 'give_kindness_version', GIVE_KINDNESS_VERSION );
     }
 }

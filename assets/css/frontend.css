@@ -1880,8 +1880,8 @@ a:focus {
   outline-color: transparent !important;
 }
 
-#givekindness-donation-history,
-#givekindness-profile {
+#give_kindness-donation-history,
+#give_kindness-profile {
   display: none;
 }
 
@@ -1890,7 +1890,7 @@ a:focus {
   box-sizing: border-box;
 }
 
-.givekindness-prefix-select {
+.give_kindness-prefix-select {
   -webkit-box-align: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -1914,7 +1914,7 @@ a:focus {
   outline: 0px !important;
 }
 
-.givekindness-prefix-singleValue {
+.give_kindness-prefix-singleValue {
   color: rgb(51, 51, 51);
   margin-left: 2px;
   margin-right: 2px;
@@ -1928,7 +1928,7 @@ a:focus {
   box-sizing: border-box;
 }
 
-.givekindness-form-child-item {
+.give_kindness-form-child-item {
   margin: 2px;
   padding-bottom: 2px;
   padding-top: 2px;
@@ -1994,7 +1994,7 @@ textarea:focus,
   background-color: transparent !important;
 }
 
-.givekindness-prefix-menu {
+.give_kindness-prefix-menu {
   display: none;
   position: absolute;
   background-color: #fff;
@@ -2019,13 +2019,13 @@ textarea:focus,
   margin-top: 5px;
 }
 
-.givekindness-prefix-selector {
+.give_kindness-prefix-selector {
   width: 120px;
   padding: 10px;
   color: #424242;
 }
 
-.givekindness-prefix-selector:hover {
+.give_kindness-prefix-selector:hover {
   background-color: #deebff;
 }
 
@@ -2034,7 +2034,7 @@ textarea:focus,
   box-sizing: border-box;
 }
 
-.givekindness-form-control {
+.give_kindness-form-control {
   -webkit-box-align: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -2058,7 +2058,7 @@ textarea:focus,
   outline: 0px !important;
 }
 
-.givekindness-form-item {
+.give_kindness-form-item {
   -webkit-box-align: center;
   align-items: center;
   display: flex;
@@ -2084,7 +2084,7 @@ textarea:focus,
   box-sizing: border-box;
 }
 
-.givekindness-form-child-item {
+.give_kindness-form-child-item {
   margin: 2px;
   padding-bottom: 2px;
   padding-top: 2px;
@@ -2097,7 +2097,7 @@ textarea:focus,
   line-height: 1.2;
 }
 
-.givekindness-country-list-menu {
+.give_kindness-country-list-menu {
   top: 100%;
   background-color: rgb(255, 255, 255);
   margin-bottom: 8px;
@@ -2125,17 +2125,17 @@ textarea:focus,
   outline: 0px !important;
 }
 
-.givekindness-country-list {
+.give_kindness-country-list {
   height: 150px;
   overflow-y: scroll;
 }
 
-.givekindness-country-list > div {
+.give_kindness-country-list > div {
   padding: 10px;
   color: #424242;
 }
 
-.givekindness-country-list > div:hover {
+.give_kindness-country-list > div:hover {
   background-color: #deebff;
   cursor: pointer;
 }

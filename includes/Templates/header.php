@@ -1,5 +1,5 @@
 <?php
-    $myProfile = new GiveKindness\Frontend\MyDashboard();
+    $myProfile = new Give_Kindness\Frontend\MyDashboard();
     $myProfile = $myProfile->profile();
 ?>
 
@@ -20,13 +20,13 @@
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" class="svg-inline--fa fa-clock fa-w-16 fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="currentColor" d="M256,8C119,8,8,119,8,256S119,504,256,504,504,393,504,256,393,8,256,8Zm92.49,313h0l-20,25a16,16,0,0,1-22.49,2.5h0l-67-49.72a40,40,0,0,1-15-31.23V112a16,16,0,0,1,16-16h32a16,16,0,0,1,16,16V256l58,42.5A16,16,0,0,1,348.49,321Z"></path>
             </svg>
-            <?php echo sprintf(__('Last donated %s ago', 'givekindness'), $myProfile['sinceLastDonation']); ?>
+            <?php echo sprintf(__('Last donated %s ago', 'give_kindness'), $myProfile['sinceLastDonation']); ?>
         </div>
         <div class="give-donor-dashboard-donor-info__detail">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16 fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
             </svg>
-            <?php echo sprintf(__('Donor for %s', 'givekindness'), $myProfile['sinceCreated']); ?>
+            <?php echo sprintf(__('Donor for %s', 'give_kindness'), $myProfile['sinceCreated']); ?>
         </div>
         </div>
         <div class="give-donor-dashboard-donor-info__badges"></div>
