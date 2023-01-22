@@ -1890,7 +1890,7 @@ a:focus {
   box-sizing: border-box;
 }
 
-.css-9ntxye-control {
+.givekindness-prefix-select {
   -webkit-box-align: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -1914,19 +1914,7 @@ a:focus {
   outline: 0px !important;
 }
 
-.css-cjc81c {
-  -webkit-box-align: center;
-  align-items: center;
-  display: flex;
-  flex: 1 1 0%;
-  flex-wrap: wrap;
-  padding: 7px 12px;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.css-1uccc91-singleValue {
+.givekindness-prefix-singleValue {
   color: rgb(51, 51, 51);
   margin-left: 2px;
   margin-right: 2px;
@@ -1940,7 +1928,7 @@ a:focus {
   box-sizing: border-box;
 }
 
-.css-1j3wxsa {
+.givekindness-form-child-item {
   margin: 2px;
   padding-bottom: 2px;
   padding-top: 2px;
@@ -2004,4 +1992,150 @@ input[type="search"]:focus,
 textarea:focus,
 .input-text:focus {
   background-color: transparent !important;
+}
+
+.givekindness-prefix-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid rgb(220 217 217);
+  border-radius: 4px;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  cursor: default;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  transition: all 100ms ease 0s;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: rgb(130, 131, 130);
+  line-height: 1.2;
+  outline: 0px !important;
+  width: 120px;
+  margin-top: 5px;
+}
+
+.givekindness-prefix-selector {
+  width: 120px;
+  padding: 10px;
+  color: #424242;
+}
+
+.givekindness-prefix-selector:hover {
+  background-color: #deebff;
+}
+
+.css-2b097c-container {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.givekindness-form-control {
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  min-height: 38px;
+  position: relative;
+  transition: all 100ms ease 0s;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: rgb(130, 131, 130);
+  line-height: 1.2;
+  margin-top: 8px;
+  border: 1px solid rgb(184, 184, 184);
+  outline: 0px !important;
+}
+
+.givekindness-form-item {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  flex: 1 1 0%;
+  flex-wrap: wrap;
+  padding: 7px 12px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.selected-country-name {
+  color: rgb(51, 51, 51);
+  margin-left: 2px;
+  margin-right: 2px;
+  max-width: calc(100% - 8px);
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.givekindness-form-child-item {
+  margin: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  visibility: visible;
+  color: rgb(130, 131, 130);
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.givekindness-country-list-menu {
+  top: 100%;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 8px;
+  margin-top: 8px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  /* display: none; */
+  border: 1px solid rgb(220 217 217);
+  border-radius: 4px;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  cursor: default;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  transition: all 100ms ease 0s;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: rgb(130, 131, 130);
+  line-height: 1.2;
+  outline: 0px !important;
+}
+
+.givekindness-country-list {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.givekindness-country-list > div {
+  padding: 10px;
+  color: #424242;
+}
+
+.givekindness-country-list > div:hover {
+  background-color: #deebff;
+  cursor: pointer;
 }
