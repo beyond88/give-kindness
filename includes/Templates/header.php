@@ -6,7 +6,18 @@
 <div class="give-donor-dashboard-desktop-layout__donor-info">
     <div class="give-donor-dashboard-donor-info">
         <div class="give-donor-dashboard-donor-info__avatar">
-        <div class="give-donor-dashboard-donor-info__avatar-container"><img alt="Donor Picture" src="<?php echo esc_url($myProfile['avatarUrl']); ?>"></div>
+            <div class="give-donor-dashboard-donor-info__avatar-container">
+            <?php 
+                if( ! empty( $myProfile['avatarUrl'] ) ) { ?>
+                <img alt="Donor Picture" src="<?php echo esc_url($myProfile['avatarUrl']); ?>">
+                <?php } else { ?>
+                <span class="give-donor-dashboard-donor-info__avatar-initials">
+                    <?php echo $myProfile['initials']; ?>
+                </span>
+            <?php
+                }
+            ?>
+            </div>
         </div>
         <div class="give-donor-dashboard-donor-info__details">
         <div class="give-donor-dashboard-donor-info__name"><?php echo $myProfile['name']; ?></div>

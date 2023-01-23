@@ -49,7 +49,6 @@ class MyDashboard {
     }
 
     public function profile(){
-
         $profile = new \Give\DonorDashboards\Profile($this->id);
         return $profile->getProfileData();
     }
