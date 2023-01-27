@@ -94,7 +94,9 @@ class Assets {
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce( 'give_kindness-admin-nonce' ),
             'confirm' => __( 'Are you sure?', 'give_kindness' ),
-            'error' => __( 'Something went wrong', 'give_kindness' )
+            'error' => __( 'Something went wrong', 'give_kindness' ),
+            'apiNonce' => wp_create_nonce('wp_rest'),
+            'siteURL' => site_url('/'),
         ] );
     }
 }
