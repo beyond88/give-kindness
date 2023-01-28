@@ -375,6 +375,70 @@
 
     });
 
+    /**************************
+    *  
+    * Get states by country code
+    * 
+    ***************************/
+    const getStatesList = (items) => {
+
+      if(items.length < 2 ){
+        return null;
+      }
+
+      let startDiv = `
+        <div class="give-donor-dashboard-select-control give_kindness-states-area">
+          <label class="give-donor-dashboard-select-control__label">
+              State
+          </label>
+          <div class="give_kindness-form-container">
+              <div class="give_kindness-form-control">
+                <div class=" give_kindness-form-item">
+                    <div class="give_kindness-state">
+                      Select ...
+                    </div>
+                    <div class="give_kindness-form-child-item">
+                      <div class="" style="display: inline-block;">
+                          <input autocapitalize="none" autocomplete="off" autocorrect="off" id="state-744" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
+                          <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: Arial; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
+                      </div>
+                    </div>
+                </div>
+                <div class="css-1wy0on6">
+                    <span class="css-1hyfx7x"></span>
+                    <div aria-hidden="true" class="css-6yl9nk-indicatorContainer">
+                      <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r">
+                          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                      </svg>
+                    </div>
+                </div>
+              </div>
+              <div class="give_kindness-states-list-menu">
+                <div class="give_kindness-states-list">`
+
+                var statesItem = "";
+                items.forEach(function(item) {
+                  statesItem += `<div class="give_kindness_state_name" data-stateCode="${item.value}">${item.label}</div>`;
+                });
+
+                let midDiv = statesItem;
+
+              let endDiv = `
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `;
+      const output = `${startDiv} ${midDiv} ${endDiv}` 
+      return output;
+    };
+
+    /**************************
+    *  
+    * Change country and display states 
+    * following the country code
+    * 
+    ***************************/
     $(document).on('click', ".give_kindness_country_name", function() {
 
       let countryName = $(this).text();
@@ -400,27 +464,72 @@
               };
             });
 
-            console.log("RESPONSE: ", statesList);
+            if( $('.give_kindness-states-zip').has('.give_kindness-states-area') ){
+              $('.give_kindness-states-area').remove();
+            }
+            $('.give_kindness-states-zip').prepend(getStatesList(statesList));
+            
           },
           fail: function (data) {
             console.log('fail==>', data);
           }
         });
 
-        //$(this).parents('.give_kindness-country-list-menu').remove();
+        $(this).parents('.give_kindness-country-list-menu').remove();
       }
-
+  
     });
 
-    $(document).on('click', "#give_kindness-update-profile", function(){
-
-    });
-
+    /**************************
+    *  
+    * Decode HTML
+    * 
+    ***************************/
     const decodeHTMLEntity = (entity) => {
       const div = document.createElement('div');
       div.innerHTML = entity;
       return div.innerText;
     };
+
+    /**************************
+    *  
+    * Click to choose state and show/hide states list
+    * 
+    ***************************/
+    $(document).on('click', ".give_kindness-states-area .give_kindness-form-item", function(){
+      $(this).parent().siblings('.give_kindness-states-list-menu').toggle();
+    });
+
+    /**************************
+    *  
+    * Display state name when select from option list
+    * 
+    ***************************/
+    
+    $(document).on('click', ".give_kindness_state_name", function(){
+      const stateName = $(this).text();
+      $(this).parent().parent().siblings().children().find('.give_kindness-state').text(stateName);
+      $(this).parent().parent().hide();
+    });
+
+    $( document ).ready(function() {
+      $(".give_kindness_state_name").each(function() {
+        if( $(this).hasClass('selected') ){
+          const stateName = $(this).text(); 
+          $(this).parent().parent().siblings().children().find('.give_kindness-state').text(stateName);
+        }
+      });
+    });
+
+
+    /**************************
+    *  
+    * Update profile
+    * 
+    ***************************/
+    $(document).on('click', "#give_kindness-update-profile", function(){
+
+    });
 
 })(jQuery);
 

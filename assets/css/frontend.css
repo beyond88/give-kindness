@@ -2138,3 +2138,7 @@ textarea:focus,
   background-color: #deebff;
   cursor: pointer;
 }
+
+.give_kindness-states-list-menu {
+  display: none;
+}
