@@ -93,10 +93,11 @@ class Assets {
         wp_localize_script( 'give_kindness-admin-script', 'give_kindness', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce( 'give_kindness-admin-nonce' ),
-            'confirm' => __( 'Are you sure?', 'give_kindness' ),
-            'error' => __( 'Something went wrong', 'give_kindness' ),
+            'confirm' => __( 'Are you sure?', 'give-kindness' ),
+            'error' => __( 'Something went wrong', 'give-kindness' ),
             'apiNonce' => wp_create_nonce('wp_rest'),
             'siteURL' => site_url('/'),
+            'userId' => get_current_user_id()
         ] );
     }
 }

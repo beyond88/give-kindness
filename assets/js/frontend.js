@@ -507,11 +507,11 @@
     * Display state name when select from option list
     * 
     ***************************/
-    
     $(document).on('click', ".give_kindness_state_name", function(){
       const stateName = $(this).text();
       $(this).parent().parent().siblings().children().find('.give_kindness-state').text(stateName);
       $(this).parent().parent().hide();
+      $("#gk-state").val($(this).attr('data-stateCode'));
     });
 
     $( document ).ready(function() {
@@ -519,10 +519,22 @@
         if( $(this).hasClass('selected') ){
           const stateName = $(this).text(); 
           $(this).parent().parent().siblings().children().find('.give_kindness-state').text(stateName);
+          $("#gk-state").val($(this).attr('data-stateCode'));
         }
       });
     });
 
+    
+    /**************************
+    *  
+    * Check donation anonymous giving 
+    * or not
+    * 
+    ***************************/
+    $(document).on('click', ".anonymous-giving", function(){
+      $('.anonymous-giving').attr('checked', false);
+      $(this).attr('checked', true);
+    });
 
     /**************************
     *  
@@ -545,8 +557,14 @@
         });
       }
 
-      let pCountry = pLine1 = pLine2 = pState = pCity = pZip = avatarId = '';
-      let isAnonymous = 1;
+      let pCountry = '';
+      let pLine1 = '';
+      let pLine2 = '';
+      let pState = '';
+      let pCity = '';
+      let pZip = '';
+      let isAnonymous = 0;
+      // let avatarId = 392;
       
       if( $('#gk-country').length > 0 && $('#gk-country').val() != '' ){
         pCountry = $('#gk-country').val();
@@ -573,7 +591,7 @@
       }
 
       let primaryAddress = {
-        country:pCountry,
+        country: pCountry,
         line1:pLine1,
         line2:pLine2,
         state:pState,
@@ -581,47 +599,42 @@
         zip:pZip
       };
 
-      additionalAddresses = []
+      let additionalAddresses = [];
 
-      let data = {
-        titlePrefix: titlePrefix,
-        firstName: firstName,
-        lastName: lastName,
-        company: company,
-        primaryEmail: primaryEmail,
-        additionalEmails:additionalEmails,
-        primaryAddress: primaryAddress,
-        additionalAddresses: additionalAddresses,
-        avatarId: avatarId,
-        isAnonymous: isAnonymous
-      }
+      $(".anonymous-giving").each(function(){
+        if( $(this).is(':checked') ) {
+          isAnonymous =  $(this).val();
+        }
+      });
 
-        // $.ajax({
-        //   type: 'POST',
-        //   dataType: 'json',
-        //   headers: {'X-WP-Nonce': give_kindness.apiNonce },
-        //   url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/profile',
-        //   data: {
-        //     id: $(this).attr('data-countryCode')
-        //   },
-        //   success: function(data) {
-        //     const statesList = data.states.map((state) => {
-        //       return {
-        //         value: state.value,
-        //         label: decodeHTMLEntity(state.label),
-        //       };
-        //     });
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/profile',
+        data: {
+            data: JSON.stringify({
+              titlePrefix,
+              firstName,
+              lastName,
+              company,
+              primaryEmail,
+              additionalEmails,
+              primaryAddress,
+              additionalAddresses,
+              // avatarId,
+              isAnonymous,
+          }),
+          id: give_kindness.userId
+        },
+        success: function(data) {
+          console.log('profile update==>', data);
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+        }
+      });
 
-        //     if( $('.give_kindness-states-zip').has('.give_kindness-states-area') ){
-        //       $('.give_kindness-states-area').remove();
-        //     }
-        //     $('.give_kindness-states-zip').prepend(getStatesList(statesList));
-            
-        //   },
-        //   fail: function (data) {
-        //     console.log('fail==>', data);
-        //   }
-        // });
     });
 
 })(jQuery);
