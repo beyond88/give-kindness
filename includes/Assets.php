@@ -97,7 +97,10 @@ class Assets {
             'error' => __( 'Something went wrong', 'give-kindness' ),
             'apiNonce' => wp_create_nonce('wp_rest'),
             'siteURL' => site_url('/'),
-            'userId' => get_current_user_id()
+            'userId' => get_current_user_id(),
+            'updateProfile' => __('Update Profile', 'give-kindness'),
+            'updating' => __('Updating...', 'give-kindness'),
+            'updated' => __('Updated', 'give-kindness'),
         ] );
     }
 }

@@ -2,9 +2,9 @@
    $myProfile = new Give_Kindness\Frontend\MyDashboard();
    $myProfile = $myProfile->profile();
 
-   echo "<pre>";
-   print_r($myProfile);
-   echo "</pre>";
+   // echo "<pre>";
+   // print_r($myProfile);
+   // echo "</pre>";
 ?>
 
 <div class="give-donor-dashboard-tab-content" id="give_kindness-profile" data-tab-content="give_kindness-profile">
@@ -17,7 +17,8 @@
          <?php echo __('Avatar', 'give-kindness'); ?>
       </label>
       <div class="give-donor-dashboard-avatar-control__input" tabindex="0">
-        <input accept="image/jpeg, image/png, image/gif" multiple="" type="file" autocomplete="off" tabindex="-1" style="display: none;" id="give_kindness-avatar" >
+         <input type="hidden" name="avatarId" id="avatarId" value="<?php echo $myProfile['avatarId']; ?>">
+        <input accept="image/jpeg, image/png, image/gif" type="file" autocomplete="off" tabindex="-1" style="display: none;" id="give_kindness-avatar" >
         <div class="give-donor-dashboard-avatar-control__preview">
             <img src="<?php echo esc_url($myProfile['avatarUrl']); ?>">
         </div>

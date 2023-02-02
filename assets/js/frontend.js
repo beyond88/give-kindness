@@ -3,7 +3,6 @@
   (function($) {
     'use strict';
 
-
     /************************
      * 
      * Sidebar handle
@@ -32,13 +31,17 @@
       document.getElementById("give_kindness-avatar").click();
     });
 
-    $(document).on('click', '#give_kindness-avatar', function(){
+    let avatarFile = '';
+
+    $(document).on('change', '#give_kindness-avatar', function(){
       const file = this.files[0];
       if (file){
         let reader = new FileReader();
         reader.onload = function(event){
-          $('.give-donor-dashboard-avatar-control__preview').children('img').attr('src', event.target.result);
+          $('.give-donor-dashboard-avatar-control__preview, .give-donor-dashboard-donor-info__avatar-container').children('img').attr('src', event.target.result);
         }
+
+        avatarFile = file;
         reader.readAsDataURL(file);
       }
     });
@@ -541,8 +544,39 @@
     * Update profile
     * 
     ***************************/
-    $(document).on('click', "#give_kindness-update-profile", function(){
 
+    async function uploadAvatar(file){
+
+      var avatarId = null;
+      const formData = new window.FormData();
+      formData.append('file', file);
+
+      await $.ajax({
+        type: 'POST',
+        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/avatar',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader( 'X-WP-Nonce', give_kindness.apiNonce );
+        },
+        success: function(data) {
+          if(data.id){
+            avatarId = data.id;
+          }
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+        }
+      });
+
+      return avatarId; 
+
+    }
+
+    $(document).on('click', "#give_kindness-update-profile", async function(){
+
+      let thisBtn = $(this);
       let titlePrefix = $('.give_kindness-prefix-singleValue').text();
       let firstName = $("#gk-first-name").val();
       let lastName = $("#gk-last-name").val();
@@ -564,7 +598,7 @@
       let pCity = '';
       let pZip = '';
       let isAnonymous = 0;
-      // let avatarId = 392;
+      let avatarId = $('#avatarId').val();
       
       if( $('#gk-country').length > 0 && $('#gk-country').val() != '' ){
         pCountry = $('#gk-country').val();
@@ -607,6 +641,13 @@
         }
       });
 
+      if(avatarFile) {
+        avatarId = await uploadAvatar(avatarFile);
+        $('#avatarId').val(avatarId);
+      }
+
+      thisBtn.text(give_kindness.updating);
+
       $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -622,16 +663,17 @@
               additionalEmails,
               primaryAddress,
               additionalAddresses,
-              // avatarId,
+              avatarId,
               isAnonymous,
           }),
           id: give_kindness.userId
         },
         success: function(data) {
-          console.log('profile update==>', data);
+          thisBtn.text(give_kindness.updated);
         },
         error: function (error) {
           console.log('fail==>', error);
+          thisBtn.text(give_kindness.updateProfile);
         }
       });
 
