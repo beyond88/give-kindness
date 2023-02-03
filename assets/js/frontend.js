@@ -648,6 +648,19 @@
 
       thisBtn.text(give_kindness.updating);
 
+      console.log('form data==>', JSON.stringify({
+        titlePrefix,
+        firstName,
+        lastName,
+        company,
+        primaryEmail,
+        additionalEmails,
+        primaryAddress,
+        additionalAddresses,
+        avatarId,
+        isAnonymous,
+    }));
+
       $.ajax({
         type: 'POST',
         dataType: 'json',
