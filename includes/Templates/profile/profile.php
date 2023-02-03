@@ -132,9 +132,6 @@
    </div>
    <?php endforeach; ?>
    <?php endif; ?>
-
-
-
    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary" id="gk-add-email">
       <?php echo __('Add Email', 'give-kindness'); ?>
       <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -260,13 +257,13 @@
    </div>
    <?php } ?>
 
-   <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+   <!-- <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
       <?php echo __('Add Address', 'give-kindness'); ?>
       <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg>
-   </button>
+   </button> -->
 
    <?php } else { ?>
-      <div class="give-donor-dashboard__add-primary-address">
+      <!-- <div class="give-donor-dashboard__add-primary-address">
          <div class="give-donor-dashboard-heading"><?php echo __('Looks like you have not set up an address!', 'give-kindness'); ?></div>
          <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
             <?php echo __('Add Address', 'give-kindness'); ?>
@@ -274,6 +271,73 @@
                <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
             </svg>
          </button>
+      </div> -->
+
+      <div class="give-donor-dashboard-heading">
+         <?php echo __('Primary Address', 'give-kindness');?>
+      </div>
+      <div class="give-donor-dashboard-divider"></div>
+      <div class="give-donor-dashboard-select-control">
+         <label class="give-donor-dashboard-select-control__label" for="gk-country">
+            <?php echo __('Country', 'give-kindness');?>
+         </label>
+         <div class="give_kindness-form-container">
+            <div class="give_kindness-form-control give_kindness-country">
+               <div class="give_kindness-form-item">
+                  <div class="selected-country-name">
+                     <?php echo __('Select...', 'give-kindness'); ?>
+                  </div>
+                  <div class="give_kindness-form-child-item">
+                     <div class="" style="display: inline-block;">
+                        <input autocapitalize="none" autocomplete="off" autocorrect="off" id="gk-country" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="<?php echo $address['country']; ?>" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
+                        <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: Arial; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="css-1wy0on6">
+                  <span class=" css-1hyfx7x"></span>
+                  <div aria-hidden="true" class="css-6yl9nk-indicatorContainer">
+                     <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-19bqh2r">
+                        <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
+                     </svg>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="give-donor-dashboard-text-control">
+         <label class="give-donor-dashboard-text-control__label" for="gk-address-1">
+            <?php echo __('Address 1', 'give-kindness'); ?>
+         </label>
+         <div class="give-donor-dashboard-text-control__input">
+            <input id="gk-address-1" type="text" value="">
+         </div>
+      </div>
+      <div class="give-donor-dashboard-text-control">
+         <label class="give-donor-dashboard-text-control__label" for="gk-address-2">
+            <?php echo __('Address 2', 'give-kindness'); ?>
+         </label>
+         <div class="give-donor-dashboard-text-control__input">
+            <input id="gk-address-2" type="text" value="">
+         </div>
+      </div>
+      <div class="give-donor-dashboard-text-control">
+         <label class="give-donor-dashboard-text-control__label" for="gk-city">
+            <?php echo __('City', 'give-kindness'); ?>
+         </label>
+         <div class="give-donor-dashboard-text-control__input">
+            <input id="gk-city" type="text" value="">
+         </div>
+      </div>
+      <div class="give-donor-dashboard-field-row give_kindness-states-zip">
+         <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label">
+               <?php echo __('Zip', 'give-kindness'); ?>
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+               <input id="gk-zip" type="text" value="">
+            </div>
+         </div>
       </div>
    <?php } ?>
 
