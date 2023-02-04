@@ -679,6 +679,32 @@
 
     });
 
+    $(document).on('click', '#give-kindness-login-submit', function(){
+
+      let login = $('#give-kindness-username').val();
+      let password = $('#give-kindness-password').val();
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/login',
+        data: {
+          login: login,
+          password: password
+        },
+        success: function(data) {
+          if( data.status === 200 ) {
+            window.location.reload();
+          }
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+          thisBtn.text(give_kindness.updateProfile);
+        }
+      });
+    });
+
 })(jQuery);
 
   /************************
