@@ -42,13 +42,12 @@
         $('.give-donor-dashboard-logout-modal').remove();
       });
       
+      
       /************************
        * 
        * Sidebar handle
        * 
        ************************/
-
-      
       $(".give-donor-dashboard-tab-link").click(function() {
         $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
         $(this).addClass("give-donor-dashboard-tab-link--is-active");
@@ -61,10 +60,6 @@
             } else {
               if( typeof targetTabContent !== "undefined"){
                 $('#'+currentTabContent).hide();
-              } {
-                if( ! $('.give-donor-dashboard-desktop-layout__tab-menu').children().hasClass('give-donor-dashboard-logout-modal') ){
-                  $(this).parent().before(logoutModal);
-                }
               }
             }
 
@@ -72,6 +67,20 @@
             $('.view-receipt-details').hide();
           }
         });
+
+
+        /*---------------------------------------------------
+         * 
+         * Show logout modal
+         * 
+         ---------------------------------------------------*/
+        if( $(this).parent().hasClass('give-donor-dashboard-logout') ){
+          console.log('checked', $(this).parent().hasClass('give-donor-dashboard-logout'));
+          if( ! $('.give-donor-dashboard-desktop-layout__tab-menu').children().hasClass('give-donor-dashboard-logout-modal') ){
+            $(this).parent().before(logoutModal);
+          }
+        }
+        
       });
 
     });
