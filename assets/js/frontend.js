@@ -20,7 +20,7 @@
               </div>
               <div class="give-donor-dashboard-logout-modal__body">
                 <div class="give-donor-dashboard-logout-modal__buttons">
-                    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+                    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary" id="give-kindness-logout">
                     ${logOutYes}
                     </button>
                     <a class="give-donor-dashboard-logout-modal__cancel">
@@ -42,7 +42,7 @@
         $('.give-donor-dashboard-logout-modal').remove();
       });
       
-      
+
       /************************
        * 
        * Sidebar handle
@@ -67,7 +67,6 @@
             $('.view-receipt-details').hide();
           }
         });
-
 
         /*---------------------------------------------------
          * 
@@ -737,6 +736,12 @@
 
     });
 
+    /**************************
+    *  
+    * Login
+    * 
+    ***************************/
+
     $(document).on('click', '#give-kindness-login-submit', function(){
 
       let login = $('#give-kindness-username').val();
@@ -766,6 +771,33 @@
         }
       });
     });
+
+    /**************************
+    *  
+    * Login
+    * 
+    ***************************/
+
+    $(document).on('click', '#give-kindness-logout', function(){
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.apiURL+'donor-dashboard/logout',
+        success: function(data) {
+          if( data.status === 200 ) {
+            window.location.reload();
+          }
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+          thisBtn.text(give_kindness.updateProfile);
+        }
+      });
+
+    });
+
 
 })(jQuery);
 
