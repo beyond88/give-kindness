@@ -1,30 +1,79 @@
-
-
   (function($) {
     'use strict';
 
     /************************
      * 
-     * Sidebar handle
+     * Logout modal
      * 
      ************************/
-    $(".give-donor-dashboard-tab-link").click(function() {
-      $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
-      $(this).addClass("give-donor-dashboard-tab-link--is-active");
-      const targetTabContent = $(this).data('tab-id');
-      $(".give-donor-dashboard-tab-link").each(function(index, item) {
-        let currentTabContent = $(this).data('tab-id');
-        if( currentTabContent !== undefined ){          
-          if( currentTabContent === targetTabContent ){
-            $('#'+currentTabContent).show();
-          } else {
-            $('#'+currentTabContent).hide();
-          }
 
-          // Hide receipt details content
-          $('.view-receipt-details').hide();
-        }
+    $( document ).ready(function() {
+      let logOutMsg = give_kindness.logOutMsg;
+      let logOutYes = give_kindness.yes;
+      let neverMind = give_kindness.neverMind;
+  
+      let logoutModal = `
+        <div class="give-donor-dashboard-logout-modal">
+          <div class="give-donor-dashboard-logout-modal__frame">
+              <div class="give-donor-dashboard-logout-modal__header">
+              ${logOutMsg}
+              </div>
+              <div class="give-donor-dashboard-logout-modal__body">
+                <div class="give-donor-dashboard-logout-modal__buttons">
+                    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+                    ${logOutYes}
+                    </button>
+                    <a class="give-donor-dashboard-logout-modal__cancel">
+                      ${neverMind}
+                    </a>
+                </div>
+              </div>
+          </div>
+          <div class="give-donor-dashboard-logout-modal__bg"></div>
+        </div>
+      `;
+
+      /************************
+       * 
+       * Remove logout modal
+       * 
+       ************************/
+      $(document).on('click', '.give-donor-dashboard-logout-modal__cancel', function(){
+        $('.give-donor-dashboard-logout-modal').remove();
       });
+      
+      /************************
+       * 
+       * Sidebar handle
+       * 
+       ************************/
+
+      
+      $(".give-donor-dashboard-tab-link").click(function() {
+        $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
+        $(this).addClass("give-donor-dashboard-tab-link--is-active");
+        const targetTabContent = $(this).data('tab-id');
+        $(".give-donor-dashboard-tab-link").each(function(index, item) {
+          let currentTabContent = $(this).data('tab-id');
+          if( typeof currentTabContent != "undefined" ){   
+            if( currentTabContent === targetTabContent ){
+              $('#'+currentTabContent).show();
+            } else {
+              if( typeof targetTabContent !== "undefined"){
+                $('#'+currentTabContent).hide();
+              } {
+                if( ! $('.give-donor-dashboard-desktop-layout__tab-menu').children().hasClass('give-donor-dashboard-logout-modal') ){
+                  $(this).parent().before(logoutModal);
+                }
+              }
+            }
+
+            // Hide receipt details content
+            $('.view-receipt-details').hide();
+          }
+        });
+      });
+
     });
 
     $(document).on('click', '.give-donor-dashboard-avatar-control__dropzone', function(){
@@ -457,7 +506,7 @@
           type: 'POST',
           dataType: 'json',
           headers: {'X-WP-Nonce': give_kindness.apiNonce },
-          url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/location',
+          url: give_kindness.apiURL+'donor-dashboard/location',
           data: {
             countryCode: $(this).attr('data-countryCode')
           },
@@ -553,7 +602,7 @@
 
       await $.ajax({
         type: 'POST',
-        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/avatar',
+        url: give_kindness.apiURL+'donor-dashboard/avatar',
         data: formData,
         processData: false,
         contentType: false,
@@ -652,7 +701,7 @@
         type: 'POST',
         dataType: 'json',
         headers: {'X-WP-Nonce': give_kindness.apiNonce },
-        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/profile',
+        url: give_kindness.apiURL+'donor-dashboard/profile',
         data: {
             data: JSON.stringify({
               titlePrefix,
@@ -684,11 +733,15 @@
       let login = $('#give-kindness-username').val();
       let password = $('#give-kindness-password').val();
 
+      if( login == '' || password == '' ){
+        return false; 
+      }
+
       $.ajax({
         type: 'POST',
         dataType: 'json',
         headers: {'X-WP-Nonce': give_kindness.apiNonce },
-        url: give_kindness.siteURL+'wp-json/give-api/v2/donor-dashboard/login',
+        url: give_kindness.apiURL+'donor-dashboard/login',
         data: {
           login: login,
           password: password

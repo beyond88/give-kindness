@@ -97,10 +97,14 @@ class Assets {
             'error' => __( 'Something went wrong', 'give-kindness' ),
             'apiNonce' => wp_create_nonce('wp_rest'),
             'siteURL' => site_url('/'),
+            'apiURL' => site_url('/wp-json/give-api/v2/'),
             'userId' => get_current_user_id(),
             'updateProfile' => __('Update Profile', 'give-kindness'),
             'updating' => __('Updating...', 'give-kindness'),
             'updated' => __('Updated', 'give-kindness'),
+            'logOutMsg' => __('Are you sure you want to logout?', 'give-kindness'),
+            'yes' => __('Yes', 'give-kindness'),
+            'neverMind' => __('Nevermind', 'give-kindness'),
         ] );
     }
 }
