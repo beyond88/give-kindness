@@ -511,7 +511,7 @@
         type: 'POST',
         dataType: 'json',
         headers: {'X-WP-Nonce': give_kindness.apiNonce },
-        url: give_kindness.apiURL+'donor-dashboard/location',
+        url: give_kindness.giveApiURL+'donor-dashboard/location',
         data: {
           countryCode: $(this).attr('data-countryCode')
         },
@@ -606,7 +606,7 @@
 
     await $.ajax({
       type: 'POST',
-      url: give_kindness.apiURL+'donor-dashboard/avatar',
+      url: give_kindness.giveApiURL+'donor-dashboard/avatar',
       data: formData,
       processData: false,
       contentType: false,
@@ -705,7 +705,7 @@
       type: 'POST',
       dataType: 'json',
       headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.apiURL+'donor-dashboard/profile',
+      url: give_kindness.giveApiURL+'donor-dashboard/profile',
       data: {
           data: JSON.stringify({
             titlePrefix,
@@ -767,7 +767,7 @@
       type: 'POST',
       dataType: 'json',
       headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.apiURL+'donor-dashboard/login',
+      url: give_kindness.giveApiURL+'donor-dashboard/login',
       data: {
         login: login,
         password: password
@@ -807,7 +807,7 @@
       type: 'POST',
       dataType: 'json',
       headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.apiURL+'donor-dashboard/logout',
+      url: give_kindness.giveApiURL+'donor-dashboard/logout',
       success: function(data) {
         if( data.status === 200 ) {
           window.location.reload();
@@ -828,26 +828,27 @@
   ***************************/
   $(document).on('click', '#give-kindness-signup-submit', function(){
 
-    let username = $('#give-kindness-rusername').val();
-    let password = $('#give-kindness-rpassword').val();
+    // let username = $('#give-kindness-rusername').val();
+    // let password = $('#give-kindness-rpassword').val();
 
-    if( username == '' || password == '' ){
-      return false; 
-    }
+    // if( username == '' || password == '' ){
+    //   return false; 
+    // }
 
     $.ajax({
       type: 'POST',
       dataType: 'json',
       headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.apiURL+'donor-dashboard/login',
-      data: {
-        login: login,
-        password: password
-      },
+      url: give_kindness.giveKindnessApiURL+'register',
+      // data: {
+      //   login: username,
+      //   password: password
+      // },
       success: function(data) {
-        if( data.status === 200 ) {
-          window.location.reload();
-        }
+        console.log('get reponse==>',data);
+        // if( data.status === 200 ) {
+        //   window.location.reload();
+        // }
       },
       error: function (error) {
         console.log('fail==>', error);
