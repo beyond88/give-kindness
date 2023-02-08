@@ -15,7 +15,7 @@ class GiveKindnessAPI
      * Initialize the class
      */
     function __construct() {
-        add_action( 'rest_api_init', [ $this, 'registerApi' ] );
+      add_action( 'rest_api_init', [ $this, 'registerApi' ] );
     }
  
     /**
@@ -25,11 +25,11 @@ class GiveKindnessAPI
     */
     public function registerApi() {
 
-        register_rest_route( $this->restBase, '/register', [
-            'methods'  => WP_REST_SERVER::CREATABLE,
-            'callback' => [ $this, 'tryRegister' ],
-            'permission_callback' => '__return_true'
-        ]);
+      register_rest_route( $this->restBase, '/register', [
+        'methods'  => WP_REST_SERVER::CREATABLE,
+        'callback' => [ $this, 'tryRegister' ],
+        'permission_callback' => '__return_true'
+      ]);
 
     }
 
@@ -45,32 +45,32 @@ class GiveKindnessAPI
         $username = sanitize_text_field($parameters['username']);
         $email = sanitize_text_field($parameters['email']);
         $password = sanitize_text_field($parameters['password']);
-        // $role = sanitize_text_field($parameters['role']);
+
         $error = new WP_Error();
-        if (empty($username)) {
-          $error->add(400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400));
+        if ( empty($username) ) {
+          $error->add( 400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400) );
           return $error;
         }
-        if (empty($email)) {
-          $error->add(401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400));
+        if ( empty( $email ) ) {
+          $error->add( 401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400) );
           return $error;
         }
-        if (empty($password)) {
-          $error->add(404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400));
+        if ( empty( $password ) ) {
+          $error->add( 404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400) );
           return $error;
         }
 
         $user_id = username_exists($username);
-        if (!$user_id && email_exists($email) == false) {
+        if ( !$user_id && email_exists($email) == false ) {
           $user_id = wp_create_user($username, $password, $email);
-          if ( !is_wp_error($user_id) ) {
-            // Ger User Meta Data (Sensitive, Password included. DO NOT pass to front end.)
+          if ( ! is_wp_error($user_id) ) {
+            // Get User Meta Data (Sensitive, Password included. DO NOT pass to front end.)
             $user = get_user_by('id', $user_id);
             // $user->set_role($role);
             $user->set_role('subscriber');
-            // WooCommerce specific code
-            if (class_exists('WooCommerce')) {
-              $user->set_role('customer');
+            // Give specific code
+            if ( class_exists('Give') ) {
+              $user->set_role('give_donor');
             }
             // Ger User Data (Non-Sensitive, Pass to front end.)
             $response['code'] = 200;

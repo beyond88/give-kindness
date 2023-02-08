@@ -79,7 +79,7 @@ add_filter( 'display_post_states', function( $statuses ) {
     return $statuses;
 });
 
-function give_kindness_templates_part( $file ){
+function give_kindness_templates_part( $file, $object = NULL ){
 
     $template = '';
     $file_exists = GIVE_KINDNESS_TEMPLATES . $file. ".php";

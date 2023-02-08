@@ -17,7 +17,7 @@ class MyDashboard {
 
         $this->id = get_current_user_id();
 
-        add_shortcode( 'donor_dashboard', [ $this, 'donoar_dashboard' ] );
+        add_shortcode( 'donor_dashboard', [ $this, 'donor_dashboard' ] );
         add_shortcode( 'donor_authentication', [ $this, 'donor_authentication' ] );
     }
 
@@ -29,7 +29,7 @@ class MyDashboard {
      *
      * @return string
      */
-    public function donoar_dashboard( $atts, $content = '' ) 
+    public function donor_dashboard( $atts, $content = '' ) 
     {
 
         ob_start();
@@ -48,11 +48,17 @@ class MyDashboard {
 
     }
 
+    /**
+     * Shortcode handler class
+     *
+     * @param  none
+     *
+     * @return object
+     */
     public function profile(){
         $profile = new \Give\DonorDashboards\Profile($this->id);
         return $profile->getProfileData();
     }
-
 
     /**
      * Shortcode handler class

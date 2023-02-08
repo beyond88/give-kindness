@@ -13,10 +13,10 @@ class Email {
      * @params none
      * @return void
      */
-    public function __construct( ){
+    public function __construct( ) {
 
     }
 
-    
+
 
 }
