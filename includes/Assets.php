@@ -106,6 +106,8 @@ class Assets {
             'logOutMsg' => __('Are you sure you want to logout?', 'give-kindness'),
             'yes' => __('Yes', 'give-kindness'),
             'neverMind' => __('Nevermind', 'give-kindness'),
+            'emailNotValid' => __('Email not valid!', 'give-kindness'),
+            'passwordLength' => __('Password length minimum 6 character!', 'give-kindness'),
         ] );
     }
 }

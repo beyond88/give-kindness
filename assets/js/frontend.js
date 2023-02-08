@@ -826,35 +826,71 @@
   * Signup
   * 
   ***************************/
+
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
   $(document).on('click', '#give-kindness-signup-submit', function(){
 
-    // let username = $('#give-kindness-rusername').val();
-    // let password = $('#give-kindness-rpassword').val();
+    let that = $(this);
+    let email = $('#give-kindness-rusername').val();
+    let password = $('#give-kindness-rpassword').val();
 
-    // if( username == '' || password == '' ){
-    //   return false; 
-    // }
+    if( email == '' || password == '' ){
+      return false; 
+    }
 
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.giveKindnessApiURL+'register',
-      // data: {
-      //   login: username,
-      //   password: password
-      // },
-      success: function(data) {
-        console.log('get reponse==>',data);
-        // if( data.status === 200 ) {
-        //   window.location.reload();
-        // }
-      },
-      error: function (error) {
-        console.log('fail==>', error);
-        thisBtn.text(give_kindness.updateProfile);
+    if( password.length < 6 ){
+
+      if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
+        that.siblings('.give-donor-dashboard__auth-modal-error').text(give_kindness.passwordLength);
+      } else {
+        that.after(`<div class="give-donor-dashboard__auth-modal-error">${give_kindness.passwordLength}</div>`);
       }
-    });
+
+      return false; 
+    }
+
+    if ( ! validateEmail(email) ) {
+
+      if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
+        that.siblings('.give-donor-dashboard__auth-modal-error').text(give_kindness.emailNotValid);
+      } else {
+        that.after(`<div class="give-donor-dashboard__auth-modal-error">${give_kindness.emailNotValid}</div>`);
+      }
+      return false; 
+
+    } else {
+
+      that.attr('disabled', true);
+      $.ajax({
+        type: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'X-WP-Nonce': give_kindness.apiNonce, 
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Cache-Control': 'no-cache',
+        },
+        url: give_kindness.giveKindnessApiURL+'register',
+        data: {
+          email: email,
+          password: password
+        },
+        success: function(data) {
+          console.log('get reponse==>',data);
+          if( data.status === 200 ) {
+            
+          }
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+          that.attr('disabled', false);
+        }
+      });
+    }
 
   });
 

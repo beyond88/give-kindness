@@ -1,10 +1,10 @@
 <?php
 
 namespace Give_Kindness\API;
-
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use Give_Kindness\User; 
 
 class GiveKindnessAPI
 {
@@ -15,19 +15,42 @@ class GiveKindnessAPI
      * Initialize the class
      */
     function __construct() {
-      add_action( 'rest_api_init', [ $this, 'registerApi' ] );
+      add_action( 'rest_api_init', [ $this, 'customize_rest_cors' ], 15 );
+      add_action( 'rest_api_init', [ $this, 'register_api' ] );
+    }
+
+
+    /**
+    * Filter rest
+    * 
+    * @param none
+    * @return string
+    */
+    function customize_rest_cors() {
+
+      remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+      add_filter( 'rest_pre_serve_request', function( $value ) {
+        header( 'Access-Control-Allow-Origin: *' );
+        header( 'Access-Control-Allow-Methods: POST, GET' );
+        header( 'Access-Control-Allow-Credentials: true' );
+        header( 'Access-Control-Expose-Headers: Link', false );
+        header( 'Access-Control-Allow-Headers: X-Requested-With' );
+        return $value;
+      } );
+
     }
  
     /**
-     * Register the API
-    *
+    * Register the API
+    * 
+    * @param none
     * @return void
     */
-    public function registerApi() {
+    public function register_api() {
 
       register_rest_route( $this->restBase, '/register', [
         'methods'  => WP_REST_SERVER::CREATABLE,
-        'callback' => [ $this, 'tryRegister' ],
+        'callback' => [ $this, 'try_register' ],
         'permission_callback' => '__return_true'
       ]);
 
@@ -38,54 +61,13 @@ class GiveKindnessAPI
      *
      * @return void
      */
-    public function tryRegister( WP_REST_Request $request ) {
+    public function try_register( WP_REST_Request $request ) {
 
-      // $response = array();
-      // $parameters = $request->get_json_params();
-      // $username = sanitize_text_field($parameters['username']);
-      // $email = sanitize_text_field($parameters['email']);
-      // $password = sanitize_text_field($parameters['password']);
+      $user = new User();
+      $response = $user->user_register($_POST);
 
-      // $error = new WP_Error();
-      // if ( empty($username) ) {
-      //   $error->add( 400, __("Username field 'username' is required.", 'wp-rest-user'), array('status' => 400) );
-      //   return $error;
-      // }
-      // if ( empty( $email ) ) {
-      //   $error->add( 401, __("Email field 'email' is required.", 'wp-rest-user'), array('status' => 400) );
-      //   return $error;
-      // }
-      // if ( empty( $password ) ) {
-      //   $error->add( 404, __("Password field 'password' is required.", 'wp-rest-user'), array('status' => 400) );
-      //   return $error;
-      // }
-
-      // $user_id = username_exists($username);
-      // if ( !$user_id && email_exists($email) == false ) {
-      //   $user_id = wp_create_user($username, $password, $email);
-      //   if ( ! is_wp_error($user_id) ) {
-      //     // Get User Meta Data (Sensitive, Password included. DO NOT pass to front end.)
-      //     $user = get_user_by('id', $user_id);
-      //     // $user->set_role($role);
-      //     $user->set_role('subscriber');
-      //     // Give specific code
-      //     if ( class_exists('Give') ) {
-      //       $user->set_role('give_donor');
-      //     }
-      //     // Ger User Data (Non-Sensitive, Pass to front end.)
-      //     $response['code'] = 200;
-      //     $response['message'] = __("User '" . $username . "' Registration was Successful", "wp-rest-user");
-      //   } else {
-      //     return $user_id;
-      //   }
-      // } else {
-      //   $error->add(406, __("Email already exists, please try 'Reset Password'", 'wp-rest-user'), array('status' => 400));
-      //   return $error;
-      // }
-      // return new WP_REST_Response($response, 123);
-
-      return wp_send_json('Hello World');
-        
+      return new WP_REST_Response($response, 123);
+      
     }
 
 }
