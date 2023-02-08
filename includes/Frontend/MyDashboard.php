@@ -22,6 +22,21 @@ class MyDashboard {
     }
 
     /**
+     * Initializes a singleton instance
+     *
+     * @return \MyDashboard
+     */
+    public static function init() {
+        static $instance = false;
+
+        if ( ! $instance ) {
+            $instance = new self();
+        }
+
+        return $instance;
+    }
+
+    /**
      * Shortcode handler class
      *
      * @param  array $atts
@@ -39,7 +54,7 @@ class MyDashboard {
             wp_enqueue_style( 'give-google-font-montserrat' );
             
             if ( is_user_logged_in() ) {
-                give_kindness_templates_part('dashboard');
+                give_kindness_templates_part( 'dashboard', self::init() );
             } else {
                 give_kindness_templates_part('authentication');
             }
@@ -49,7 +64,7 @@ class MyDashboard {
     }
 
     /**
-     * Shortcode handler class
+     * Get profile details
      *
      * @param  none
      *
@@ -61,20 +76,43 @@ class MyDashboard {
     }
 
     /**
-     * Shortcode handler class
+     * Get donations detail 
      *
-     * @param  array $atts
+     * @param  none
+     *
+     * @return object
+     */
+    public function donations(){
+
+        if( ! is_user_logged_in() ){
+            return NULL;
+        }
+
+        $data = [];
+        $user_id = get_current_user_id(); 
+
+        $repository = new \Give\DonorDashboards\Repositories\Donations;
+        $data['donations'] = $repository->getDonations( $user_id );
+        $data['count'] = $repository->getDonationCount( $user_id );
+        $data['revenue'] = $repository->getRevenue( $user_id );
+        $data['average'] = $repository->getAverageRevenue( $user_id );
+
+        return $data; 
+    }
+
+    /**
+     * Load authentication form
+     *
+     * @param  array $atts string $contents
      * @param  string $content
      *
      * @return string
      */
     public function donor_authentication( $atts, $content = '' ) 
     {
-
         ob_start();
             give_kindness_templates_part('authentication');
         return ob_get_clean();
-
     }
 
 }

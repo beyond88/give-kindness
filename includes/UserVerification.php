@@ -3,14 +3,14 @@
 namespace Give_Kindness;
 
 /**
- * Frontend handler class
+ * User verification handler class
  */
-class Frontend {
+class UserVerification {
 
     /**
      * Initialize the class
      */
     function __construct() {
-        new Frontend\MyDashboard();
+       
     }
 }

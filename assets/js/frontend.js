@@ -734,11 +734,28 @@
 
   /**************************
   *  
+  * Show login form and
+  * hide register form
+  * 
+  ***************************/
+  $(document).on('click', '.give-kindness-show-login', function(){
+    $('.give-kindness-login-part').attr("style", "display: inline !important");
+    $('.give-kindness-signup-part').hide();
+  });
+
+  $(document).on('click', '.give-kindness-show-signup', function(){
+    $('.give-kindness-login-part').attr("style", "display: none !important");
+    $('.give-kindness-signup-part').attr("style", "display: inline !important");
+  });
+
+  /**************************
+  *  
   * Login
   * 
   ***************************/
   $(document).on('click', '#give-kindness-login-submit', function(){
 
+    let that = $(this);
     let login = $('#give-kindness-username').val();
     let password = $('#give-kindness-password').val();
 
@@ -756,20 +773,32 @@
         password: password
       },
       success: function(data) {
+        
         if( data.status === 200 ) {
           window.location.reload();
+        }
+
+        if( data.status === 400 ) {
+          $('#give-kindness-username').val('');
+          $('#give-kindness-password').val('');
+
+          const msg = data.body_response.message; 
+          if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
+            that.siblings('.give-donor-dashboard__auth-modal-error').text(msg);
+          } else {
+            that.after(`<div class="give-donor-dashboard__auth-modal-error">${msg}</div>`);
+          }
         }
       },
       error: function (error) {
         console.log('fail==>', error);
-        thisBtn.text(give_kindness.updateProfile);
       }
     });
   });
 
   /**************************
   *  
-  * Login
+  * Logout
   * 
   ***************************/
   $(document).on('click', '#give-kindness-logout', function(){
@@ -794,18 +823,38 @@
 
   /**************************
   *  
-  * Show login form and
-  * hide register form
+  * Signup
   * 
   ***************************/
-  $(document).on('click', '.give-kindness-show-login', function(){
-    $('.give-kindness-login-part').attr("style", "display: inline !important");
-    $('.give-kindness-signup-part').hide();
-  });
+  $(document).on('click', '#give-kindness-signup-submit', function(){
 
-  $(document).on('click', '.give-kindness-show-signup', function(){
-    $('.give-kindness-login-part').attr("style", "display: none !important");
-    $('.give-kindness-signup-part').attr("style", "display: inline !important");
+    let username = $('#give-kindness-rusername').val();
+    let password = $('#give-kindness-rpassword').val();
+
+    if( username == '' || password == '' ){
+      return false; 
+    }
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      headers: {'X-WP-Nonce': give_kindness.apiNonce },
+      url: give_kindness.apiURL+'donor-dashboard/login',
+      data: {
+        login: login,
+        password: password
+      },
+      success: function(data) {
+        if( data.status === 200 ) {
+          window.location.reload();
+        }
+      },
+      error: function (error) {
+        console.log('fail==>', error);
+        thisBtn.text(give_kindness.updateProfile);
+      }
+    });
+
   });
 
 })(jQuery);

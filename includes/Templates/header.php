@@ -1,6 +1,5 @@
 <?php
-    $myProfile = new Give_Kindness\Frontend\MyDashboard();
-    $myProfile = $myProfile->profile();
+    $myProfile = $object->profile();
 ?>
 
 <div class="give-donor-dashboard-desktop-layout__donor-info">

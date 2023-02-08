@@ -1,9 +1,9 @@
-<?php 
-    $repository = new Give\DonorDashboards\Repositories\Donations;
-    $donations = $repository->getDonations(get_current_user_id());
-    $count = $repository->getDonationCount(get_current_user_id());
-    $revenue = $repository->getRevenue(get_current_user_id());
-    $average = $repository->getAverageRevenue(get_current_user_id());
+<?php
+    $repository = $object->donations();
+    $donations = $repository['donations'];
+    $count = $repository['count'];
+    $revenue = $repository['revenue'];
+    $average = $repository['average'];
 ?>
 <div class="give-donor-dashboard-content" id="give_kindness-stats" data-tab-content="give_kindness-stats">
     <div class="give-donor-dashboard-heading">
