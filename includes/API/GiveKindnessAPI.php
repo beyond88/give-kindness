@@ -73,11 +73,12 @@ class GiveKindnessAPI
         $user = get_user_by( 'id', $user_id ); 
 
         $email = new Give_Kindness_Email(); 
-        $email->send_verification_email($user); 
+        $email->send_verification_email($user);
       }
-
+    
       return new WP_REST_Response($response, 123);
       
     }
+
 
 }

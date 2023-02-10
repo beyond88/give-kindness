@@ -748,6 +748,32 @@
     $('.give-kindness-signup-part').attr("style", "display: inline !important");
   });
 
+/**************************
+  *  
+  * Ajax request function
+  * 
+  ***************************/
+  const ajaxRequest = (requestData) => {
+    $.ajax({
+      type: requestData.method,
+      dataType: 'json',
+      headers: {'X-WP-Nonce': give_kindness.apiNonce },
+      url: requestData.url,
+      data: requestData.data,
+      success: function(data) {
+        if( data.status === requestData.status ) {
+          if( requestData.reload ){
+            window.location.reload();
+          }
+        }
+      },
+      error: function (error) {
+        console.log('fail==>', error);
+        thisBtn.text(give_kindness.updateProfile);
+      }
+    });
+  }
+
   /**************************
   *  
   * Login
@@ -888,8 +914,23 @@
           }
 
           if(data.status == 201){
-            $('#give-kindness-rusername').val("");
-            $('#give-kindness-rpassword').val("");
+            // $('#give-kindness-rusername').val("");
+            // $('#give-kindness-rpassword').val("");
+            // window.location.reload();
+
+            let requestData = {
+              method: 'POST', 
+              url: give_kindness.giveApiURL+'donor-dashboard/login',
+              data: {
+                login: email,
+                password: password
+              }, 
+              status: 200,
+              reload: true
+            };
+  
+            ajaxRequest(requestData);
+            
           }
           that.attr('disabled', false);
         },
