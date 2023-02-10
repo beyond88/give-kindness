@@ -566,7 +566,7 @@
   ***************************/
   $(document).on('click', ".give_kindness_state_name", function(){
     const stateName = $(this).text();
-    $(this).parent().parent().siblings().children().find('.give_kindness-state').text(stateName);
+    $(this).parent().parent().siblings().children().find(".give_kindness-state").text(stateName);
     $(this).parent().parent().hide();
     $("#gk-state").val($(this).attr('data-stateCode'));
   });
@@ -914,10 +914,6 @@
           }
 
           if(data.status == 201){
-            // $('#give-kindness-rusername').val("");
-            // $('#give-kindness-rpassword').val("");
-            // window.location.reload();
-
             let requestData = {
               method: 'POST', 
               url: give_kindness.giveApiURL+'donor-dashboard/login',

@@ -1,6 +1,7 @@
 <?php
 
 namespace Give_Kindness\Frontend;
+use Give_Kindness\Helpers; 
 
 /**
  * Shortcode handler class
@@ -54,7 +55,14 @@ class MyDashboard {
             wp_enqueue_style( 'give-google-font-montserrat' );
             
             if ( is_user_logged_in() ) {
-                give_kindness_templates_part( 'dashboard', self::init() );
+
+                $user_status = Helpers::get_user_status( get_current_user_id() ); 
+                if(  $user_status  ){
+                    give_kindness_templates_part( 'dashboard', self::init() );
+                } else {
+                    give_kindness_templates_part( 'verify-email', self::init() );
+                }
+
             } else {
                 give_kindness_templates_part('authentication');
             }
