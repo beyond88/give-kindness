@@ -5,6 +5,7 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use Give_Kindness\User; 
+use Give_Kindness\Give_Kindness_Email; 
 
 class GiveKindnessAPI
 {
@@ -71,7 +72,7 @@ class GiveKindnessAPI
         $user_id = $response['user_id'];
         $user = get_user_by( 'id', $user_id ); 
 
-        $email = new Email(); 
+        $email = new Give_Kindness_Email(); 
         $email->send_verification_email($user); 
       }
 
