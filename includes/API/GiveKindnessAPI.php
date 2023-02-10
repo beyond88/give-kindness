@@ -55,9 +55,9 @@ class GiveKindnessAPI
         'permission_callback' => '__return_true'
       ]);
 
-      register_rest_route( $this->restBase, '/verify-email', [
+      register_rest_route( $this->restBase, '/send-verify-email', [
         'methods'  => WP_REST_SERVER::CREATABLE,
-        'callback' => [ $this, 'verify_email' ],
+        'callback' => [ $this, 'send_verify_email' ],
         'permission_callback' => '__return_true'
       ]);
 
@@ -96,7 +96,7 @@ class GiveKindnessAPI
     * @param array
     * @return array
     */
-    public function verify_email( WP_REST_Request $request ) {
+    public function send_verify_email( WP_REST_Request $request ) {
       
       $user_id = sanitize_text_field($_POST['user_id']);
       $user = get_user_by( 'id', $user_id ); 

@@ -953,7 +953,7 @@
 
     let requestData = {
       method: 'POST', 
-      url: give_kindness.giveKindnessApiURL+'verify-email',
+      url: give_kindness.giveKindnessApiURL+'send-verify-email',
       data: {
         user_id: give_kindness.userId
       }, 
