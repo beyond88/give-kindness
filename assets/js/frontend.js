@@ -753,7 +753,7 @@
   * Ajax request function
   * 
   ***************************/
-  const ajaxRequest = (requestData) => {
+  const ajaxRequest = async (requestData) => {
     $.ajax({
       type: requestData.method,
       dataType: 'json',
@@ -859,7 +859,7 @@
     );
   };
 
-  $(document).on('click', '#give-kindness-signup-submit', function(){
+  $(document).on('click', '#give-kindness-signup-submit', async function(){
 
     let that = $(this);
     let email = $('#give-kindness-rusername').val();
@@ -892,6 +892,7 @@
     } else {
 
       that.attr('disabled', true);
+      that.text(give_kindness.pleaseWait);
       $.ajax({
         type: 'POST',
         credentials: 'same-origin',
@@ -905,7 +906,7 @@
           email: email,
           password: password
         },
-        success: function(data) {
+        success: async function(data) {
 
           if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
             that.siblings('.give-donor-dashboard__auth-modal-error').text(data.message);
@@ -925,7 +926,7 @@
               reload: true
             };
   
-            ajaxRequest(requestData);
+            await ajaxRequest(requestData);
             that.attr('disabled', false);
           }
 
@@ -935,6 +936,38 @@
           that.attr('disabled', false);
         }
       });
+    }
+
+  });
+
+  /**************************
+  *  
+  * Send verification email 
+  * 
+  ***************************/
+  $(document).on('click', '#give-kindness-verify-submit', async function(){
+    
+    let that = $(this);
+    that.attr('disabled', true);
+    that.text(give_kindness.pleaseWait);
+
+    let requestData = {
+      method: 'POST', 
+      url: give_kindness.giveKindnessApiURL+'verify-email',
+      data: {
+        user_id: give_kindness.userId
+      }, 
+      status: 200,
+      reload: false
+    };
+
+    await ajaxRequest(requestData);
+    that.text(give_kindness.sendAgain);
+    that.attr('disabled', false);
+    if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
+      that.siblings('.give-donor-dashboard__auth-modal-error').text(give_kindness.pleaseCheckEmail);
+    } else {
+      that.after(`<div class="give-donor-dashboard__auth-modal-error">${give_kindness.pleaseCheckEmail}</div>`);
     }
 
   });

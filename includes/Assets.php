@@ -109,6 +109,8 @@ class Assets {
             'emailNotValid' => __('Email not valid!', 'give-kindness'),
             'passwordLength' => __('Password length minimum 6 character!', 'give-kindness'),
             'pleaseWait' => __('Please wait!', 'give-kindness'),
+            'sendAgain' => __('Send again', 'give-kindness'),
+            'pleaseCheckEmail' => 'Please your email inbox. An email has been sent.'
         ] );
     }
 }

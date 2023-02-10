@@ -55,6 +55,12 @@ class GiveKindnessAPI
         'permission_callback' => '__return_true'
       ]);
 
+      register_rest_route( $this->restBase, '/verify-email', [
+        'methods'  => WP_REST_SERVER::CREATABLE,
+        'callback' => [ $this, 'verify_email' ],
+        'permission_callback' => '__return_true'
+      ]);
+
     }
 
     /**
@@ -82,6 +88,27 @@ class GiveKindnessAPI
     
       return new WP_REST_Response($response, 123);
       
+    }
+
+    /**
+    * User registration
+    *
+    * @param array
+    * @return array
+    */
+    public function verify_email( WP_REST_Request $request ) {
+      
+      $user_id = sanitize_text_field($_POST['user_id']);
+      $user = get_user_by( 'id', $user_id ); 
+
+      $email = new GiveKindnessEmail(); 
+      $message = $email->prepare_verification_email( $user );
+      $subject = $message['subject'];
+      $text = $message['message'];
+      $response = $email->send( $user->user_email, $subject, $text, '');
+
+      return new WP_REST_Response($response, 123);
+
     }
 
 
