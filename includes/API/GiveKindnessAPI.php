@@ -67,6 +67,14 @@ class GiveKindnessAPI
       $user = new User();
       $response = $user->user_register($_POST);
 
+      if($response['status'] == 201 ){
+        $user_id = $response['user_id'];
+        $user = get_user_by( 'id', $user_id ); 
+
+        $email = new Email(); 
+        $email->send_verification_email($user); 
+      }
+
       return new WP_REST_Response($response, 123);
       
     }

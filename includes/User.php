@@ -84,6 +84,7 @@ class User {
                 }
 
                 add_user_meta($user_id, 'gk_user_verify', 0);
+                $response['user_id'] = $user_id;
                 $response['status'] = 201;
                 $response['message'] = __("User '" . $username . "' Registration was Successful", "give-kindness");
 

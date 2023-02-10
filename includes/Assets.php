@@ -108,6 +108,7 @@ class Assets {
             'neverMind' => __('Nevermind', 'give-kindness'),
             'emailNotValid' => __('Email not valid!', 'give-kindness'),
             'passwordLength' => __('Password length minimum 6 character!', 'give-kindness'),
+            'pleaseWait' => __('Please wait!', 'give-kindness'),
         ] );
     }
 }
