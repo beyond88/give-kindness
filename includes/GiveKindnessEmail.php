@@ -5,7 +5,7 @@ namespace Give_Kindness;
 /**
  * Email handlers class
  */
-class Give_Kindness_Email {
+class GiveKindnessEmail {
     
 
     public $emails;

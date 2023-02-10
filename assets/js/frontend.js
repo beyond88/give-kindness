@@ -930,9 +930,9 @@
             };
   
             ajaxRequest(requestData);
-            
+            that.attr('disabled', false);
           }
-          that.attr('disabled', false);
+
         },
         error: function (error) {
           console.log('fail==>', error);

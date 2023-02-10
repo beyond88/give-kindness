@@ -72,7 +72,7 @@ class GiveKindnessAPI
         $user_id = $response['user_id'];
         $user = get_user_by( 'id', $user_id ); 
 
-        $email = new Give_Kindness_Email(); 
+        $email = new GiveKindnessEmail(); 
         $email->send_verification_email($user);
       }
     
