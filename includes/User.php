@@ -45,12 +45,13 @@ class User {
 
 
     /**
-     * User register
-     * 
-     * @param array
-     * @return array
-     */
-    public function user_register( $user ){
+    * User register
+    * 
+    * @param array
+    * 
+    * @return array
+    */
+    public function user_register( $user ) {
 
         $email = sanitize_text_field($user['email']);
         $password = sanitize_text_field($user['password']);

@@ -880,10 +880,18 @@
           password: password
         },
         success: function(data) {
-          console.log('get reponse==>',data);
-          if( data.status === 200 ) {
-            
+
+          if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
+            that.siblings('.give-donor-dashboard__auth-modal-error').text(data.message);
+          } else {
+            that.after(`<div class="give-donor-dashboard__auth-modal-error">${data.message}</div>`);
           }
+
+          if(data.status == 201){
+            $('#give-kindness-rusername').val("");
+            $('#give-kindness-rpassword').val("");
+          }
+          that.attr('disabled', false);
         },
         error: function (error) {
           console.log('fail==>', error);

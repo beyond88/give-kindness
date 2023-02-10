@@ -57,9 +57,10 @@ class GiveKindnessAPI
     }
 
     /**
-     * Login
+     * User registration
      *
-     * @return void
+     * @param array
+     * @return array
      */
     public function try_register( WP_REST_Request $request ) {
 

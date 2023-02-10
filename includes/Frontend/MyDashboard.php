@@ -17,8 +17,8 @@ class MyDashboard {
 
         $this->id = get_current_user_id();
 
-        add_shortcode( 'donor_dashboard', [ $this, 'donor_dashboard' ] );
-        add_shortcode( 'donor_authentication', [ $this, 'donor_authentication' ] );
+        add_shortcode( 'give_kindness_dashboard', [ $this, 'give_kindness_dashboard' ] );
+        add_shortcode( 'give_kindness_authentication', [ $this, 'give_kindness_authentication' ] );
     }
 
     /**
@@ -44,7 +44,7 @@ class MyDashboard {
      *
      * @return string
      */
-    public function donor_dashboard( $atts, $content = '' ) 
+    public function give_kindness_dashboard( $atts, $content = '' ) 
     {
 
         ob_start();
@@ -108,7 +108,7 @@ class MyDashboard {
      *
      * @return string
      */
-    public function donor_authentication( $atts, $content = '' ) 
+    public function give_kindness_authentication( $atts, $content = '' ) 
     {
         ob_start();
             give_kindness_templates_part('authentication');
