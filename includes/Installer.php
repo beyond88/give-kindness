@@ -14,6 +14,7 @@ class Installer {
      */
     public function run() {
         $this->add_version();
+        $this->setup_pages();
     }
 
     /**
@@ -35,7 +36,7 @@ class Installer {
      *
      * @return void
      */
-    public function setup_pages() {
+    private function setup_pages() {
         $meta_key = '_wp_page_template';
 
         // return if pages were created before
@@ -54,21 +55,21 @@ class Installer {
             ]
         ];
 
-        $directia_page_settings = [];
+        $give_kindness_page_settings = [];
 
         if ( $pages ) {
             foreach ( $pages as $page ) {
                 $page_id = $this->create_page( $page );
 
                 if ( $page_id ) {
-                    $directia_page_settings[ $page['page_id'] ] = $page_id;
+                    $give_kindness_page_settings[ $page['page_id'] ] = $page_id;
 
                     if ( isset( $page['child'] ) && count( $page['child'] ) > 0 ) {
                         foreach ( $page['child'] as $child_page ) {
                             $child_page_id = $this->create_page( $child_page );
 
                             if ( $child_page_id ) {
-                                $directia_page_settings[ $child_page['page_id'] ] = $child_page_id;
+                                $give_kindness_page_settings[ $child_page['page_id'] ] = $child_page_id;
 
                                 wp_update_post(
                                     [
@@ -83,7 +84,7 @@ class Installer {
             }
         }
 
-        update_option( 'give_kindness_pages', $directia_page_settings );
+        update_option( 'give_kindness_pages', $give_kindness_page_settings );
         update_option( 'give_kindness_pages_created', true );
     }
 
@@ -92,7 +93,7 @@ class Installer {
      *
      * @return void
      */
-    public function create_page( $page ) {
+    private function create_page( $page ) {
         $meta_key = '_wp_page_template';
         $page_obj = get_page_by_path( $page['post_title'] );
 
