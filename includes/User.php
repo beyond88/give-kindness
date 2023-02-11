@@ -13,7 +13,7 @@ class User {
      * Initialize the class
      */
     function __construct() {
-        add_action('wp_footer', [ $this, 'check_email_verification' ] );
+        // add_action('wp_footer', [ $this, 'check_email_verification' ] );
     }
 
     /**
@@ -88,8 +88,8 @@ class User {
                 }
 
                 $user_activation_key =  md5(uniqid('', true));
-                add_user_meta( $user_id, 'gk_activation_key', $user_activation_key );
-                add_user_meta( $user_id, 'gk_user_verify', 0 );
+                update_user_meta( $user_id, 'gk_activation_key', $user_activation_key );
+                update_user_meta( $user_id, 'gk_user_verify', 0 );
 
 
                 $response['status'] = 201;
@@ -141,7 +141,6 @@ class User {
             $login_after_verification = 'yes';
             $redirect_after_verification = '';
             $verification_page_id = '';
-
             
             $dashboard_page_id = Helpers::get_dashboard_page_id();
             $redirect_page_url = get_permalink($dashboard_page_id);
