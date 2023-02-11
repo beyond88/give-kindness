@@ -174,7 +174,7 @@ class User {
                     $jsData['status_text'] = wp_specialchars_decode( $verification_success, ENT_QUOTES );
 
                     $subject = __('User verification success','give-kindness');
-                    $message = __('Congratulations!, your account has been verified','give-kindness');
+                    $message = __('Congratulations! your account has been verified.','give-kindness');
 
                     $email = new GiveKindnessEmail(); 
                     $email->send( $user_data->user_email, $subject, $message, '');
