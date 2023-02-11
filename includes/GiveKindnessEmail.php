@@ -416,7 +416,18 @@ class GiveKindnessEmail {
 
         $dashboard_page_id = Helpers::get_dashboard_page_id();
         $page_url = get_permalink($dashboard_page_id);
-        $page_url .= '?subscribe';  
+
+		$user_activation_key =get_user_meta( $user->ID, 'gk_activation_key', true );
+		
+		$verification_url = add_query_arg(
+			array(
+				'activation_key' => $user_activation_key,
+				'user_verification_action' => 'email_verification',
+			),
+			$page_url
+		);
+
+		$verification_url = wp_nonce_url($verification_url,  'email_verification');
         
         $subject = __( 'Verify your account', 'give-kindness' );
         $message  = sprintf(__( 'Dear %s,', 'give-kindness' ), $user->display_name ) . "\n\n";
@@ -425,7 +436,7 @@ class GiveKindnessEmail {
         $message
          .= sprintf(
             '<a href="%1$s">%2$s</a>',
-            $page_url,
+            $verification_url ,
             __( 'Click here', 'give-kindness' )
         ) . "\n\n";
 

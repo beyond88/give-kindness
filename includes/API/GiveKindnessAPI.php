@@ -102,10 +102,10 @@ class GiveKindnessAPI
       $user = get_user_by( 'id', $user_id ); 
 
       $email = new GiveKindnessEmail(); 
-      $message = $email->prepare_verification_email( $user );
-      $subject = $message['subject'];
-      $text = $message['message'];
-      $response = $email->send( $user->user_email, $subject, $text, '');
+      $email_content = $email->prepare_verification_email( $user );
+      $subject = $email_content['subject'];
+      $message = $email_content['message'];
+      $response = $email->send( $user->user_email, $subject, $message, '');
 
       return new WP_REST_Response($response, 123);
 

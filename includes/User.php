@@ -83,8 +83,11 @@ class User {
                     $user->set_role('give_donor');
                 }
 
-                add_user_meta($user_id, 'gk_user_verify', 0);
-                $response['user_id'] = $user_id;
+                $user_activation_key =  md5(uniqid('', true));
+                add_user_meta( $user_id, 'gk_activation_key', $user_activation_key );
+                add_user_meta( $user_id, 'gk_user_verify', 0 );
+
+
                 $response['status'] = 201;
                 $response['message'] = __("User '" . $username . "' Registration was Successful", "give-kindness");
 
