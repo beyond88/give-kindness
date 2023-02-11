@@ -89,21 +89,19 @@ function give_kindness_templates_part( $file, $object = NULL ){
     return $template; 
 }
 
-
 add_action('init', 'gk_user_verification_auto_login');
 function gk_user_verification_auto_login()
 {
-
     if (
         isset($_REQUEST['gk_user_verification_action']) && trim($_REQUEST['gk_user_verification_action']) == 'autologin' &&
-        isset($_REQUEST['activation_key'])
+        isset($_REQUEST['gk_activation_key'])
     ) {
 
-        $activation_key = isset($_REQUEST['activation_key']) ? sanitize_text_field($_REQUEST['activation_key']) : '';
+        $activation_key = isset($_REQUEST['gk_activation_key']) ? sanitize_text_field($_REQUEST['gk_activation_key']) : '';
 
         global $wpdb;
         $table = $wpdb->prefix . "usermeta";
-        $meta_data    = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE meta_value = %s AND meta_key = 'user_activation_key'", $activation_key));
+        $meta_data    = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE meta_value = %s AND meta_key = 'gk_activation_key'", $activation_key));
 
         if (empty($meta_data)) return;
 
