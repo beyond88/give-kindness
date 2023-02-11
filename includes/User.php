@@ -94,6 +94,7 @@ class User {
 
                 $response['status'] = 201;
                 $response['message'] = __("User '" . $username . "' Registration was Successful", "give-kindness");
+                $response['user_id'] = $user_id;
 
             } else {
                 $response['status'] = 409;

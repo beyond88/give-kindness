@@ -89,7 +89,7 @@ function give_kindness_templates_part( $file, $object = NULL ){
     return $template; 
 }
 
-add_action('wp_footer', [ __NAMESPACE__ . '\User', 'check_email_verification' ] );
+add_action('wp_footer', [ new Give_Kindness\User(), 'check_email_verification' ] );
 
 add_action('init', 'gk_user_verification_auto_login');
 function gk_user_verification_auto_login()
