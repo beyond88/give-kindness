@@ -417,12 +417,12 @@ class GiveKindnessEmail {
         $dashboard_page_id = Helpers::get_dashboard_page_id();
         $page_url = get_permalink($dashboard_page_id);
 
-		$user_activation_key =get_user_meta( $user->ID, 'gk_activation_key', true );
+		$user_activation_key = get_user_meta( $user->ID, 'gk_activation_key', true );
 		
 		$verification_url = add_query_arg(
 			array(
 				'activation_key' => $user_activation_key,
-				'user_verification_action' => 'email_verification',
+				'gk_user_verification_action' => 'gk_email_verification',
 			),
 			$page_url
 		);

@@ -88,3 +88,33 @@ function give_kindness_templates_part( $file, $object = NULL ){
     }
     return $template; 
 }
+
+
+add_action('init', 'gk_user_verification_auto_login');
+function gk_user_verification_auto_login()
+{
+
+    if (
+        isset($_REQUEST['gk_user_verification_action']) && trim($_REQUEST['gk_user_verification_action']) == 'autologin' &&
+        isset($_REQUEST['activation_key'])
+    ) {
+
+        $activation_key = isset($_REQUEST['activation_key']) ? sanitize_text_field($_REQUEST['activation_key']) : '';
+
+        global $wpdb;
+        $table = $wpdb->prefix . "usermeta";
+        $meta_data    = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE meta_value = %s AND meta_key = 'user_activation_key'", $activation_key));
+
+        if (empty($meta_data)) return;
+
+        $user = get_user_by('id', $meta_data->user_id);
+
+        $user_activation_status = get_user_meta($meta_data->user_id, 'gk_user_verify', true);
+
+        if ($user_activation_status == 1) {
+            wp_set_current_user($meta_data->user_id, $user->user_login);
+            wp_set_auth_cookie($meta_data->user_id);
+            do_action('wp_login', $user->user_login, $user);
+        }
+    }
+}
