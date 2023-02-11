@@ -421,7 +421,7 @@ class GiveKindnessEmail {
 		
 		$verification_url = add_query_arg(
 			array(
-				'activation_key' => $user_activation_key,
+				'gk_activation_key' => $user_activation_key,
 				'gk_user_verification_action' => 'gk_email_verification',
 			),
 			$page_url

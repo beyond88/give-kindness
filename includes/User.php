@@ -126,9 +126,6 @@ class User {
             wp_enqueue_style('font-awesome-5');
 
             $activation_key = isset($_REQUEST['gk_activation_key']) ? sanitize_text_field($_REQUEST['gk_activation_key']) : '';
-            $user_verification_settings = get_option('user_verification_settings');
-
-            $messages = '';
             $verification_success = __('Thanks for Verifying.', 'user-verification');
 
             $invalid_key = __('Sorry, activation key is not valid.', 'give-kindness');
@@ -157,7 +154,7 @@ class User {
             $meta_data    = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE meta_value = %s", $activation_key));
             $user_id = $meta_data->user_id;
 
-            if (!empty($meta_data)) {
+            if ( ! empty( $meta_data ) ) {
 
                 $jsData['is_valid_key'] = 'yes';
                 $user_activation_status = get_user_meta($user_id, 'gk_user_verify', true);
@@ -177,7 +174,7 @@ class User {
                     $jsData['status_text'] = wp_specialchars_decode( $verification_success, ENT_QUOTES );
 
                     $subject = __('User verification success','give-kindness');
-                    $message = __('Congratulations!, your has been verified','give-kindness');
+                    $message = __('Congratulations!, your account has been verified','give-kindness');
 
                     $email = new GiveKindnessEmail(); 
                     $email->send( $user_data->user_email, $subject, $message, '');

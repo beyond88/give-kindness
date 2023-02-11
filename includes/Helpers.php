@@ -37,7 +37,7 @@ class Helpers
             $user_id =  get_current_user_id();
         }
 
-        $user_verify = get_user_meta( $user_id, 'gk_user_verify' );
+        $user_verify = get_user_meta( $user_id, 'gk_user_verify', true );
         if( isset( $user_verify ) && $user_verify == 1 ) {
             $status = TRUE;
         }
