@@ -841,7 +841,6 @@
       },
       error: function (error) {
         console.log('fail==>', error);
-        thisBtn.text(give_kindness.updateProfile);
       }
     });
 
