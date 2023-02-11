@@ -1,6 +1,8 @@
 <?php
 
 namespace Give_Kindness;
+use Give\Framework\Support\Facades\DateTime\Temporal;
+use Give\Framework\Database\DB;
 
 class Helpers 
 {
@@ -43,5 +45,38 @@ class Helpers
         }
 
         return $status; 
+    }
+
+
+    /**
+    * Create dummy donation
+    *
+    *@param int user_id
+    *
+    *@return boolean 
+    */
+    public static function create_dummy_donations( $user_id, $user ) {
+
+        $date_created = Temporal::withoutMicroseconds(Temporal::getCurrentDateTime());
+        $name = $user->first_name .' ' . $user->last_name;
+
+        $args = [
+            'user_id' => $user_id, 
+            'email'   => $user->user_email,
+            'name'    => $name,
+            'purchase_value' => 0, 
+            'purchase_count' => 1,
+            'payment_ids' => 1,
+            'date_created' => Temporal::getFormattedDateTime($date_created)
+        ];
+
+        try {
+            DB::table('give_donors')
+                ->insert($args);
+
+            $donorId = DB::last_insert_id();
+        } catch (Exception $exception) {
+            throw new $exception('Failed creating a donor');
+        }
     }
 }
