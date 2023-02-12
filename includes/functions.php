@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Give_Kindness\Helpers;
 
 /**
  * Add custom post status
@@ -129,7 +131,6 @@ function give_kindness_templates_part( $file, $object = NULL ){
  */
 add_action('wp_footer', [ new Give_Kindness\User(), 'check_email_verification' ] );
 
-
 /**
  * Auto login after user verification 
  * 
@@ -172,22 +173,23 @@ function gk_user_verification_auto_login(){
 add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
 function gk_dummy_donations() {
 
-}
+    global $wpdb; 
+    $user_table = $wpdb->prefix . 'users';
+    $user_meta_table = $wpdb->prefix . 'usermeta';
+    $role = 'administrator';
 
-/**
- * Run cron job after 
- * the plugin activision
- * 
- * @param none
- * @return string
- */
-register_activation_hook(GIVE_KINDNESS_FILE, 'call_cron_function' );
+    $query = "SELECT u.ID, u.user_login, u.user_email, m.first_name, m.last_name
+                FROM ".$user_table." u, ".$user_meta_table." m
+                    WHERE u.ID = m.user_id
+                        AND m.meta_key LIKE 'wp_capabilities'
+                            AND m.meta_value LIKE '%".$role."%'";
 
-function call_cron_function() {
-    
-    wp_clear_scheduled_hook( 'gk_dummy_donations' );
-    if ( ! wp_next_scheduled( 'gk_dummy_donations' ) ) {
-        wp_schedule_single_event( time() + 120, 'gk_dummy_donations' );
+    $results = $wpdb->get_results( $query, ARRAY_A );
+
+    foreach( $results as $result ){
+        $user_id = $result['ID'];
+        $user = get_user_by( 'id', $user_id );
+        Helpers::create_dummy_donations( $user );
     }
-
 }
+

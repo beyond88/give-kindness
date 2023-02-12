@@ -418,6 +418,12 @@ class GiveKindnessEmail {
         $page_url = get_permalink($dashboard_page_id);
 
 		$user_activation_key = get_user_meta( $user->ID, 'gk_activation_key', true );
+		if( empty( $user_activation_key ) ){
+			$user_activation_key =  md5(uniqid('', true));
+			update_user_meta( $user->ID, 'gk_activation_key', $user_activation_key );
+		}
+
+		update_user_meta( $user->ID, 'gk_user_verify', 0 );
 		
 		$verification_url = add_query_arg(
 			array(

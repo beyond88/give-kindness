@@ -12,9 +12,7 @@ class User {
     /**
      * Initialize the class
      */
-    function __construct() {
-        // add_action('wp_footer', [ $this, 'check_email_verification' ] );
-    }
+    function __construct() {}
 
     /**
      * 

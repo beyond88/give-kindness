@@ -15,6 +15,7 @@ class Installer {
     public function run() {
         $this->add_version();
         $this->setup_pages();
+        $this->run_cron_jobs();
     }
 
     /**
@@ -120,4 +121,20 @@ class Installer {
 
         return false;
     }
+
+
+    /**
+     * Run cron job after 
+     * the plugin activision
+     * 
+     * @param none
+     * @return string
+     */
+    public function run_cron_jobs() {
+        wp_clear_scheduled_hook( 'gk_dummy_donations' );
+        if ( ! wp_next_scheduled( 'gk_dummy_donations' ) ) {
+            wp_schedule_single_event( time() + 60, 'gk_dummy_donations' );
+        }
+    }
+
 }
