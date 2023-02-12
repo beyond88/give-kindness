@@ -1,6 +1,7 @@
 <?php
 
 namespace Give_Kindness;
+use Give_Kindness\Helpers;
 
 /**
  * Installer class
@@ -15,6 +16,7 @@ class Installer {
     public function run() {
         $this->add_version();
         $this->setup_pages();
+        // $this->add_action_cron_jobs();
         $this->run_cron_jobs();
     }
 
@@ -120,6 +122,44 @@ class Installer {
         }
 
         return false;
+    }
+
+    /**
+     * Add dummy donations actions 
+     * 
+     * @param none
+     * @return void
+     */
+    public function add_action_cron_jobs(){
+        add_action( 'gk_dummy_donations', [ $this, 'gk_dummy_donations' ] );
+    }
+
+    /**
+     * Add dummy donations
+     * 
+     * @param none
+     * @return void
+     */
+    public function gk_dummy_donations() {
+
+        global $wpdb; 
+        $user_table = $wpdb->prefix . 'users';
+        $user_meta_table = $wpdb->prefix . 'usermeta';
+        $role = 'administrator';
+
+        $query = "SELECT u.ID, u.user_login, u.user_email
+                    FROM ".$user_table." u, ".$user_meta_table." m
+                        WHERE u.ID = m.user_id
+                            AND m.meta_key LIKE 'wp_capabilities'
+                                AND m.meta_value LIKE '%".$role."%'";
+
+        $results = $wpdb->get_results( $query, ARRAY_A );
+
+        foreach( $results as $result ){
+            $user_id = $result['ID'];
+            $user = get_user_by( 'id', $user_id );
+            Helpers::create_dummy_donations( $user );
+        }
     }
 
 

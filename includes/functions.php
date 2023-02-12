@@ -1,5 +1,4 @@
 <?php
-
 use Give_Kindness\Helpers;
 
 /**
@@ -170,7 +169,6 @@ function gk_user_verification_auto_login(){
  * @param none
  * @return void
  */
-add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
 function gk_dummy_donations() {
 
     global $wpdb; 
@@ -178,7 +176,7 @@ function gk_dummy_donations() {
     $user_meta_table = $wpdb->prefix . 'usermeta';
     $role = 'administrator';
 
-    $query = "SELECT u.ID, u.user_login, u.user_email, m.first_name, m.last_name
+    $query = "SELECT u.ID, u.user_login, u.user_email
                 FROM ".$user_table." u, ".$user_meta_table." m
                     WHERE u.ID = m.user_id
                         AND m.meta_key LIKE 'wp_capabilities'
@@ -193,3 +191,4 @@ function gk_dummy_donations() {
     }
 }
 
+add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
