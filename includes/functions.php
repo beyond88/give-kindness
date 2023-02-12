@@ -1,5 +1,11 @@
 <?php 
 
+/**
+ * Add custom post status
+ * 
+ * @param none
+ * @return void
+ */
 function give_kindness_campaign_status(){
 	register_post_status( 'approved', array(
 		'label'                     => _x( 'Approved', 'give_forms' ),
@@ -21,6 +27,13 @@ function give_kindness_campaign_status(){
 }
 add_action( 'init', 'give_kindness_campaign_status' );
 
+
+/**
+ * Add custom post status dropdown
+ * 
+ * @param none
+ * @return void
+ */
 function give_kindness_status_add_in_quick_edit() {
 
     global $post;
@@ -37,6 +50,12 @@ function give_kindness_status_add_in_quick_edit() {
 }
 add_action('admin_footer-edit.php','give_kindness_status_add_in_quick_edit');
 
+/**
+ * Save custom post status
+ * 
+ * @param none
+ * @return void
+ */
 function give_kindness_status_add_in_post_page() {
 
     global $post;
@@ -59,6 +78,13 @@ function give_kindness_status_add_in_post_page() {
 add_action('admin_footer-post.php', 'give_kindness_status_add_in_post_page');
 add_action('admin_footer-post-new.php', 'give_kindness_status_add_in_post_page');
 
+/**
+ * Filter post status and 
+ * check custom post status
+ * 
+ * @param string
+ * @return string
+ */
 add_filter( 'display_post_states', function( $statuses ) {
     global $post;
 
@@ -79,6 +105,12 @@ add_filter( 'display_post_states', function( $statuses ) {
     return $statuses;
 });
 
+/**
+ * Load template files
+ * 
+ * @param string, $object
+ * @return string
+ */
 function give_kindness_templates_part( $file, $object = NULL ){
 
     $template = '';
@@ -89,11 +121,23 @@ function give_kindness_templates_part( $file, $object = NULL ){
     return $template; 
 }
 
+/**
+ * Check user verification
+ * 
+ * @param none
+ * @return string
+ */
 add_action('wp_footer', [ new Give_Kindness\User(), 'check_email_verification' ] );
 
-add_action('init', 'gk_user_verification_auto_login');
-function gk_user_verification_auto_login()
-{
+
+/**
+ * Auto login after user verification 
+ * 
+ * @param string, $object
+ * @return string
+ */
+add_action( 'init', 'gk_user_verification_auto_login' );
+function gk_user_verification_auto_login(){
     if (
         isset($_REQUEST['gk_user_verification_action']) && trim($_REQUEST['gk_user_verification_action']) == 'autologin' &&
         isset($_REQUEST['gk_activation_key'])
@@ -117,4 +161,33 @@ function gk_user_verification_auto_login()
             do_action('wp_login', $user->user_login, $user);
         }
     }
+}
+
+/**
+ * Add dummy donations
+ * 
+ * @param none
+ * @return void
+ */
+add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
+function gk_dummy_donations() {
+
+}
+
+/**
+ * Run cron job after 
+ * the plugin activision
+ * 
+ * @param none
+ * @return string
+ */
+register_activation_hook(GIVE_KINDNESS_FILE, 'call_cron_function' );
+
+function call_cron_function() {
+    
+    wp_clear_scheduled_hook( 'gk_dummy_donations' );
+    if ( ! wp_next_scheduled( 'gk_dummy_donations' ) ) {
+        wp_schedule_single_event( time() + 120, 'gk_dummy_donations' );
+    }
+
 }

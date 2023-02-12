@@ -79,7 +79,7 @@ class GiveKindnessAPI
         $user_id = $response['user_id'];
         $user = get_user_by( 'id', $user_id ); 
 
-        Helpers::create_dummy_donations( $user_id, $user );
+        Helpers::create_dummy_donations( $user );
 
         $email = new GiveKindnessEmail(); 
         $message = $email->prepare_verification_email( $user );

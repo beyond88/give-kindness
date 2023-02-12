@@ -53,15 +53,15 @@ class Helpers
     *
     *@param int user_id
     *
-    *@return boolean 
+    *@return boolean
     */
-    public static function create_dummy_donations( $user_id, $user ) {
+    public static function create_dummy_donations( $user ) {
 
         $date_created = Temporal::withoutMicroseconds(Temporal::getCurrentDateTime());
         $name = $user->first_name .' ' . $user->last_name;
 
         $args = [
-            'user_id' => $user_id, 
+            'user_id' => $user->ID, 
             'email'   => $user->user_email,
             'name'    => $name,
             'purchase_value' => 0, 
