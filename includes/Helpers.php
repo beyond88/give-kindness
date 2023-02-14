@@ -58,7 +58,7 @@ class Helpers
     public static function create_dummy_donations( $user ) {
 
         $date_created = Temporal::withoutMicroseconds(Temporal::getCurrentDateTime());
-        $name = $user->first_name .' ' . $user->last_name;
+        $name = sprintf('%s %s', $user->first_name, $user->last_name);
 
         $args = [
             'user_id' => $user->ID, 

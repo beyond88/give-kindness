@@ -9,7 +9,7 @@
    <div class="give-donor-dashboard-heading"><?php echo sprintf(__('%s Total Donations', 'give-kindness'), $count); ?></div>
    <div class="give-donor-dashboard-table">
       <div class="give-donor-dashboard-table__header">
-      <div class="give-donor-dashboard-table__column"><?php echo __('Donation','give-kindness');?></div>
+         <div class="give-donor-dashboard-table__column"><?php echo __('Donation','give-kindness');?></div>
          <div class="give-donor-dashboard-table__column"><?php echo __('Campaign','give-kindness');?></div>
          <div class="give-donor-dashboard-table__column"><?php echo __('Date','give-kindness');?></div>
          <div class="give-donor-dashboard-table__column"><?php echo __('Status','give-kindness');?></div>
@@ -63,7 +63,9 @@
         <?php endif; ?>
       </div>
       <div class="give-donor-dashboard-table__footer">
-         <div class="give-donor-dashboard-table__footer-text">Showing 1 - 2 of 2 Donations</div>
+         <div class="give-donor-dashboard-table__footer-text">
+            <?php echo sprintf(__('Showing %s - %s of %s Donations', 'give-kindness'), 1, 2, 2); ?>
+         </div>
          <div class="give-donor-dashboard-table__footer-nav"></div>
       </div>
    </div>

@@ -8,15 +8,22 @@ use Give_Kindness\Helpers;
  */
 class MyDashboard {
 
+
+    /**
+     * 
+     * 
+     * 
+     */
+    protected $id;
+
+    
     /**
      * Initializes the class
      */
-
-    protected $id;
     function __construct() 
     {
 
-        $this->id = get_current_user_id();
+        $this->id = \Give\DonorDashboards\Helpers::getCurrentDonorId();
 
         add_shortcode( 'give_kindness_dashboard', [ $this, 'give_kindness_dashboard' ] );
         add_shortcode( 'give_kindness_authentication', [ $this, 'give_kindness_authentication' ] );
@@ -97,13 +104,12 @@ class MyDashboard {
         }
 
         $data = [];
-        $user_id = get_current_user_id(); 
 
         $repository = new \Give\DonorDashboards\Repositories\Donations;
-        $data['donations'] = $repository->getDonations( $user_id );
-        $data['count'] = $repository->getDonationCount( $user_id );
-        $data['revenue'] = $repository->getRevenue( $user_id );
-        $data['average'] = $repository->getAverageRevenue( $user_id );
+        $data['donations'] = $repository->getDonations( $this->id );
+        $data['count'] = $repository->getDonationCount( $this->id );
+        $data['revenue'] = $repository->getRevenue( $this->id );
+        $data['average'] = $repository->getAverageRevenue( $this->id );
 
         return $data; 
     }
