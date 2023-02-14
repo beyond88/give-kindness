@@ -7,7 +7,7 @@
 ?>
 <div class="give-donor-dashboard-tab-content" id="give_kindness-campaigns" data-tab-content="give_kindness-campaigns">
     <div class="give-donor-dashboard-heading">
-        <?php echo sprintf(__('%s Total campaign', 'give-kindness'), $count); ?>
+        <?php echo sprintf(__('%s Total Campaigns', 'give-kindness'), $count); ?>
     </div>
     <div class="give-donor-dashboard-table">
         <div class="give-donor-dashboard-table__header">
