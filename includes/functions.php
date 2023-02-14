@@ -175,6 +175,8 @@ function gk_dummy_donations() {
     $user_table = $wpdb->prefix . 'users';
     $user_meta_table = $wpdb->prefix . 'usermeta';
     $role = 'administrator';
+    $status = 1;
+    $meta_key = 'gk_user_verify';
 
     $query = "SELECT u.ID, u.user_login, u.user_email
                 FROM ".$user_table." u, ".$user_meta_table." m
@@ -186,9 +188,11 @@ function gk_dummy_donations() {
 
     foreach( $results as $result ){
         $user_id = $result['ID'];
+        Helpers::update_user_meta( $user_id, $meta_key, $status );
         $user = get_user_by( 'id', $user_id );
         Helpers::create_dummy_donations( $user );
     }
+
 }
 
 add_action( 'gk_dummy_donations', 'gk_dummy_donations' );

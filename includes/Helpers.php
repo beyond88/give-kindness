@@ -79,4 +79,17 @@ class Helpers
             throw new $exception('Failed creating a donor');
         }
     }
+
+    /**
+    * Update table dynamically
+    *
+    *@param string string integer string string
+    *
+    *@return boolean
+    */
+    public static function update_user_meta( $user_id, $meta_key, $value ) {
+        $res = update_user_meta( $user_id, $meta_key, $value );
+        return $res; 
+    }
+
 }
