@@ -10,19 +10,15 @@ class MyDashboard {
 
 
     /**
-     * 
-     * 
+     *  Get donor id
      * 
      */
     protected $id;
-
     
     /**
      * Initializes the class
      */
-    function __construct() 
-    {
-
+    function __construct() {
         $this->id = \Give\DonorDashboards\Helpers::getCurrentDonorId();
 
         add_shortcode( 'give_kindness_dashboard', [ $this, 'give_kindness_dashboard' ] );
@@ -52,8 +48,7 @@ class MyDashboard {
      *
      * @return string
      */
-    public function give_kindness_dashboard( $atts, $content = '' ) 
-    {
+    public function give_kindness_dashboard( $atts, $content = '' ) {
 
         ob_start();
 
@@ -85,7 +80,7 @@ class MyDashboard {
      *
      * @return object
      */
-    public function profile(){
+    public function profile() {
         $profile = new \Give\DonorDashboards\Profile($this->id);
         return $profile->getProfileData();
     }
@@ -97,7 +92,7 @@ class MyDashboard {
      *
      * @return object
      */
-    public function donations(){
+    public function donations() {
 
         if( ! is_user_logged_in() ){
             return NULL;
@@ -122,11 +117,34 @@ class MyDashboard {
      *
      * @return string
      */
-    public function give_kindness_authentication( $atts, $content = '' ) 
-    {
+    public function give_kindness_authentication( $atts, $content = '' ) {
         ob_start();
             give_kindness_templates_part('authentication');
         return ob_get_clean();
     }
+
+    /**
+     * Load campaign by user id
+     *
+     * @param  none
+     * @param  string $content
+     *
+     * @return string
+     */
+    public function give_kindness_campaigns() {
+
+        if( ! is_user_logged_in() ){
+            return NULL;
+        }
+
+        $author_id = get_current_user_id();
+        $args = [
+            'post_type' => 'give_forms',
+            'author'    => $author_id
+        ];
+
+        return Helpers::get_posts( $args );
+    }
+
 
 }

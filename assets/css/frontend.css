@@ -1881,7 +1881,8 @@ a:focus {
 }
 
 #give_kindness-donation-history,
-#give_kindness-profile {
+#give_kindness-profile,
+#give_kindness-campaigns {
   display: none;
 }
 
