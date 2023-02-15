@@ -91,7 +91,9 @@
         </div>
 
         <div class="give-donor-dashboard-table__footer">
-            <div class="give-donor-dashboard-table__footer-text">Showing 1 - 2 of 2 Donations</div>
+            <div class="give-donor-dashboard-table__footer-text">
+                <?php echo sprintf(__('Showing %s - %s of %s Donations', 'give-kindness'), 1, 2, 2); ?>
+            </div>
             <div class="give-donor-dashboard-table__footer-nav"></div>
         </div>
     </div>

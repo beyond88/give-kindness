@@ -11,7 +11,6 @@ class Helpers
     * Get dashboard page details
     *
     * @param none
-    *
     * @return array
     */
     public static function get_dashboard_page_id() {
@@ -29,7 +28,6 @@ class Helpers
     * Get user verification status
     *
     *@param int user_id
-    *
     *@return boolean 
     */
     public static function get_user_status( $user_id ) {
@@ -52,7 +50,6 @@ class Helpers
     * Create dummy donation
     *
     *@param int user_id
-    *
     *@return boolean
     */
     public static function create_dummy_donations( $user ) {
@@ -84,7 +81,6 @@ class Helpers
     * Update table dynamically
     *
     *@param string string integer string string
-    *
     *@return boolean
     */
     public static function update_user_meta( $user_id, $meta_key, $value ) {
@@ -96,13 +92,42 @@ class Helpers
     * Display posts
     *
     *@param string integer
-    *
     *@return array | object
     */
     public static function get_posts( $args ) {
         
         $posts = new \WP_Query( $args );
         return $posts; 
+
+    }
+
+
+    /**
+    * Display posts
+    *
+    *@param string integer
+    *@return array | object
+    */
+    public static function get_status_color( $status ) {
+
+        $status = strtolower( $status );
+
+        switch ($status) {
+            case "publish":
+              return "#7AD03A";
+              break;
+            case "approved":
+                return "#2271b1";
+                break;
+            case "suspend":
+                return "#ffba00";
+                break;
+            case "draft":
+                return "#a7a7a7";
+                break;
+            default:
+                return "#a7a7a7";
+        }
 
     }
 

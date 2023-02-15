@@ -147,4 +147,15 @@ class MyDashboard {
     }
 
 
+    /**
+     * Load color by status
+     *
+     * @param  string
+     * @return string
+     */
+    public function give_kindness_campaign_status_color( $status ) {
+        return Helpers::get_status_color( $status );
+    }
+
+
 }
