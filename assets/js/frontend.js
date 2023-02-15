@@ -63,7 +63,9 @@
           }
 
           // Hide receipt details content
+          // Hide create campaign by default
           $('.view-receipt-details').hide();
+          $('#give_kindness-create-campaign').hide();
         }
       });
 
@@ -990,4 +992,15 @@ function closeReceipt(that, id) {
   let receiptNo = jQuery(that).data('receipt-no');
   let divId = '#receipt-no-'+receiptNo;
   jQuery(divId).hide();
+};
+
+
+/************************
+* 
+* Open and close content
+* 
+************************/
+function showHideContent(that, targetId) {
+  jQuery(that).hide();
+  jQuery(targetId).show();
 };

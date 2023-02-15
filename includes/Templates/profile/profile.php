@@ -1,9 +1,5 @@
 <?php
    $myProfile = $object->profile();
-
-   // echo "<pre>";
-   // print_r($myProfile);
-   // echo "</pre>";
 ?>
 
 <div class="give-donor-dashboard-tab-content" id="give_kindness-profile" data-tab-content="give_kindness-profile">
