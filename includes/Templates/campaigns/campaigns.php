@@ -1,13 +1,21 @@
 <?php 
-
     $campaigns = $object->give_kindness_campaigns();
+    
     // echo "<pre>";
     // print_r($campaigns);
     // echo "</pre>";
 ?>
 <div class="give-donor-dashboard-tab-content" id="give_kindness-campaigns" data-tab-content="give_kindness-campaigns">
-    <div class="give-donor-dashboard-heading">
-        <?php echo sprintf(__('%s Total Campaigns', 'give-kindness'), 0); ?>
+    <div class="give-donor-dashboard-heading give-donor-dashboard-campaign-heading">
+        <span>
+            <?php echo sprintf(__('%s Total Campaigns', 'give-kindness'), $campaigns->post_count); ?>
+        </span>
+        <button class="give-donor-dashboard-button give-donor-dashboard-button--primary give-donor-dashboard-create-campaign" id="gk-create-campaign">
+            Create Campaign      
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+            </svg>
+        </button>
     </div>
     <div class="give-donor-dashboard-table">
         <div class="give-donor-dashboard-table__header">
@@ -18,7 +26,7 @@
 
         <div class="give-donor-dashboard-table__rows">
             <?php if( $campaigns->have_posts() ) : ?>
-            <?php foreach( $campaigns->posts as $campaign ): ?>
+            <?php foreach( $campaigns->posts as $campaign ) : ?>
             <div class="give-donor-dashboard-table__row">
                 <div class="give-donor-dashboard-table__column">
                     <?php echo $campaign->post_title; ?>

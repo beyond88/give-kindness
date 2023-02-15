@@ -2147,3 +2147,16 @@ textarea:focus,
 .give-kindness-login-part {
   display: none !important;
 }
+
+.give-donor-dashboard-campaign-heading {
+  position: relative;
+}
+
+.give-donor-dashboard-create-campaign {
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0px 0;
+  padding: 6px 10px;
+}

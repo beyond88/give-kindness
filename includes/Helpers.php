@@ -122,6 +122,9 @@ class Helpers
             case "suspend":
                 return "#ffba00";
                 break;
+            case "reject":
+                return "#ff2f2f";
+                break;
             case "draft":
                 return "#a7a7a7";
                 break;

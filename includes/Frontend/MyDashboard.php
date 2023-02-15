@@ -140,7 +140,18 @@ class MyDashboard {
         $author_id = get_current_user_id();
         $args = [
             'post_type' => 'give_forms',
-            'author'    => $author_id
+            'author'    => $author_id,
+            'post_status' => [
+                'publish', 
+                'pending', 
+                'draft', 
+                'future', 
+                'private', 
+                'inherit',
+                'suspend',
+                'reject',
+                'approved' 
+            ]
         ];
 
         return Helpers::get_posts( $args );

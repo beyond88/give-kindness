@@ -25,6 +25,15 @@ function give_kindness_campaign_status(){
 		'show_in_admin_all_list'    => true,
 		'show_in_admin_status_list' => true
 	));
+
+    register_post_status( 'reject', array(
+		'label'                     => _x( 'Reject', 'give_forms' ),
+		'label_count'               => _n_noop( 'Reject <span class="count">(%s)</span>', 'Reject <span class="count">(%s)</span>'),
+		'public'                    => true,
+		'exclude_from_search'       => false,
+		'show_in_admin_all_list'    => true,
+		'show_in_admin_status_list' => true
+	));
 }
 add_action( 'init', 'give_kindness_campaign_status' );
 
@@ -43,7 +52,8 @@ function give_kindness_status_add_in_quick_edit() {
 	echo "<script>
         jQuery(document).ready( function() {
             jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"approved\">Approved</option>' ); 
-            jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"suspend\">Suspend</option>' );     
+            jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"suspend\">Suspend</option>' );  
+            jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"reject\">Reject</option>' );     
         });
 	</script>";
     }
@@ -58,7 +68,7 @@ add_action('admin_footer-edit.php','give_kindness_status_add_in_quick_edit');
  * @return void
  */
 function give_kindness_status_add_in_post_page() {
-
+    
     global $post;
     if($post->post_type == 'give_forms') {
         echo "<script>
@@ -75,6 +85,15 @@ function give_kindness_status_add_in_post_page() {
         });
         </script>";
     }
+
+    if($post->post_type == 'give_forms') {
+        echo "<script>
+        jQuery(document).ready( function() {        
+            jQuery( 'select[name=\"post_status\"]' ).append( '<option value=\"reject\">Reject</option>' );
+        });
+        </script>";
+    }
+
 }
 add_action('admin_footer-post.php', 'give_kindness_status_add_in_post_page');
 add_action('admin_footer-post-new.php', 'give_kindness_status_add_in_post_page');
