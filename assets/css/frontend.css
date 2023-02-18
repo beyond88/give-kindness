@@ -2160,3 +2160,18 @@ textarea:focus,
   margin: 0px 0;
   padding: 6px 10px;
 }
+
+.give-kindness-campaign-form-one {
+  display: none;
+}
+
+.give-kindness-campaign-form-three {
+  display: none;
+}
+
+.give-kindness-form-next {
+  text-align: right;
+}
+
+.give-kindness-form-previous {
+}
