@@ -13,13 +13,13 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control give-kindness-form-previous">
-            <button type="button" id="form-previous" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-previous-btn">
-                <?php echo __('Previous', 'give-kindness'); ?>
+            <button type="button" id="form-previous" class="give-donor-dashboard-button--default give-kindness-form-previous-btn" onClick="showHideContent('#give-kindness-campaign-form-two', '#give-kindness-campaign-form-one')">
+                &laquo; <?php echo __('Previous', 'give-kindness'); ?>
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
             <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-two', '#give-kindness-campaign-form-three')">
-                <?php echo __('Next', 'give-kindness'); ?>
+                <?php echo __('Next', 'give-kindness'); ?> &raquo;
             </button>    
         </div>
     </div>

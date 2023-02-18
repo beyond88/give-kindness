@@ -973,6 +973,47 @@
 
   });
 
+  /**************************
+  *  
+  * Has any government assistance been offered 
+  * to the person who needs help?
+  * 
+  ***************************/
+  $(document).on('click', '#gk-government-assistance-yes, #gk-government-assistance-no', function() {
+    let that = $(this);
+    let buttonValue = that.data('button-value');
+    $('#gk-government-assistance').val(buttonValue);
+    if( buttonValue == 'Yes' ) {
+      $('.gk-government-assistance-area').show();
+      $('#gk-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    } else {
+      $('.gk-government-assistance-area').hide();
+      $('#gk-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    }
+  })
+
+  /**************************
+  *  
+  * Would you like to allocate 10% of 
+  * your funds raised for boosting?
+  * 
+  ***************************/
+  $(document).on('click', '#gk-campaign-boosting-no, #gk-campaign-boosting-yes', function() {
+    let that = $(this);
+    let buttonValue = that.data('button-value');
+    $('#gk-campaign-boosting').val(buttonValue);
+    if( buttonValue == 'Yes' ) {
+      $('#gk-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    } else {
+      $('#gk-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    }
+  })
+  
+
 })(jQuery);
 
 /************************

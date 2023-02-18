@@ -2173,3 +2173,7 @@ textarea:focus,
 
 .give-kindness-form-previous {
 }
+
+.gk-government-assistance-area {
+  display: none;
+}
