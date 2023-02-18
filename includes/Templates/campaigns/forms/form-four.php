@@ -1,4 +1,4 @@
-<div class="give-kindness-campaign-form-four">
+<div id="give-kindness-campaign-form-four">
 
     <div class="give-donor-dashboard-text-control">
         <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-name">

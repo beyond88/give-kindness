@@ -1,4 +1,4 @@
-<div class="give-kindness-campaign-form-one">
+<div id="give-kindness-campaign-form-one">
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
@@ -528,19 +528,14 @@
                 <?php echo __('Medical Condition', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-medical-condition" type="text" value="">
+                <input id="gk-medical-condition" type="text">
             </div>
         </div>
-    </div> 
+    </div>
     
     <div class="give-donor-dashboard-field-row">
-        <div class="give-donor-dashboard-text-control give-kindness-form-previous">
-            <button type="button" id="form-previous" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-previous-btn">
-                <?php echo __('Previous', 'give-kindness'); ?>
-            </button>   
-        </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
-            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn">
+            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-one', '#give-kindness-campaign-form-two')">
                 <?php echo __('Next', 'give-kindness'); ?>
             </button>   
         </div>

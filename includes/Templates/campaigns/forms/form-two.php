@@ -1,4 +1,4 @@
-<div class="give-kindness-campaign-form-two">
+<div id="give-kindness-campaign-form-two">
     <div class="give-donor-dashboard-text-control">
         <label class="give-donor-dashboard-text-control__label" for="gk-medical-condition">
             <?php echo __('Share your story with us', 'give-kindness'); ?>
@@ -18,9 +18,9 @@
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
-            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn">
+            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-two', '#give-kindness-campaign-form-three')">
                 <?php echo __('Next', 'give-kindness'); ?>
-            </button>   
+            </button>    
         </div>
     </div>
 

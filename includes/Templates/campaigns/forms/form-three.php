@@ -1,4 +1,4 @@
-<div class="give-kindness-campaign-form-three">
+<div id="give-kindness-campaign-form-three">
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
@@ -327,9 +327,9 @@
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
-            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn">
+            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-three', '#give-kindness-campaign-form-four')">
                 <?php echo __('Next', 'give-kindness'); ?>
-            </button>   
+            </button>  
         </div>
     </div>
 

@@ -2161,20 +2161,10 @@ textarea:focus,
   padding: 6px 10px;
 }
 
-.give-kindness-campaign-form-one {
+#give-kindness-campaign-form-two,
+#give-kindness-campaign-form-three,
+#give-kindness-campaign-form-four {
   display: none;
-}
-
-.give-kindness-campaign-form-two {
-  display: none;
-}
-
-.give-kindness-campaign-form-three {
-  display: none;
-}
-
-.give-kindness-campaign-form-four {
-  display: block;
 }
 
 .give-kindness-form-next {
