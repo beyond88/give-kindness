@@ -19,3 +19,8 @@ Currently, GiveWP does not support or allow users to submit their personal campa
 - Once information is verified as genuine, administrator will approve the campaign.
 - Approved campaign
 - Once campaign is approved, user can update more information or publish (live) it.
+
+## Admin Process
+### Plugin Objectives
+Supports campaign approval / rejection / edit / suspension / review in the front-end for manager. This frontend must support GiveWP.
+
