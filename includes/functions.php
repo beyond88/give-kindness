@@ -47,7 +47,7 @@ add_action( 'init', 'give_kindness_campaign_status' );
 function give_kindness_status_add_in_quick_edit() {
 
     global $post;
-    if($post->post_type == 'give_forms') {
+    if( @$post->post_type == 'give_forms' ) {
 
 	echo "<script>
         jQuery(document).ready( function() {
@@ -70,7 +70,8 @@ add_action('admin_footer-edit.php','give_kindness_status_add_in_quick_edit');
 function give_kindness_status_add_in_post_page() {
     
     global $post;
-    if($post->post_type == 'give_forms') {
+
+    if( @$post->post_type == 'give_forms' ) {
         echo "<script>
         jQuery(document).ready( function() {        
             jQuery( 'select[name=\"post_status\"]' ).append( '<option value=\"approved\">Approved</option>' );
@@ -78,7 +79,7 @@ function give_kindness_status_add_in_post_page() {
         </script>";
     }
 
-    if($post->post_type == 'give_forms') {
+    if( @$post->post_type == 'give_forms' ) {
         echo "<script>
         jQuery(document).ready( function() {        
             jQuery( 'select[name=\"post_status\"]' ).append( '<option value=\"suspend\">Suspend</option>' );
@@ -86,7 +87,7 @@ function give_kindness_status_add_in_post_page() {
         </script>";
     }
 
-    if($post->post_type == 'give_forms') {
+    if( @$post->post_type == 'give_forms' ) {
         echo "<script>
         jQuery(document).ready( function() {        
             jQuery( 'select[name=\"post_status\"]' ).append( '<option value=\"reject\">Reject</option>' );
@@ -105,24 +106,25 @@ add_action('admin_footer-post-new.php', 'give_kindness_status_add_in_post_page')
  * @param string
  * @return string
  */
-add_filter( 'display_post_states', function( $statuses ) {
+add_filter( 'display_post_states', function( $status ) {
+    
     global $post;
 
-    if( $post->post_type == 'give_forms') {
+    if( @$post->post_type == 'give_forms' ) {
 
         if ( get_query_var( 'post_status' ) != 'approved' ) { // not for pages with all posts of this status
-            if ( $post->post_status == 'approved' ) {
+            if ( @$post->post_status == 'approved' ) {
                 return array( 'Approved' );
             }
         }
 
         if ( get_query_var( 'post_status' ) != 'suspend' ) { // not for pages with all posts of this status
-            if ( $post->post_status == 'suspend' ) {
+            if ( @$post->post_status == 'suspend' ) {
                 return array( 'Suspend' );
             }
         }
     }
-    return $statuses;
+    return $status;
 });
 
 /**
