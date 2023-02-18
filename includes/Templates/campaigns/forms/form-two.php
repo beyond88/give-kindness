@@ -11,4 +11,17 @@
         wp_editor( $content, 'posttext', $settings );
     ?>
 
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control give-kindness-form-previous">
+            <button type="button" id="form-previous" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-previous-btn">
+                <?php echo __('Previous', 'give-kindness'); ?>
+            </button>   
+        </div>
+        <div class="give-donor-dashboard-text-control give-kindness-form-next">
+            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn">
+                <?php echo __('Next', 'give-kindness'); ?>
+            </button>   
+        </div>
+    </div>
+
 </div>

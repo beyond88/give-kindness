@@ -17,7 +17,7 @@
                 <?php echo __('Country', 'give-kindness'); ?>
             </label>
             <select name="gk-campaign-country" id="gk-campaign-country" class="give-donor-dashboard-text-control__input">
-                <option>select country</option>
+                <option>Select country</option>
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Aland Islands</option>
                 <option value="AL">Albania</option>
@@ -286,7 +286,50 @@
                 <button type="button" id="gk-government-assistance-yes" class="give-donor-dashboard-button--default">
                     <?php echo __('Yes', 'give-kindness'); ?>
                 </button>
+                <input type="hidden" name="gk-government-assistance" id="gk-government-assistance" value="No" />
             </div>
+        </div>
+    </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-government-assistance">
+                <?php echo __('Government assistance', 'give-kindness'); ?>
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+                <textarea name="gk-government-assistance-details" id="gk-government-assistance-details" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-boosting">
+                <?php echo __('Would you like to allocate 10% of your funds raised for boosting?', 'give-kindness'); ?>
+            </label>
+            <div class="give-donor-dashboard-text-control__input1">
+                <button type="button" id="gk-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+                    <?php echo __('No', 'give-kindness'); ?>
+                </button>
+                <button type="button" id="gk-campaign-boosting-yes" class="give-donor-dashboard-button--default">
+                    <?php echo __('Yes', 'give-kindness'); ?>
+                </button>
+                <input type="hidden" name="gk-campaign-boosting" id="gk-campaign-boosting" value="No" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control give-kindness-form-previous">
+            <button type="button" id="form-previous" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-previous-btn">
+                <?php echo __('Previous', 'give-kindness'); ?>
+            </button>   
+        </div>
+        <div class="give-donor-dashboard-text-control give-kindness-form-next">
+            <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn">
+                <?php echo __('Next', 'give-kindness'); ?>
+            </button>   
         </div>
     </div>
 
