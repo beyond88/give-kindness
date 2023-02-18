@@ -3,13 +3,16 @@
         <label class="give-donor-dashboard-text-control__label" for="gk-medical-condition">
             <?php echo __('Share your story with us', 'give-kindness'); ?>
         </label>
+
+        <div class="give-donor-dashboard-text-control__input" style="width: auto;align-items:unset; display:inline;">
+            <textarea style="display:none" name="post_text" id="posttext"></textarea>   
+            <?php 
+                $content = '';
+                $settings = array( 'textarea_name' => 'post_text', 'media_buttons' => false, 'drag_drop_upload' => false );
+                wp_editor( $content, 'posttext', $settings );
+            ?>
+        </div>
     </div>
-    <textarea style="display:none" name="post_text" id="posttext"></textarea>   
-    <?php 
-        $content = '';
-        $settings = array( 'textarea_name' => 'post_text', 'media_buttons' => false, 'drag_drop_upload' => false );
-        wp_editor( $content, 'posttext', $settings );
-    ?>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control give-kindness-form-previous">

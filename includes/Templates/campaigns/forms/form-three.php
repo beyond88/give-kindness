@@ -305,7 +305,7 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-campaign-boosting">
-                <?php echo __('Would you like to allocate 10% of your funds raised for boosting?', 'give-kindness'); ?>
+                <?php echo __('Would you like to allocate <strong>10% of your funds raised</strong> for boosting?', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input1">
                 <button type="button" id="gk-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
