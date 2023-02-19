@@ -7,6 +7,6 @@
     <?php give_kindness_templates_part( 'campaigns/forms/form-one' ); ?>
     <?php give_kindness_templates_part( 'campaigns/forms/form-two' ); ?>
     <?php give_kindness_templates_part( 'campaigns/forms/form-three' ); ?>
-    <?php give_kindness_templates_part( 'campaigns/forms/form-four' ); ?>
+    <?php give_kindness_templates_part( 'campaigns/forms/form-four', $object ); ?>
 
 </div>

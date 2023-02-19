@@ -2189,3 +2189,62 @@ textarea:focus,
 .give-kindness-text-right {
   text-align: right;
 }
+
+.gk-submit-for-approval {
+}
+
+.gk-submit-for-approval label {
+}
+
+.gk-submit-for-approval p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.gk-submit-for-approval-label {
+  font-size: 16px;
+}
+
+.gk-submit-for-approval-more-describe {
+}
+
+.gk-submit-for-approval-more-describe label {
+}
+
+.gk-submit-for-approval-more-describe p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-euro {
+  position: relative;
+}
+
+.input-euro.left input {
+  padding-left: 18px;
+}
+
+.input-euro.right input {
+  padding-right: 18px;
+  text-align: end;
+}
+
+.input-euro:before {
+  position: absolute;
+  top: 0;
+  content: "S$";
+}
+
+.input-euro.left:before {
+  left: 5px;
+}
+
+.input-euro.right:before {
+  right: 5px;
+}
+
+.give-kindness-field-required {
+  font-size: 14px;
+  font-style: italic;
+  color: red;
+}

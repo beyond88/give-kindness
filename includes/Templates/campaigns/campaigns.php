@@ -73,4 +73,4 @@
     </div>
 </div>
 
-<?php give_kindness_templates_part('campaigns/create-campaign'); ?>
+<?php give_kindness_templates_part('campaigns/create-campaign', $object); ?>

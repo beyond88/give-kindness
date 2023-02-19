@@ -2,11 +2,35 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-name">
-            <?php echo __('Full name of beneficiary', 'give-kindness'); ?>
+            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-name">
+                <?php echo __('Campaign name*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-beneficiary-name" type="text" value="">
+                <input id="gk-campaign-name" type="text" placeholder="<?php echo __('Campaign name', 'give-kindness'); ?>">
+            </div>
+        </div>
+    </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-fundraising-target">
+                <?php echo __('Fundraising target*', 'give-kindness'); ?>
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+                <span class="input-euro left">
+                    <input id="gk-fundraising-target" type="number" min="1" placeholder="<?php echo __('Fundraising target', 'give-kindness'); ?>">
+                <span>
+            </div>
+        </div>
+    </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-name">
+            <?php echo __('Full name of beneficiary*', 'give-kindness'); ?>
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+                <input id="gk-beneficiary-name" type="text" placeholder="<?php echo __('Full name of beneficiary', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
@@ -14,7 +38,7 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-mobile-number">
-                <?php echo __('Mobile number', 'give-kindness'); ?>
+                <?php echo __('Mobile number*', 'give-kindness'); ?>
             </label>
             <select name="gk-mobile-code" id="gk-mobile-code" class="give-donor-dashboard-text-control__input">
                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -238,7 +262,7 @@
                 &nbsp;
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-mobile-number" type="tel" value="">
+                <input id="gk-mobile-number" type="tel" placeholder="<?php echo __('Mobile number', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
@@ -246,12 +270,13 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-relationship">
-                <?php echo __('Relationship with beneficiary', 'give-kindness'); ?>
+                <?php echo __('Relationship with beneficiary*', 'give-kindness'); ?>
             </label>
             <select name="gk-beneficiary-relationship" id="gk-beneficiary-relationship" class="give-donor-dashboard-text-control__input">
-                <option value="Me"><?php echo __( 'I am the beneficiary', 'give-kindness' ); ?></option>
-                <option value=""><?php echo __( 'I am the beneficiary', 'give-kindness' ); ?></option>
-                <option value=""><?php echo __( 'I am the beneficiary', 'give-kindness' ); ?></option>
+                <option value="Me"><?php echo __( 'Family member', 'give-kindness' ); ?></option>
+                <option value="family member"><?php echo __( 'Friend', 'give-kindness' ); ?></option>
+                <option value="employer"><?php echo __( 'Employer', 'give-kindness' ); ?></option>
+                <option value="good samaritan"><?php echo __( 'Good samaritan', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
@@ -259,7 +284,7 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-country">
-                <?php echo __('Country beneficiary is going to receive treatment', 'give-kindness'); ?>
+                <?php echo __('Country beneficiary is going to receive treatment*', 'give-kindness'); ?>
             </label>
             <select name="gk-beneficiary-country" id="gk-beneficiary-country" class="give-donor-dashboard-text-control__input">
                 <option value="Afghanistan">Afghanistan</option>
@@ -513,7 +538,7 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-age">
-                <?php echo __('Age group of beneficiary', 'give-kindness'); ?>
+                <?php echo __('Age group of beneficiary*', 'give-kindness'); ?>
             </label>
             <select name="gk-beneficiary-age" id="gk-beneficiary-age" class="give-donor-dashboard-text-control__input">
                 <option value="Adult"><?php echo __( 'Adult', 'give-kindness' ); ?></option>
@@ -525,15 +550,30 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-medical-condition">
-                <?php echo __('Medical Condition', 'give-kindness'); ?>
+                <?php echo __('Medical condition*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-medical-condition" type="text">
+                <input id="gk-medical-condition" type="text" placeholder="<?php echo __('Medical condition', 'give-kindness'); ?>">
             </div>
+        </div>
+    </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-medical-document">
+                <?php echo __('Medical document upload (Snapshot of the first page of medical consultation report)*', 'give-kindness'); ?>
+            </label>
+            <select name="gk-medical-document" id="gk-medical-document" class="give-donor-dashboard-text-control__input">
+                <option value="image"><?php echo __( 'Image', 'give-kindness' ); ?></option>
+                <option value="file"><?php echo __( 'File', 'give-kindness' ); ?></option>
+            </select>  
         </div>
     </div>
     
     <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control give-kindness-field-required">
+            <?php echo __('**All star marked fields are required**', 'give-kindness'); ?>
+        </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
             <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-one', '#give-kindness-campaign-form-two')">
                 <?php echo __('Next', 'give-kindness'); ?> &raquo;
