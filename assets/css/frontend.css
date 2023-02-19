@@ -940,6 +940,10 @@ img.emoji {
   line-height: 1;
 }
 
+#give_kindness-create-campaign .give-donor-dashboard-text-control {
+  margin-top: 20px;
+}
+
 .give-donor-dashboard-text-control {
   margin-top: 10px;
 }

@@ -35,12 +35,12 @@
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-text-right">
-            <button type="button" id="give-kindness-save-draft" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+            <button type="button" id="give-kindness-save-draft" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-submit-type="draft">
                 <?php echo __('Save draft', 'give-kindness'); ?>
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-text-right">
-            <button type="button" id="give-kindness-submit-approval" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+            <button type="button" id="give-kindness-submit-approval" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-submit-type="approve">
                 <?php echo __('Submit for approval', 'give-kindness'); ?>
             </button>   
         </div>

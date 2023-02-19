@@ -220,7 +220,7 @@
                 <option value="CS">Serbia and Montenegro</option>
                 <option value="SC">Seychelles</option>
                 <option value="SL">Sierra Leone</option>
-                <option value="SG">Singapore</option>
+                <option value="SG" selected>Singapore</option>
                 <option value="SX">Sint Maarten</option>
                 <option value="SK">Slovakia</option>
                 <option value="SI">Slovenia</option>
