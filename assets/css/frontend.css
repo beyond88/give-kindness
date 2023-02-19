@@ -2173,3 +2173,19 @@ textarea:focus,
 
 .give-kindness-form-previous {
 }
+
+.gk-government-assistance-area {
+  display: none;
+}
+
+.give-donor-dashboard-text-control
+  .give-donor-dashboard-text-control__input
+  #qt_posttext_toolbar
+  input {
+  width: auto;
+  margin-top: 20px;
+}
+
+.give-kindness-text-right {
+  text-align: right;
+}

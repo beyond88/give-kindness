@@ -26,16 +26,16 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control give-kindness-form-previous">
-            <button type="button" id="form-previous" class="give-donor-dashboard-button--default give-kindness-form-previous-btn">
-                <?php echo __('Previous', 'give-kindness'); ?>
+            <button type="button" id="form-previous" class="give-donor-dashboard-button--default give-kindness-form-previous-btn" onClick="showHideContent('#give-kindness-campaign-form-four', '#give-kindness-campaign-form-three')">
+                &laquo; <?php echo __('Previous', 'give-kindness'); ?>
             </button>   
         </div>
-        <div class="give-donor-dashboard-text-control">
+        <div class="give-donor-dashboard-text-control give-kindness-text-right">
             <button type="button" id="give-kindness-save-draft" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
                 <?php echo __('Save draft', 'give-kindness'); ?>
             </button>   
         </div>
-        <div class="give-donor-dashboard-text-control">
+        <div class="give-donor-dashboard-text-control give-kindness-text-right">
             <button type="button" id="give-kindness-submit-approval" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
                 <?php echo __('Submit for approval', 'give-kindness'); ?>
             </button>   

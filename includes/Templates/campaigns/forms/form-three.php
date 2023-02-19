@@ -280,10 +280,10 @@
                 <?php echo __('Has any government assistance been offered to the person who needs help?', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input1">
-                <button type="button" id="gk-government-assistance-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+                <button type="button" id="gk-government-assistance-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                     <?php echo __('No', 'give-kindness'); ?>
                 </button>
-                <button type="button" id="gk-government-assistance-yes" class="give-donor-dashboard-button--default">
+                <button type="button" id="gk-government-assistance-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
                     <?php echo __('Yes', 'give-kindness'); ?>
                 </button>
                 <input type="hidden" name="gk-government-assistance" id="gk-government-assistance" value="No" />
@@ -291,7 +291,7 @@
         </div>
     </div>
 
-    <div class="give-donor-dashboard-field-row">
+    <div class="give-donor-dashboard-field-row gk-government-assistance-area">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-government-assistance">
                 <?php echo __('Government assistance', 'give-kindness'); ?>
@@ -305,13 +305,13 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-campaign-boosting">
-                <?php echo __('Would you like to allocate 10% of your funds raised for boosting?', 'give-kindness'); ?>
+                <?php echo __('Would you like to allocate <strong>10% of your funds raised</strong> for boosting?', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input1">
-                <button type="button" id="gk-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary">
+                <button type="button" id="gk-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                     <?php echo __('No', 'give-kindness'); ?>
                 </button>
-                <button type="button" id="gk-campaign-boosting-yes" class="give-donor-dashboard-button--default">
+                <button type="button" id="gk-campaign-boosting-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
                     <?php echo __('Yes', 'give-kindness'); ?>
                 </button>
                 <input type="hidden" name="gk-campaign-boosting" id="gk-campaign-boosting" value="No" />
@@ -322,13 +322,13 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control give-kindness-form-previous">
-            <button type="button" id="form-previous" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-previous-btn">
-                <?php echo __('Previous', 'give-kindness'); ?>
+            <button type="button" id="form-previous" class="give-donor-dashboard-button--default give-kindness-form-previous-btn" onClick="showHideContent('#give-kindness-campaign-form-three', '#give-kindness-campaign-form-two')">
+            &laquo; <?php echo __('Previous', 'give-kindness'); ?>
             </button>   
         </div>
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
             <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-three', '#give-kindness-campaign-form-four')">
-                <?php echo __('Next', 'give-kindness'); ?>
+                <?php echo __('Next', 'give-kindness'); ?> &raquo;
             </button>  
         </div>
     </div>

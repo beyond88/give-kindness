@@ -536,7 +536,7 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control give-kindness-form-next">
             <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-campaign-form-one', '#give-kindness-campaign-form-two')">
-                <?php echo __('Next', 'give-kindness'); ?>
+                <?php echo __('Next', 'give-kindness'); ?> &raquo;
             </button>   
         </div>
     </div>
