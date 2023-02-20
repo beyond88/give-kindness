@@ -572,16 +572,16 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <form id="file-upload-form" class="uploader">
-                <input id="file-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
+            <form id="medical-document-upload-form" class="uploader">
+                <input id="medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
 
-                <label for="file-upload" id="file-drag">
+                <label for="medical-document-upload" id="file-drag">
                     <img id="file-image" src="#" alt="Preview" class="hidden">
                     <div id="start">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
                         <div id="notimage" class="hidden">Please select an image</div>
-                        <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                        <span id="medical-document-upload-btn" class="btn btn-primary">Select a file</span>
                     </div>
                     <div id="response" class="hidden">
                     <div id="messages"></div>

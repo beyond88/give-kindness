@@ -134,4 +134,38 @@ class Helpers
 
     }
 
+
+    /**
+     * Image upload
+     *
+     * @return integer
+     */
+    public static function image_file_upload( $request ){
+
+        $attach_id = 0;
+        // Get the upload files
+        $files = $request->get_file_params();
+
+        // These files need to be included as dependencies when on the front end.
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+        require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+        // Process images
+        if (! empty( $files ) ) {
+            $upload_overrides = array( 'test_form' => false );
+            foreach ($files as $key => $file) {
+                $attachment_id = media_handle_upload( $key, 0 );
+                if ( is_wp_error( $attachment_id ) ) {
+                    $attach_id = 0;
+                } else {
+                    $attach_id = $attachment_id;
+                }
+            }
+        }
+
+        return $attach_id; 
+
+    }
+
 }
