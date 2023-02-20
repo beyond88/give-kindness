@@ -13,7 +13,7 @@ class GiveKindnessMetabox {
    * @since 1.8
    * @var   string
    */
-  private $post_type = 'give_forms';
+  private $post_type;
 
 	/**
 	 * Metabox ID.
@@ -34,12 +34,10 @@ class GiveKindnessMetabox {
   /**
   * Initialize the class
   */
-  function __construct( $post_type = NULL ) {
+  function __construct() {
 
-    if( ! empty( $post_type ) ) {
-      $this->post_type = $post_type; 
-    }
 
+    $this->post_type = 'give_forms';
 		$this->metabox_id    = 'give-metabox-campaign-data';
 		$this->metabox_label = __( 'Campaign Information', 'give-kindness' );
 
@@ -113,6 +111,7 @@ class GiveKindnessMetabox {
     $campaign_boosting = get_post_meta( $campaign_id, 'campaign_boosting', true );
 
     ?>
+
       <p>
         <strong>Beneficiary name:</strong> <?php echo esc_attr($benefiary_name); ?>
       </p>
