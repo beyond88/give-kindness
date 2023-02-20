@@ -40,7 +40,6 @@
     $(document).on('click', '.give-donor-dashboard-logout-modal__cancel', function(){
       $('.give-donor-dashboard-logout-modal').remove();
     });
-    
 
     /************************
      * 
@@ -1025,6 +1024,7 @@
   $(document).on('click', '#give-kindness-save-draft, #give-kindness-submit-approval', async function() {
     
     let submit_type = $(this).data('submit-type');
+    let that = $(this);
 
     let fields = [
       '#gk-campaign-name',
@@ -1085,10 +1085,20 @@
         method: 'POST', 
         url: give_kindness.giveKindnessApiURL+'create-campaign',
         data: fd, 
-        status: 200,
+        status: 201,
         reload: false
       };
+
+      that.attr('disabled', true);
+      that.text(give_kindness.pleaseWait);
       await ajaxRequest(requestData);
+      that.attr('disabled', false);
+
+      if( submit_type == 'draft' ) {
+        that.text(give_kindness.saveDraft);
+      } else {
+        that.text(give_kindness.submitForApproval);
+      }
 
     } else {
       alert('All star marked fields are required!');
@@ -1138,16 +1148,19 @@ function ekUpload(){
         fileDrag      = document.getElementById('file-drag'),
         submitButton  = document.getElementById('submit-button');
 
-    fileSelect.addEventListener('change', fileSelectHandler, false);
+    if (fileSelect){
+      fileSelect.addEventListener('change', fileSelectHandler, false);
 
-    // Is XHR2 available?
-    var xhr = new XMLHttpRequest();
-    if (xhr.upload) {
-      // File Drop
-      fileDrag.addEventListener('dragover', fileDragHover, false);
-      fileDrag.addEventListener('dragleave', fileDragHover, false);
-      fileDrag.addEventListener('drop', fileSelectHandler, false);
+      // Is XHR2 available?
+      var xhr = new XMLHttpRequest();
+      if (xhr.upload) {
+        // File Drop
+        fileDrag.addEventListener('dragover', fileDragHover, false);
+        fileDrag.addEventListener('dragleave', fileDragHover, false);
+        fileDrag.addEventListener('drop', fileSelectHandler, false);
+      }
     }
+
   }
 
   function fileDragHover(e) {
