@@ -1043,7 +1043,6 @@
       if( $(fields[i]).val() == '' ){
         status = false;
         break;
-        // console.log(fields[i],' ==>', $(fields[i]).val() );
       }
     }
 
@@ -1051,17 +1050,22 @@
       status = false;
     }
 
-    let requestData = {
-      method: 'POST', 
-      url: give_kindness.giveKindnessApiURL+'create-campaign',
-      data: {}, 
-      status: 200,
-      reload: false
-    };
+    if( status ) {
 
-    await ajaxRequest(requestData);
+      let requestData = {
+        method: 'POST', 
+        url: give_kindness.giveKindnessApiURL+'create-campaign',
+        data: {}, 
+        status: 200,
+        reload: false
+      };
+  
+      await ajaxRequest(requestData);
 
-    // console.log(' status ==>', status );
+    } else {
+
+      alert('All star marked fields are required!');
+    }
 
   }); 
 
