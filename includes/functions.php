@@ -217,3 +217,20 @@ function gk_dummy_donations() {
 }
 
 add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
+
+/**
+ * Give Get Admin ID
+ *
+ * Helper function to return the ID of the post for admin usage
+ *
+ * @return string $post_id
+ */
+function give_kindness_get_admin_post_id() {
+	$post_id = isset( $_REQUEST['post'] ) ? absint( $_REQUEST['post'] ) : null;
+
+	$post_id = ! empty( $post_id ) ? $post_id : ( isset( $_REQUEST['post_id'] ) ? absint( $_REQUEST['post_id'] ) : null );
+
+	$post_id = ! empty( $post_id ) ? $post_id : ( isset( $_REQUEST['post_ID'] ) ? absint( $_REQUEST['post_ID'] ) : null );
+
+	return $post_id;
+}

@@ -208,7 +208,7 @@
                 <option data-countryCode="CS" value="381">Serbia (+381)</option>
                 <option data-countryCode="SC" value="248">Seychelles (+248)</option>
                 <option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
-                <option data-countryCode="SG" value="65">Singapore (+65)</option>
+                <option data-countryCode="SG" value="65" selected>Singapore (+65)</option>
                 <option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
                 <option data-countryCode="SI" value="386">Slovenia (+386)</option>
                 <option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
@@ -483,7 +483,7 @@
                 <option value="Serbia">Serbia</option>
                 <option value="Seychelles">Seychelles</option>
                 <option value="Sierra Leone">Sierra Leone</option>
-                <option value="Singapore">Singapore</option>
+                <option value="Singapore" selected>Singapore</option>
                 <option value="Slovakia">Slovakia</option>
                 <option value="Slovenia">Slovenia</option>
                 <option value="Solomon Islands">Solomon Islands</option>
