@@ -3,10 +3,10 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gk-campaign-email">
-            <?php echo __('Email', 'give-kindness'); ?>
+            <?php echo __('Email*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-campaign-email" type="email">
+                <input id="gk-campaign-email" type="email" placeholder="<?php echo __('Email', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
@@ -220,7 +220,7 @@
                 <option value="CS">Serbia and Montenegro</option>
                 <option value="SC">Seychelles</option>
                 <option value="SL">Sierra Leone</option>
-                <option value="SG">Singapore</option>
+                <option value="SG" selected>Singapore</option>
                 <option value="SX">Sint Maarten</option>
                 <option value="SK">Slovakia</option>
                 <option value="SI">Slovenia</option>

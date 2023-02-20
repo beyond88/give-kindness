@@ -763,6 +763,8 @@
       url: requestData.url,
       data: requestData.data,
       success: function(data) {
+
+        console.log('response ==>', data);
         if( data.status === requestData.status ) {
           if( requestData.reload ){
             window.location.reload();
@@ -771,7 +773,6 @@
       },
       error: function (error) {
         console.log('fail==>', error);
-        thisBtn.text(give_kindness.updateProfile);
       }
     });
   }
@@ -1011,8 +1012,62 @@
       $('#gk-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
       $('#gk-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
     }
-  })
+  });
+
+  /**************************
+  *  
+  * Campaign create
+  * 
+  ***************************/
+  $(document).on('click', '#give-kindness-save-draft, #give-kindness-submit-approval', async function() {
+    
+    let submit_type = $(this).data('submit-type');
+
+    let fields = [
+      '#gk-campaign-name',
+      '#gk-fundraising-target',
+      '#gk-beneficiary-name',
+      '#gk-mobile-code',
+      '#gk-mobile-number',
+      '#gk-beneficiary-relationship',
+      '#gk-beneficiary-country',
+      '#gk-beneficiary-age',
+      '#gk-medical-condition',
+      '#gk-medical-document',
+      '#gk-campaign-email'
+    ]
+
+    let status = true; 
+    let campaign_detail = tinymce.get( $("#gk-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
+    for (let i = 0; i < fields.length; i++) {
+      if( $(fields[i]).val() == '' ){
+        status = false;
+        break;
+      }
+    }
+
+    if( campaign_detail == '' ){
+      status = false;
+    }
+
+    if( status ) {
+
+      let requestData = {
+        method: 'POST', 
+        url: give_kindness.giveKindnessApiURL+'create-campaign',
+        data: {}, 
+        status: 200,
+        reload: false
+      };
   
+      await ajaxRequest(requestData);
+
+    } else {
+
+      alert('All star marked fields are required!');
+    }
+
+  }); 
 
 })(jQuery);
 
