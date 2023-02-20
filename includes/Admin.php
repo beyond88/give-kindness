@@ -2,7 +2,7 @@
 
 namespace Give_Kindness;
 
-// use Give_Kindness\Admin\GiveKindnessSettings;
+use Give_Kindness\Admin\GiveKindnessMetabox;
 
 /**
  * The admin class
@@ -13,7 +13,7 @@ class Admin {
      * Initialize the class
      */
     function __construct() {
-        //GiveKindnessSettings::instance()->init();
+        new  GiveKindnessMetabox();
     }
 
     /**

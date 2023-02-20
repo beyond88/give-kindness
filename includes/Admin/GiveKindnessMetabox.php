@@ -7,12 +7,12 @@ namespace Give_Kindness\Admin;
  */
 class GiveKindnessMetabox {
 
-  private $post_type = 'give_form';
+  private $post_type = 'give_forms';
 
   /**
   * Initialize the class
   */
-  function __construct( $post_type ) {
+  function __construct( $post_type = NULL ) {
 
     if( ! empty( $post_type ) ) {
       $this->post_type = $post_type; 
