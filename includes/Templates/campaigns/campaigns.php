@@ -62,7 +62,7 @@
                             $data['beneficiary_country'] = get_post_meta( $campaign_id, 'beneficiary_country', true );
                             $data['beneficiary_age'] = get_post_meta( $campaign_id, 'beneficier_age', true );
                             $data['medical_condition'] = get_post_meta( $campaign_id, 'medical_condition', true );
-                            $data['medical_document'] = get_post_meta( $campaign_id, 'medical_document_type', true );
+                            $data['medical_document_type'] = get_post_meta( $campaign_id, 'medical_document_type', true );
                             $data['campaign_detail'] = get_post_meta( $campaign_id, 'campaign_detail', true );
                             $data['campaign_email'] = get_post_meta( $campaign_id, 'campaign_email', true );
                             $data['campaign_country'] = get_post_meta( $campaign_id, 'campaign_country', true );
@@ -73,7 +73,9 @@
                             $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
                             $image = wp_get_attachment_image_src($medical_document, 'full');
                             $img_src = '';
-                            $img_src = $image[0];
+                            if( !empty($image) ){
+                                $img_src = $image[0];
+                            }
 
                             $data['medical_document'] = $medical_document;
                             $data['medical_document_url'] = $img_src;

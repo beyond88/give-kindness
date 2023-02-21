@@ -273,10 +273,10 @@
                 <?php echo __('Relationship with beneficiary*', 'give-kindness'); ?>
             </label>
             <select name="gk-beneficiary-relationship" id="gk-beneficiary-relationship" class="give-donor-dashboard-text-control__input">
-                <option value="Me"><?php echo __( 'Family member', 'give-kindness' ); ?></option>
-                <option value="family member"><?php echo __( 'Friend', 'give-kindness' ); ?></option>
-                <option value="employer"><?php echo __( 'Employer', 'give-kindness' ); ?></option>
-                <option value="good samaritan"><?php echo __( 'Good samaritan', 'give-kindness' ); ?></option>
+                <option value="Family member"><?php echo __( 'Family member', 'give-kindness' ); ?></option>
+                <option value="Friend"><?php echo __( 'Friend', 'give-kindness' ); ?></option>
+                <option value="Employer"><?php echo __( 'Employer', 'give-kindness' ); ?></option>
+                <option value="Good Samaritan"><?php echo __( 'Good samaritan', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
@@ -572,20 +572,19 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <form id="medical-document-upload-form" class="uploader">
-                <input id="medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
-
-                <label for="medical-document-upload" id="file-drag">
-                    <img id="file-image" src="#" alt="Preview" class="hidden">
-                    <div id="start">
+            <form id="gk-medical-document-upload-form" class="gk-uploader">
+                <input id="gk-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
+                <label for="gk-medical-document-upload" id="gk-file-drag">
+                    <img id="gk-file-image" src="#" alt="Preview" class="gk-hidden">
+                    <div id="gk-start">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
-                        <div id="notimage" class="hidden">Please select an image</div>
-                        <span id="medical-document-upload-btn" class="btn btn-primary">Select a file</span>
+                        <div id="gk-notimage" class="gk-hidden"><?php echo __( 'Please select an image', 'give-kindness' ); ?></div>
+                        <span id="gk-medical-document-upload-btn" class="gk-btn btn-primary"><?php echo __( 'Select a file', 'give-kindness' ); ?></span>
                     </div>
-                    <div id="response" class="hidden">
-                    <div id="messages"></div>
-                    <progress class="progress" id="file-progress" value="0">
+                    <div id="gk-response" class="gk-hidden">
+                    <div id="gk-messages"></div>
+                    <progress class="gk-progress" id="gk-file-progress" value="0">
                         <span>0</span>%
                     </progress>
                     </div>

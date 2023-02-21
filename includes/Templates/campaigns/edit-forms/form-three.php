@@ -2,21 +2,21 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-email">
+            <label class="give-donor-dashboard-text-control__label" for="gke-campaign-email">
             <?php echo __('Email*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-campaign-email" type="email" placeholder="<?php echo __('Email', 'give-kindness'); ?>">
+                <input id="gke-campaign-email" type="email" placeholder="<?php echo __('Email', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-country">
+            <label class="give-donor-dashboard-text-control__label" for="gke-campaign-country">
                 <?php echo __('Country', 'give-kindness'); ?>
             </label>
-            <select name="gk-campaign-country" id="gk-campaign-country" class="give-donor-dashboard-text-control__input">
+            <select name="gke-campaign-country" id="gke-campaign-country" class="give-donor-dashboard-text-control__input">
             <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -267,45 +267,45 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-government-assistance">
+            <label class="give-donor-dashboard-text-control__label" for="gke-government-assistance">
                 <?php echo __('Has any government assistance been offered to the person who needs help?', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input1">
-                <button type="button" id="gk-government-assistance-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
+                <button type="button" id="gke-government-assistance-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                     <?php echo __('No', 'give-kindness'); ?>
                 </button>
-                <button type="button" id="gk-government-assistance-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
+                <button type="button" id="gke-government-assistance-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
                     <?php echo __('Yes', 'give-kindness'); ?>
                 </button>
-                <input type="hidden" name="gk-government-assistance" id="gk-government-assistance" value="No" />
+                <input type="hidden" name="gke-government-assistance" id="gke-government-assistance" value="No" />
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row gk-government-assistance-area">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-government-assistance">
+            <label class="give-donor-dashboard-text-control__label" for="gke-government-assistance">
                 <?php echo __('Government assistance', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <textarea name="gk-government-assistance-details" id="gk-government-assistance-details" rows="3"></textarea>
+                <textarea name="gke-government-assistance-details" id="gke-government-assistance-details" rows="3"></textarea>
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-boosting">
+            <label class="give-donor-dashboard-text-control__label" for="gke-campaign-boosting">
                 <?php echo __('Would you like to allocate <strong>10% of your funds raised</strong> for boosting?', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input1">
-                <button type="button" id="gk-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
+                <button type="button" id="gke-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                     <?php echo __('No', 'give-kindness'); ?>
                 </button>
-                <button type="button" id="gk-campaign-boosting-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
+                <button type="button" id="gke-campaign-boosting-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
                     <?php echo __('Yes', 'give-kindness'); ?>
                 </button>
-                <input type="hidden" name="gk-campaign-boosting" id="gk-campaign-boosting" value="No" />
+                <input type="hidden" name="gke-campaign-boosting" id="gke-campaign-boosting" value="No" />
             </div>
         </div>
     </div>

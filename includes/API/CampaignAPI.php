@@ -47,7 +47,7 @@ class CampaignAPI
         if ( ! is_wp_error( $campaign_id ) ) {
 
             update_post_meta( $campaign_id, 'benefiary_name', sanitize_text_field( $request['benefiary_name'] ) );
-            update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $mobile_code ) );
+            update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $request['mobile_code'] ) );
             update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $request['mobile_number'] ) );
             update_post_meta( $campaign_id, 'beneficiary_relationship', sanitize_text_field( $request['beneficiary_relationship'] ) );
             update_post_meta( $campaign_id, 'beneficiary_country', sanitize_text_field( $request['beneficiary_country'] ) );
@@ -62,7 +62,7 @@ class CampaignAPI
             update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
             update_post_meta( $campaign_id, 'medical_document', $attach_id );
 
-            $response['status'] = 201;
+            $response['status'] = 200;
             $response['message'] = __("Campaign created successfully!", "give-kindness");
             $response['campaign_id'] = $campaign_id;
 

@@ -1,14 +1,14 @@
 <div id="give-kindness-edit-campaign-form-two">
     <div class="give-donor-dashboard-text-control">
-        <label class="give-donor-dashboard-text-control__label" for="gk-medical-condition">
+        <label class="give-donor-dashboard-text-control__label" for="gke-medical-condition">
             <?php echo __('Share your story with us', 'give-kindness'); ?>
         </label>
 
         <div class="give-donor-dashboard-text-control__input" style="width: auto;align-items:unset; display:inline;"> 
             <?php 
                 $content = '';
-                $settings = array( 'textarea_name' => 'gk-campaign-detail', 'media_buttons' => false, 'drag_drop_upload' => false );
-                wp_editor( $content, 'gk-campaign-detail', $settings );
+                $settings = array( 'textarea_name' => 'gke-campaign-detail', 'media_buttons' => false, 'drag_drop_upload' => false );
+                wp_editor( $content, 'gke-campaign-detail', $settings );
             ?>
         </div> 
     </div>

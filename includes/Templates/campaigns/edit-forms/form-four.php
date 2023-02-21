@@ -1,6 +1,6 @@
 <div id="give-kindness-edit-campaign-form-four">
     <div class="give-donor-dashboard-text-control">
-        <label class="give-donor-dashboard-text-control__label gk-good-jobs" for="gk-good-jobs">
+        <label class="give-donor-dashboard-text-control__label gke-good-jobs" for="gke-good-jobs">
             &nbsp;
         </label>
         <h3>
@@ -9,9 +9,9 @@
         </h3>
     </div>
     
-    <div class="give-donor-dashboard-text-control gk-submit-for-approval">
-        <label class="give-donor-dashboard-text-control__label" for="gk-submit-for-approval">
-            <strong class="gk-submit-for-approval-label">
+    <div class="give-donor-dashboard-text-control gke-submit-for-approval">
+        <label class="give-donor-dashboard-text-control__label" for="gke-submit-for-approval">
+            <strong class="gke-submit-for-approval-label">
                 <?php echo __('Submit your campaign for approval', 'give-kindness'); ?>
             </strong>
         </label>
@@ -20,7 +20,7 @@
         </p>
     </div>
 
-    <div class="give-donor-dashboard-text-control gk-submit-for-approval-more-describe">
+    <div class="give-donor-dashboard-text-control gke-submit-for-approval-more-describe">
         <p>
             Meanwhile, we encourage you to add more information to your campaign draft to increase the chances of getting appoved. Please share your relationship with the beneficiary, add more pictures of yourself as well as the beneficiary and also add a video describing the situation. Campaign without pictures of the fundaraisers and beneficiaries usually don't get approved on our website. 
         </p>

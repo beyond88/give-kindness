@@ -2,23 +2,23 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-campaign-name">
+            <label class="give-donor-dashboard-text-control__label" for="gke-campaign-name">
                 <?php echo __('Campaign name*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-campaign-name" type="text" placeholder="<?php echo __('Campaign name', 'give-kindness'); ?>">
+                <input id="gke-campaign-name" type="text" placeholder="<?php echo __('Campaign name', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-fundraising-target">
+            <label class="give-donor-dashboard-text-control__label" for="gke-fundraising-target">
                 <?php echo __('Fundraising target*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
                 <span class="input-euro left">
-                    <input id="gk-fundraising-target" type="number" min="1" placeholder="<?php echo __('Fundraising target', 'give-kindness'); ?>">
+                    <input id="gke-fundraising-target" type="number" min="1" placeholder="<?php echo __('Fundraising target', 'give-kindness'); ?>">
                 <span>
             </div>
         </div>
@@ -26,21 +26,21 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-name">
+            <label class="give-donor-dashboard-text-control__label" for="gke-beneficiary-name">
             <?php echo __('Full name of beneficiary*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-beneficiary-name" type="text" placeholder="<?php echo __('Full name of beneficiary', 'give-kindness'); ?>">
+                <input id="gke-beneficiary-name" type="text" placeholder="<?php echo __('Full name of beneficiary', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-mobile-number">
+            <label class="give-donor-dashboard-text-control__label" for="gke-mobile-number">
                 <?php echo __('Mobile number*', 'give-kindness'); ?>
             </label>
-            <select name="gk-mobile-code" id="gk-mobile-code" class="give-donor-dashboard-text-control__input">
+            <select name="gke-mobile-code" id="gke-mobile-code" class="give-donor-dashboard-text-control__input">
                 <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                 <option data-countryCode="AD" value="376">Andorra (+376)</option>
                 <option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -258,35 +258,35 @@
             </select>  
         </div>
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-mobile-number">
+            <label class="give-donor-dashboard-text-control__label" for="gke-mobile-number">
                 &nbsp;
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-mobile-number" type="tel" placeholder="<?php echo __('Mobile number', 'give-kindness'); ?>">
+                <input id="gke-mobile-number" type="tel" placeholder="<?php echo __('Mobile number', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-relationship">
+            <label class="give-donor-dashboard-text-control__label" for="gke-beneficiary-relationship">
                 <?php echo __('Relationship with beneficiary*', 'give-kindness'); ?>
             </label>
-            <select name="gk-beneficiary-relationship" id="gk-beneficiary-relationship" class="give-donor-dashboard-text-control__input">
-                <option value="Me"><?php echo __( 'Family member', 'give-kindness' ); ?></option>
-                <option value="family member"><?php echo __( 'Friend', 'give-kindness' ); ?></option>
-                <option value="employer"><?php echo __( 'Employer', 'give-kindness' ); ?></option>
-                <option value="good samaritan"><?php echo __( 'Good samaritan', 'give-kindness' ); ?></option>
+            <select name="gke-beneficiary-relationship" id="gke-beneficiary-relationship" class="give-donor-dashboard-text-control__input">
+                <option value="Family member"><?php echo __( 'Family member', 'give-kindness' ); ?></option>
+                <option value="Friend"><?php echo __( 'Friend', 'give-kindness' ); ?></option>
+                <option value="Employer"><?php echo __( 'Employer', 'give-kindness' ); ?></option>
+                <option value="Good Samaritan"><?php echo __( 'Good samaritan', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-country">
+            <label class="give-donor-dashboard-text-control__label" for="gke-beneficiary-country">
                 <?php echo __('Country beneficiary is going to receive treatment*', 'give-kindness'); ?>
             </label>
-            <select name="gk-beneficiary-country" id="gk-beneficiary-country" class="give-donor-dashboard-text-control__input">
+            <select name="gke-beneficiary-country" id="gke-beneficiary-country" class="give-donor-dashboard-text-control__input">
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -537,10 +537,10 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-beneficiary-age">
+            <label class="give-donor-dashboard-text-control__label" for="gke-beneficiary-age">
                 <?php echo __('Age group of beneficiary*', 'give-kindness'); ?>
             </label>
-            <select name="gk-beneficiary-age" id="gk-beneficiary-age" class="give-donor-dashboard-text-control__input">
+            <select name="gke-beneficiary-age" id="gke-beneficiary-age" class="give-donor-dashboard-text-control__input">
                 <option value="Adult"><?php echo __( 'Adult', 'give-kindness' ); ?></option>
                 <option value="Child"><?php echo __( 'Child', 'give-kindness' ); ?></option>
             </select>  
@@ -549,21 +549,21 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-medical-condition">
+            <label class="give-donor-dashboard-text-control__label" for="gke-medical-condition">
                 <?php echo __('Medical condition*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-medical-condition" type="text" placeholder="<?php echo __('Medical condition', 'give-kindness'); ?>">
+                <input id="gke-medical-condition" type="text" placeholder="<?php echo __('Medical condition', 'give-kindness'); ?>">
             </div>
         </div>
     </div>
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-medical-document">
+            <label class="give-donor-dashboard-text-control__label" for="gke-medical-document">
                 <?php echo __('Medical document upload (Snapshot of the first page of medical consultation report)*', 'give-kindness'); ?>
             </label>
-            <select name="gk-medical-document" id="gk-medical-document" class="give-donor-dashboard-text-control__input">
+            <select name="gke-medical-document" id="gke-medical-document" class="give-donor-dashboard-text-control__input">
                 <option value="image"><?php echo __( 'Image', 'give-kindness' ); ?></option>
                 <option value="file"><?php echo __( 'File', 'give-kindness' ); ?></option>
             </select>  
@@ -572,20 +572,20 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <form id="medical-document-upload-form" class="uploader">
-                <input id="medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
+            <form id="gke-medical-document-upload-form" class="gke-uploader">
+                <input id="gke-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
 
-                <label for="medical-document-upload" id="file-drag">
-                    <img id="file-image" src="#" alt="Preview" class="hidden">
-                    <div id="start">
+                <label for="gke-medical-document-upload" id="gke-file-drag">
+                    <img id="gke-file-image" src="#" alt="Preview" class="gke-hidden">
+                    <div id="gke-start">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
-                        <div id="notimage" class="hidden">Please select an image</div>
-                        <span id="medical-document-upload-btn" class="btn btn-primary">Select a file</span>
+                        <div id="gke-notimage" class="gke-hidden">Please select an image</div>
+                        <span id="gke-medical-document-upload-btn" class="gke-btn btn-primary">Select a file</span>
                     </div>
-                    <div id="response" class="hidden">
-                    <div id="messages"></div>
-                    <progress class="progress" id="file-progress" value="0">
+                    <div id="gke-response" class="gke-hidden">
+                    <div id="gke-messages"></div>
+                    <progress class="gke-progress" id="gke-file-progress" value="0">
                         <span>0</span>%
                     </progress>
                     </div>
