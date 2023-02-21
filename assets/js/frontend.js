@@ -63,8 +63,10 @@
 
           // Hide receipt details content
           // Hide create campaign by default
+          // Hide edit campaign by default
           $('.view-receipt-details').hide();
           $('#give_kindness-create-campaign').hide();
+          $('#give_kindness-edit-campaign').hide();
         }
       });
 
@@ -1266,9 +1268,14 @@ ekUpload();
 * Edit campaign
 * 
 ***************************/
-function editCampaign(){
-  jQuery('#give_kindness-edit-campaign').show();
+function editCampaign(dat){
+
   jQuery('#give_kindness-campaigns').hide();
   jQuery('#give_kindness-create-campaign').hide();
+  jQuery('#give_kindness-edit-campaign').show();
+
+  let data = jQuery(dat).attr('data-campaign-info');
+      data = JSON.parse(data);
+  console.log('get data==>',data['title']);
 }
 

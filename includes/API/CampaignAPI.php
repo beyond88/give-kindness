@@ -46,12 +46,9 @@ class CampaignAPI
 
         if ( ! is_wp_error( $campaign_id ) ) {
 
-            $mobile_code = sanitize_text_field( $request['mobile_code'] );
-            $mobile_number = sanitize_text_field( $request['mobile_number'] );
-
-            $concat_mobile_number = $mobile_code.$mobile_number;
             update_post_meta( $campaign_id, 'benefiary_name', sanitize_text_field( $request['benefiary_name'] ) );
-            update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $concat_mobile_number ) );
+            update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $mobile_code ) );
+            update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $request['mobile_number'] ) );
             update_post_meta( $campaign_id, 'beneficiary_relationship', sanitize_text_field( $request['beneficiary_relationship'] ) );
             update_post_meta( $campaign_id, 'beneficiary_country', sanitize_text_field( $request['beneficiary_country'] ) );
             update_post_meta( $campaign_id, 'beneficier_age', sanitize_text_field( $request['beneficier_age'] ) );
@@ -63,6 +60,7 @@ class CampaignAPI
             update_post_meta( $campaign_id, 'government_assistance', sanitize_text_field( $request['government_assistance'] ) );
             update_post_meta( $campaign_id, 'government_assistance_details', sanitize_text_field( $request['government_assistance_details'] ) );
             update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
+            update_post_meta( $campaign_id, 'medical_document', $attach_id );
 
             $response['status'] = 201;
             $response['message'] = __("Campaign created successfully!", "give-kindness");
