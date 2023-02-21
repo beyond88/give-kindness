@@ -2167,7 +2167,10 @@ textarea:focus,
 
 #give-kindness-campaign-form-two,
 #give-kindness-campaign-form-three,
-#give-kindness-campaign-form-four {
+#give-kindness-campaign-form-four,
+#give-kindness-edit-campaign-form-two,
+#give-kindness-edit-campaign-form-three,
+#give-kindness-edit-campaign-form-four {
   display: none;
 }
 

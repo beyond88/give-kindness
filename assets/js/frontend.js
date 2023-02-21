@@ -1260,3 +1260,15 @@ function ekUpload(){
   }
 }
 ekUpload();
+
+/**************************
+*  
+* Edit campaign
+* 
+***************************/
+function editCampaign(){
+  jQuery('#give_kindness-edit-campaign').show();
+  jQuery('#give_kindness-campaigns').hide();
+  jQuery('#give_kindness-create-campaign').hide();
+}
+
