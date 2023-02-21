@@ -208,7 +208,7 @@
                 <option data-countryCode="CS" value="381">Serbia (+381)</option>
                 <option data-countryCode="SC" value="248">Seychelles (+248)</option>
                 <option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
-                <option data-countryCode="SG" value="65">Singapore (+65)</option>
+                <option data-countryCode="SG" value="65" selected>Singapore (+65)</option>
                 <option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
                 <option data-countryCode="SI" value="386">Slovenia (+386)</option>
                 <option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
@@ -483,7 +483,7 @@
                 <option value="Serbia">Serbia</option>
                 <option value="Seychelles">Seychelles</option>
                 <option value="Sierra Leone">Sierra Leone</option>
-                <option value="Singapore">Singapore</option>
+                <option value="Singapore" selected>Singapore</option>
                 <option value="Slovakia">Slovakia</option>
                 <option value="Slovenia">Slovenia</option>
                 <option value="Solomon Islands">Solomon Islands</option>
@@ -572,25 +572,25 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-<form id="file-upload-form" class="uploader">
-  <input id="file-upload" type="file" name="fileUpload" accept="image/*">
+            <form id="medical-document-upload-form" class="uploader">
+                <input id="medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
 
-  <label for="file-upload" id="file-drag">
-    <img id="file-image" src="#" alt="Preview" class="hidden">
-    <div id="start">
-      <i class="fa fa-download" aria-hidden="true"></i>
-      <div>Select a file or drag here</div>
-      <div id="notimage" class="hidden">Please select an image</div>
-      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-    </div>
-    <div id="response" class="hidden">
-      <div id="messages"></div>
-      <progress class="progress" id="file-progress" value="0">
-        <span>0</span>%
-      </progress>
-    </div>
-  </label>
-</form>
+                <label for="medical-document-upload" id="file-drag">
+                    <img id="file-image" src="#" alt="Preview" class="hidden">
+                    <div id="start">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
+                        <div id="notimage" class="hidden">Please select an image</div>
+                        <span id="medical-document-upload-btn" class="btn btn-primary">Select a file</span>
+                    </div>
+                    <div id="response" class="hidden">
+                    <div id="messages"></div>
+                    <progress class="progress" id="file-progress" value="0">
+                        <span>0</span>%
+                    </progress>
+                    </div>
+                </label>
+            </form>
         </div>
     </div>
     

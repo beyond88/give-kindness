@@ -134,4 +134,122 @@ class Helpers
 
     }
 
+
+    /**
+     * Image upload
+     * 
+     * @param array | object
+     * @return integer
+     */
+    public static function image_file_upload( $request ){
+
+        $attach_id = 0;
+        $files = $request->get_file_params();
+
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+        require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+        if (! empty( $files ) ) {
+            $upload_overrides = array( 'test_form' => false );
+            foreach ($files as $key => $file) {
+                $attachment_id = media_handle_upload( $key, 0 );
+                if ( is_wp_error( $attachment_id ) ) {
+                    $attach_id = 0;
+                } else {
+                    $attach_id = $attachment_id;
+                }
+            }
+        }
+
+        return $attach_id; 
+
+    }
+
+    /**
+     * Create campaign
+     * 
+     * @param array | object
+     * @return integer
+     */
+    public static function create_campaign( $request, $img_url = NULL ){
+
+        $formID = wp_insert_post(
+            [
+                'post_title' => $request['campaign_name'],
+                'post_type' => 'give_forms',
+                'post_status' => $request['submit_type'], // @TODO: Preview needs to work with Draft status.
+                'meta_input' => [
+                    '_give_onboarding_default_form' => 1,
+                    '_give_levels_minimum_amount' => 5.00,
+                    '_give_levels_maximim_amount' => 999999.99,
+                    '_give_form_template' => 'sequoia',
+                    '_give_form_status' => 'open',
+                    '_give_sequoia_form_template_settings' => [
+                        'introduction' => [
+                            'enabled' => 'enabled',
+                            'headline' => $request['campaign_name'],
+                            'description' => $request['campaign_detail'],
+                            'image' => $img_url,
+                            'donate_label' => __('Donate Now', 'give'),
+                        ]
+                    ],
+                    '_give_checkout_label' => __('Donate Now', 'give'),
+                    '_give_display_style' => 'buttons',
+                    '_give_payment_display' => 'button',
+                    '_give_form_floating_labels' => 'enabled',
+                    '_give_reveal_label' => __('Donate Now', 'give'),
+                    '_give_display_content' => 'enabled',
+                    '_give_content_placement' => '',
+                    '_give_form_content' => '',
+                    '_give_price_option' => 'set',
+                    '_give_set_price' => 5,
+                    '_give_custom_amount' => 'enabled',
+                    '_give_default_gateway' => 'global',
+                    '_give_name_title_prefix' => 'global',
+                    '_give_title_prefixes' => '',
+                    '_give_company_field' => 'global',
+                    '_give_anonymous_donation' => 'global',
+                    '_give_donor_comment' => 'global',
+                    '_give_logged_in_only' => 'enabled',
+                    '_give_show_register_form' => 'none',
+                    '_give_goal_option' => 'enabled',
+                    '_give_goal_format' => 'amount',
+                    '_give_set_goal' => $request['fundrais_amount'],
+                    '_give_number_of_donor_goal' => 100,
+                    '_give_close_form_when_goal_achieved' => 'disabled',
+                    '_give_form_goal_achieved_message' => __(
+                        'Thank you to all our donors, we have met our fundraising goal.',
+                        'give'
+                    ),
+                    '_give_terms_option' => 'global',
+                    '_give_agree_label' => __('Agree to terms?', 'give'),
+                    '_give_agree_text' => __('The terms can be customized in the donation form settings.', 'give'),
+                    'give_stripe_per_form_accounts' => 'disabled', // Note: Doesn't use underscore prefix.
+                    '_give_default_stripe_account' => '',
+                    '_give_email_options' => 'global',
+                    '_give_email_template' => 'default',
+                    '_give_email_logo' => '',
+                    '_give_from_name' => $request['benefiary_name'],
+                    '_give_from_email' => $request['campaign_email'],
+                    '_give_new-donation_notification' => 'global',
+                    '_give_new-donation_email_subject' => sprintf('%s - #{payment_id}', __('New Donation', 'give')),
+                    '_give_new-donation_email_header' => __('New Donation!', 'give'),
+                    '_give_new-donation_email_message' => $request['campaign_email'],
+                    '_give_new-donation_email_content_type' => 'text/html',
+                    '_give_new-donation_recipient' => [
+                        'email' => $request['campaign_email'],
+                    ],
+                    '_give_donation-receipt_notification' => 'global',
+                    '_give_donation-receipt_email_subject' => __('Donation Receipt', 'give'),
+                    '_give_donation-receipt_email_header' => __('Donation Receipt', 'give'),
+                    '_give_donation-receipt_email_mesage' => give_get_default_donation_receipt_email(),
+                ],
+            ]
+        );
+
+        return $formID;
+
+    }
+
 }

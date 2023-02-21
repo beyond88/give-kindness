@@ -2258,7 +2258,7 @@ textarea:focus,
   clear: both;
   margin: 0 auto;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
 }
 .uploader label {
   float: left;
@@ -2276,10 +2276,10 @@ textarea:focus,
   user-select: none;
 }
 .uploader label:hover {
-  border-color: #454cad;
+  border-color: #4fa651;
 }
 .uploader label.hover {
-  border: 3px solid #454cad;
+  border: 3px solid #4fa651;
   box-shadow: inset 0 0 0 6px #eee;
 }
 .uploader label.hover #start i.fa {
@@ -2295,7 +2295,7 @@ textarea:focus,
   display: none;
 }
 .uploader #start i.fa {
-  font-size: 50px;
+  font-size: 40px;
   margin-bottom: 1rem;
   transition: all 0.2s ease-in-out;
 }
@@ -2315,7 +2315,7 @@ textarea:focus,
   margin: 0 auto 0.5rem auto;
   width: auto;
   height: auto;
-  max-width: 180px;
+  max-width: 150px;
 }
 .uploader #file-image.hidden {
   display: none;
@@ -2335,7 +2335,7 @@ textarea:focus,
   clear: both;
   margin: 0 auto;
   width: 100%;
-  max-width: 180px;
+  max-width: 150px;
   height: 8px;
   border: 0;
   border-radius: 4px;
@@ -2347,11 +2347,11 @@ textarea:focus,
   background-color: #eee;
 }
 .uploader .progress[value]::-webkit-progress-value {
-  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  background: linear-gradient(to right, #7ec980 0%, #4fa651 50%);
   border-radius: 4px;
 }
 .uploader .progress[value]::-moz-progress-bar {
-  background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+  background: linear-gradient(to right, #7ec980 0%, #4fa651 50%);
   border-radius: 4px;
 }
 .uploader input[type="file"] {
@@ -2359,7 +2359,7 @@ textarea:focus,
 }
 .uploader div {
   margin: 0 0 0.5rem 0;
-  color: #5f6982;
+  color: #6b6b6b;
 }
 .uploader .btn {
   display: inline-block;
@@ -2379,7 +2379,7 @@ textarea:focus,
   color: #fff;
   transition: all 0.2s ease-in-out;
   box-sizing: border-box;
-  background: #454cad;
-  border-color: #454cad;
+  background: #4fa651;
+  border-color: #4fa651;
   cursor: pointer;
 }
