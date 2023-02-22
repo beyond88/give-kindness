@@ -1301,6 +1301,7 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   document.getElementById('gke-file-image').src = medical_document_url;
+  jQuery('.gke-uploader #gke-file-image.gke-hidden').show();
 
 }
 
