@@ -2167,7 +2167,10 @@ textarea:focus,
 
 #give-kindness-campaign-form-two,
 #give-kindness-campaign-form-three,
-#give-kindness-campaign-form-four {
+#give-kindness-campaign-form-four,
+#give-kindness-edit-campaign-form-two,
+#give-kindness-edit-campaign-form-three,
+#give-kindness-edit-campaign-form-four {
   display: none;
 }
 
@@ -2253,14 +2256,17 @@ textarea:focus,
   color: red;
 }
 
-.uploader {
+.gke-uploader,
+.gk-uploader {
   display: block;
   clear: both;
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
 }
-.uploader label {
+
+.gke-uploader label,
+.gk-uploader label {
   float: left;
   clear: both;
   width: 100%;
@@ -2275,62 +2281,85 @@ textarea:focus,
   -ms-user-select: none;
   user-select: none;
 }
-.uploader label:hover {
+
+.gke-uploader label:hover,
+.gk-uploader label:hover {
   border-color: #4fa651;
-}
-.uploader label.hover {
   border: 3px solid #4fa651;
   box-shadow: inset 0 0 0 6px #eee;
 }
-.uploader label.hover #start i.fa {
+
+.gke-uploader label.hover #gke-start i.fa,
+.gk-uploader label.hover #gk-start i.fa {
   transform: scale(0.8);
   opacity: 0.3;
 }
-.uploader #start {
+
+.gk-uploader #gke-start,
+.gk-uploader #gk-start {
   float: left;
   clear: both;
   width: 100%;
 }
-.uploader #start.hidden {
+
+.gke-uploader #gke-start.hidden,
+.gk-uploader #gk-start.hidden {
   display: none;
 }
-.uploader #start i.fa {
+
+.gke-uploader #gke-start i.fa,
+.gk-uploader #gk-start i.fa {
   font-size: 40px;
   margin-bottom: 1rem;
   transition: all 0.2s ease-in-out;
 }
-.uploader #response {
+
+.gke-uploader #gke-response,
+.gk-uploader #gk-response {
   float: left;
   clear: both;
   width: 100%;
 }
-.uploader #response.hidden {
+
+.gke-uploader #gke-response.gke-hidden,
+.gk-uploader #gk-response.gk-hidden {
   display: none;
 }
-.uploader #response #messages {
+
+.gke-uploader #gke-response #gke-messages,
+.gk-uploader #gk-response #gk-messages {
   margin-bottom: 0.5rem;
 }
-.uploader #file-image {
+
+.gke-uploader #gke-file-image,
+.gk-uploader #gk-file-image {
   display: inline;
   margin: 0 auto 0.5rem auto;
   width: auto;
   height: auto;
   max-width: 150px;
 }
-.uploader #file-image.hidden {
+
+.gke-uploader #gke-file-image.gke-hidden,
+.gk-uploader #gk-file-image.gk-hidden {
   display: none;
 }
-.uploader #notimage {
+
+.gke-uploader #gke-notimage,
+.gk-uploader #gk-notimage {
   display: block;
   float: left;
   clear: both;
   width: 100%;
 }
-.uploader #notimage.hidden {
+
+.gke-uploader #gke-notimage.gke-hidden,
+.gk-uploader #gk-notimage.gk-hidden {
   display: none;
 }
-.uploader progress,
-.uploader .progress {
+
+.gk-uploader .gke-progress,
+.gk-uploader .gk-progress {
   display: inline;
   clear: both;
   margin: 0 auto;
@@ -2342,26 +2371,38 @@ textarea:focus,
   background-color: #eee;
   overflow: hidden;
 }
-.uploader .progress[value]::-webkit-progress-bar {
+
+.gke-uploader .gke-progress[value]::-webkit-progress-bar,
+.gk-uploader .gk-progress[value]::-webkit-progress-bar {
   border-radius: 4px;
   background-color: #eee;
 }
-.uploader .progress[value]::-webkit-progress-value {
+
+.gke-uploader .gke-progress[value]::-webkit-progress-value,
+.gk-uploader .gk-progress[value]::-webkit-progress-value {
   background: linear-gradient(to right, #7ec980 0%, #4fa651 50%);
   border-radius: 4px;
 }
-.uploader .progress[value]::-moz-progress-bar {
+
+.gke-uploader .gke-progress[value]::-moz-progress-bar,
+.gk-uploader .gk-progress[value]::-moz-progress-bar {
   background: linear-gradient(to right, #7ec980 0%, #4fa651 50%);
   border-radius: 4px;
 }
-.uploader input[type="file"] {
+
+.gke-uploader input[type="file"],
+.gk-uploader input[type="file"] {
   display: none;
 }
-.uploader div {
+
+.gke-uploader div,
+.gk-uploader div {
   margin: 0 0 0.5rem 0;
   color: #6b6b6b;
 }
-.uploader .btn {
+
+.gke-uploader .gke-btn,
+.gk-uploader .gk-btn {
   display: inline-block;
   margin: 0.5rem 0.5rem 1rem 0.5rem;
   clear: both;
@@ -2382,4 +2423,9 @@ textarea:focus,
   background: #4fa651;
   border-color: #4fa651;
   cursor: pointer;
+}
+
+#gk-medical-document-upload-form,
+#gke-medical-document-upload-form {
+  margin-top: 20px;
 }

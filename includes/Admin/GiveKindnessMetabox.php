@@ -119,7 +119,7 @@ class GiveKindnessMetabox {
         <strong>Beneficiary mobile:</strong> <?php echo esc_attr($mobile_number); ?>
       </p>
       <p>
-        <strong>Beneficiary relatonship:</strong> <?php echo esc_attr($beneficiary_relationship); ?>
+        <strong>Beneficiary relationship:</strong> <?php echo esc_attr($beneficiary_relationship); ?>
       </p>
       <p>
         <strong>Beneficiary country:</strong> <?php echo esc_attr($beneficiary_country); ?>

@@ -63,8 +63,10 @@
 
           // Hide receipt details content
           // Hide create campaign by default
+          // Hide edit campaign by default
           $('.view-receipt-details').hide();
           $('#give_kindness-create-campaign').hide();
+          $('#give_kindness-edit-campaign').hide();
         }
       });
 
@@ -768,6 +770,11 @@
 
         console.log('response ==>', data);
         if( data.status === requestData.status ) {
+
+          if(data.message.length > 0 ){
+            alert(data.message);
+          }
+
           if( requestData.reload ){
             window.location.reload();
           }
@@ -1085,8 +1092,8 @@
         method: 'POST', 
         url: give_kindness.giveKindnessApiURL+'create-campaign',
         data: fd, 
-        status: 201,
-        reload: false
+        status: 200,
+        reload: true
       };
 
       that.attr('disabled', true);
@@ -1144,9 +1151,8 @@ function showHideContent(that, targetId) {
 ************************/
 function ekUpload(){
   function Init() {
-    var fileSelect    = document.getElementById('medical-document-upload'),
-        fileDrag      = document.getElementById('file-drag'),
-        submitButton  = document.getElementById('submit-button');
+    var fileSelect    = document.getElementById('gk-medical-document-upload'),
+        fileDrag      = document.getElementById('gk-file-drag');
 
     if (fileSelect){
       fileSelect.addEventListener('change', fileSelectHandler, false);
@@ -1164,12 +1170,12 @@ function ekUpload(){
   }
 
   function fileDragHover(e) {
-    var fileDrag = document.getElementById('file-drag');
+    var fileDrag = document.getElementById('gk-file-drag');
 
     e.stopPropagation();
     e.preventDefault();
 
-    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body medical-document-upload');
+    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body gk-medical-document-upload');
   }
 
   function fileSelectHandler(e) {
@@ -1189,7 +1195,7 @@ function ekUpload(){
   // Output
   function output(msg) {
     // Response
-    var m = document.getElementById('messages');
+    var m = document.getElementById('gk-messages');
     m.innerHTML = msg;
   }
 
@@ -1203,43 +1209,25 @@ function ekUpload(){
 
     var isGood = (/\.(?=gif|jpg|png|jpeg|pdf|docx|doc)/gi).test(imageName);
     if (isGood) {
-      document.getElementById('start').classList.add("hidden");
-      document.getElementById('response').classList.remove("hidden");
-      document.getElementById('notimage').classList.add("hidden");
+      document.getElementById('gk-start').classList.add("gk-hidden");
+      document.getElementById('gk-response').classList.remove("gk-hidden");
+      document.getElementById('gk-notimage').classList.add("gk-hidden");
       // Thumbnail Preview
-      document.getElementById('file-image').classList.remove("hidden");
-      document.getElementById('file-image').src = URL.createObjectURL(file);
+      document.getElementById('gk-file-image').classList.remove("gk-hidden");
+      document.getElementById('gk-file-image').src = URL.createObjectURL(file);
     }
     else {
-      document.getElementById('file-image').classList.add("hidden");
-      document.getElementById('notimage').classList.remove("hidden");
-      document.getElementById('start').classList.remove("hidden");
-      document.getElementById('response').classList.add("hidden");
-      document.getElementById("medical-document-upload-form").reset();
-    }
-  }
-
-  function setProgressMaxValue(e) {
-    var pBar = document.getElementById('file-progress');
-
-    if (e.lengthComputable) {
-      pBar.max = e.total;
-    }
-  }
-
-  function updateFileProgress(e) {
-    var pBar = document.getElementById('file-progress');
-
-    if (e.lengthComputable) {
-      pBar.value = e.loaded;
+      document.getElementById('gk-file-image').classList.add("gk-hidden");
+      document.getElementById('gk-notimage').classList.remove("gk-hidden");
+      document.getElementById('gk-start').classList.remove("gk-hidden");
+      document.getElementById('gk-response').classList.add("gk-hidden");
+      document.getElementById("gk-medical-document-upload-form").reset();
     }
   }
 
   function uploadFile(file) {
 
     var xhr = new XMLHttpRequest(),
-      fileInput = document.getElementById('class-roster-file'),
-      pBar = document.getElementById('file-progress'),
       fileSizeLimit = 2024; // In MB
       const fileSize = Math.round((file.size / 1024));
 
@@ -1256,7 +1244,64 @@ function ekUpload(){
   if (window.File && window.FileList && window.FileReader) {
     Init();
   } else {
-    document.getElementById('file-drag').style.display = 'none';
+    document.getElementById('gk-file-drag').style.display = 'none';
   }
 }
 ekUpload();
+
+/**************************
+*  
+* Edit campaign
+* 
+***************************/
+function editCampaign(dat){
+
+  jQuery('#give_kindness-campaigns').hide();
+  jQuery('#give_kindness-create-campaign').hide();
+  jQuery('#give_kindness-edit-campaign').show();
+
+  let data = jQuery(dat).attr('data-campaign-info');
+      data = JSON.parse(data);
+
+  let campaign_name = data['campaign_name'];
+  let beneficiary_name = data['beneficiary_name'];
+  let mobile_code = data['mobile_code'];
+  let mobile_number = data['mobile_number'];
+  let beneficiary_relationship = data['beneficiary_relationship'];
+  let beneficiary_country = data['beneficiary_country'];
+  let beneficiary_age = data['beneficiary_age'];
+  let medical_condition = data['medical_condition'];
+  let medical_document_type = data['medical_document_type'];
+  let medical_document = data['medical_document'];
+  let medical_document_url = data['medical_document_url'];
+  let campaign_detail = data['campaign_detail'];
+  let campaign_email = data['campaign_email'];
+  let campaign_country = data['campaign_country'];
+  let government_assistance = data['government_assistance'];
+  let government_assistance_details = data['government_assistance_details'];
+  let fundraising_target = data['fundraising_target'];
+  let campaign_boosting = data['campaign_boosting'];
+  let campaign_id = data['campaign_id'];
+
+  jQuery('#gke-campaign-name').val(campaign_name);
+  jQuery('#gke-fundraising-target').val(fundraising_target);
+  jQuery('#gke-beneficiary-name').val(beneficiary_name);
+  jQuery('#gke-mobile-code').val(mobile_code);
+  jQuery('#gke-mobile-number').val(mobile_number);
+  jQuery('#gke-beneficiary-relationship').val(beneficiary_relationship);
+  jQuery('#gke-beneficiary-country').val(beneficiary_country);
+  jQuery('#gke-beneficiary-age').val(beneficiary_age);
+  jQuery('#gke-medical-condition').val(medical_condition);
+  jQuery('#gke-medical-document').val(medical_document_type);
+  jQuery('#gke-campaign-email').val(campaign_email);
+  jQuery('#gke-campaign-detail').text(campaign_detail);
+  tinymce.get( jQuery("#gke-campaign-detail").attr( 'id' ) ).setContent(campaign_detail);
+  jQuery('#gke-campaign-country').val(campaign_country);
+  jQuery('#gke-government-assistance').val(government_assistance);
+  jQuery('#gke-government-assistance-details').val(government_assistance_details);
+  jQuery('#gke-campaign-boosting').val(campaign_boosting);
+  document.getElementById('gke-file-image').src = medical_document_url;
+  jQuery('.gke-uploader #gke-file-image.gke-hidden').show();
+
+}
+
