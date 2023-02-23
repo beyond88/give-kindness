@@ -1167,15 +1167,36 @@ function ekUpload(){
       }
     }
 
+    /**
+     * 
+     * File upload when editing a campaign
+     * 
+     */
+    var fileSelectEdit    = document.getElementById('gke-medical-document-upload'),
+        fileDragEdit      = document.getElementById('gke-file-drag');
+
+    if (fileSelectEdit){
+      fileSelectEdit.addEventListener('change', fileSelectHandler, false);
+
+      var xhrEdit = new XMLHttpRequest();
+      if (xhrEdit.upload) {
+        fileDragEdit.addEventListener('dragover', fileDragHover, false);
+        fileDragEdit.addEventListener('dragleave', fileDragHover, false);
+        fileDragEdit.addEventListener('drop', fileSelectHandler, false);
+      }
+    }
+
   }
 
   function fileDragHover(e) {
     var fileDrag = document.getElementById('gk-file-drag');
+    var fileDragEdit = document.getElementById('gke-file-drag');
 
     e.stopPropagation();
     e.preventDefault();
 
     fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body gk-medical-document-upload');
+    fileDragEdit.className = (e.type === 'dragover' ? 'hover' : 'modal-body gke-medical-document-upload');
   }
 
   function fileSelectHandler(e) {
@@ -1194,9 +1215,11 @@ function ekUpload(){
 
   // Output
   function output(msg) {
-    // Response
     var m = document.getElementById('gk-messages');
     m.innerHTML = msg;
+
+    var me = document.getElementById('gke-messages');
+    me.innerHTML = msg;
   }
 
   function parseFile(file) {
@@ -1208,6 +1231,7 @@ function ekUpload(){
     var imageName = file.name;
 
     var isGood = (/\.(?=gif|jpg|png|jpeg|pdf|docx|doc)/gi).test(imageName);
+
     if (isGood) {
       document.getElementById('gk-start').classList.add("gk-hidden");
       document.getElementById('gk-response').classList.remove("gk-hidden");
@@ -1222,6 +1246,27 @@ function ekUpload(){
       document.getElementById('gk-start').classList.remove("gk-hidden");
       document.getElementById('gk-response').classList.add("gk-hidden");
       document.getElementById("gk-medical-document-upload-form").reset();
+    }
+
+    /**
+     * 
+     * File upload when editing a campaign
+     * 
+     */
+    if (isGood) {
+      document.getElementById('gke-start').classList.add("gke-hidden");
+      document.getElementById('gke-response').classList.remove("gke-hidden");
+      document.getElementById('gke-notimage').classList.add("gke-hidden");
+      // Thumbnail Preview
+      document.getElementById('gke-file-image').classList.remove("gke-hidden");
+      document.getElementById('gke-file-image').src = URL.createObjectURL(file);
+    }
+    else {
+      document.getElementById('gke-file-image').classList.add("gke-hidden");
+      document.getElementById('gke-notimage').classList.remove("gke-hidden");
+      document.getElementById('gke-start').classList.remove("gke-hidden");
+      document.getElementById('gke-response').classList.add("gke-hidden");
+      document.getElementById("gke-medical-document-upload-form").reset();
     }
   }
 
@@ -1245,6 +1290,7 @@ function ekUpload(){
     Init();
   } else {
     document.getElementById('gk-file-drag').style.display = 'none';
+    document.getElementById('gke-file-drag').style.display = 'none';
   }
 }
 ekUpload();
