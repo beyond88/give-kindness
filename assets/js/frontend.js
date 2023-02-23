@@ -759,7 +759,7 @@
   const ajaxRequest = async (requestData) => {
     $.ajax({
       type: requestData.method,
-      // dataType: 'json',
+      dataType: 'json',
       processData: false,
       contentType: false,
       cache: false,
