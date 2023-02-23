@@ -150,7 +150,7 @@ class Helpers
         require_once( ABSPATH . 'wp-admin/includes/file.php' );
         require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
-        if (! empty( $files ) ) {
+        if ( ! empty( $files ) ) {
             $upload_overrides = array( 'test_form' => false );
             foreach ($files as $key => $file) {
                 $attachment_id = media_handle_upload( $key, 0 );
@@ -176,9 +176,9 @@ class Helpers
 
         $formID = wp_insert_post(
             [
-                'post_title' => $request['campaign_name'],
+                'post_title' => sanitize_text_field( $request['campaign_name'] ),
                 'post_type' => 'give_forms',
-                'post_status' => $request['submit_type'], // @TODO: Preview needs to work with Draft status.
+                'post_status' => sanitize_text_field( $request['submit_type'] ), // @TODO: Preview needs to work with Draft status.
                 'meta_input' => [
                     '_give_onboarding_default_form' => 1,
                     '_give_levels_minimum_amount' => 5.00,
@@ -188,9 +188,9 @@ class Helpers
                     '_give_sequoia_form_template_settings' => [
                         'introduction' => [
                             'enabled' => 'enabled',
-                            'headline' => $request['campaign_name'],
-                            'description' => $request['campaign_detail'],
-                            'image' => $img_url,
+                            'headline' => sanitize_text_field( $request['campaign_name'] ),
+                            'description' => sanitize_text_field( $request['campaign_detail'] ),
+                            'image' => esc_url( $img_url ),
                             'donate_label' => __('Donate Now', 'give'),
                         ]
                     ],
@@ -215,7 +215,7 @@ class Helpers
                     '_give_show_register_form' => 'none',
                     '_give_goal_option' => 'enabled',
                     '_give_goal_format' => 'amount',
-                    '_give_set_goal' => $request['fundrais_amount'],
+                    '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),
                     '_give_number_of_donor_goal' => 100,
                     '_give_close_form_when_goal_achieved' => 'disabled',
                     '_give_form_goal_achieved_message' => __(
@@ -230,12 +230,12 @@ class Helpers
                     '_give_email_options' => 'global',
                     '_give_email_template' => 'default',
                     '_give_email_logo' => '',
-                    '_give_from_name' => $request['benefiary_name'],
-                    '_give_from_email' => $request['campaign_email'],
+                    '_give_from_name' => sanitize_text_field( $request['benefiary_name'] ),
+                    '_give_from_email' => sanitize_text_field( $request['campaign_email'] ),
                     '_give_new-donation_notification' => 'global',
                     '_give_new-donation_email_subject' => sprintf('%s - #{payment_id}', __('New Donation', 'give')),
                     '_give_new-donation_email_header' => __('New Donation!', 'give'),
-                    '_give_new-donation_email_message' => $request['campaign_email'],
+                    '_give_new-donation_email_message' => sanitize_email( $request['campaign_email'] ),
                     '_give_new-donation_email_content_type' => 'text/html',
                     '_give_new-donation_recipient' => [
                         'email' => $request['campaign_email'],
@@ -249,6 +249,65 @@ class Helpers
         );
 
         return $formID;
+
+    }
+
+    /**
+     * Edit campaign
+     * 
+     * @param array | object
+     * @return integer
+     */
+    public static function edit_campaign( $request, $img_url = NULL ) {
+
+        $campaign_id = sanitize_text_field( $request['campaign_id'] );
+        if( ! is_null( get_post( $campaign_id ) ) ) {
+
+            wp_update_post(
+                [
+                    'ID'        => sanitize_text_field( $request['campaign_id'] ),
+                    'post_title' => sanitize_text_field( $request['campaign_name'] ),
+                    'post_status' => sanitize_text_field( $request['submit_type'] ), // @TODO: Preview needs to work with Draft status.
+                    'meta_input' => [
+                        '_give_sequoia_form_template_settings' => [
+                            'introduction' => [
+                                'headline' => sanitize_text_field( $request['campaign_name'] ),
+                                'description' => sanitize_text_field( $request['campaign_detail'] ),
+                                'image' => esc_url( $img_url ),
+                            ]
+                        ],
+                        '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),
+                        '_give_from_name' => sanitize_text_field( $request['benefiary_name'] ),
+                        '_give_from_email' => sanitize_text_field( $request['campaign_email'] ),
+                        '_give_new-donation_email_message' => sanitize_email( $request['campaign_email'] ),
+                        '_give_new-donation_recipient' => [
+                            'email' => sanitize_email( $request['campaign_email'] ),
+                        ],
+
+                    ],
+                ]
+            );
+
+            update_post_meta( $campaign_id, 'benefiary_name', sanitize_text_field( $request['benefiary_name'] ) );
+            update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $request['mobile_code'] ) );
+            update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $request['mobile_number'] ) );
+            update_post_meta( $campaign_id, 'beneficiary_relationship', sanitize_text_field( $request['beneficiary_relationship'] ) );
+            update_post_meta( $campaign_id, 'beneficiary_country', sanitize_text_field( $request['beneficiary_country'] ) );
+            update_post_meta( $campaign_id, 'beneficier_age', sanitize_text_field( $request['beneficier_age'] ) );
+            update_post_meta( $campaign_id, 'medical_condition', sanitize_text_field( $request['medical_condition'] ) );
+            update_post_meta( $campaign_id, 'medical_document_type', sanitize_text_field( $request['medical_document_type'] ) );
+            update_post_meta( $campaign_id, 'campaign_email', sanitize_text_field( $request['campaign_email'] ) );
+            update_post_meta( $campaign_id, 'campaign_detail', sanitize_text_field( $request['campaign_detail'] ) );
+            update_post_meta( $campaign_id, 'campaign_country', sanitize_text_field( $request['campaign_country'] ) );
+            update_post_meta( $campaign_id, 'government_assistance', sanitize_text_field( $request['government_assistance'] ) );
+            update_post_meta( $campaign_id, 'government_assistance_details', sanitize_text_field( $request['government_assistance_details'] ) );
+            update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
+
+            return $campaign_id;
+
+        } else {
+            return new WP_Error( 'campaign_update', 'Campaign update failed!' );
+        }
 
     }
 

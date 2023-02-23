@@ -73,6 +73,12 @@ class GiveKindnessAPI
       'permission_callback' => '__return_true'
     ]);
 
+    register_rest_route( $this->restBase, '/edit-campaign', [
+      'methods'  => WP_REST_SERVER::CREATABLE,
+      'callback' => [ $this->campaignApi, 'edit_campaign' ],
+      'permission_callback' => '__return_true'
+    ]);
+
   }
 
   /**
