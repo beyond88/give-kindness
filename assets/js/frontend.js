@@ -697,12 +697,13 @@
       }
     });
 
+    thisBtn.attr('disabled', true);
+    thisBtn.text(give_kindness.updating);
+
     if(avatarFile) {
       avatarId = await uploadAvatar(avatarFile);
       $('#avatarId').val(avatarId);
     }
-
-    thisBtn.text(give_kindness.updating);
 
     $.ajax({
       type: 'POST',
@@ -726,10 +727,12 @@
       },
       success: function(data) {
         thisBtn.text(give_kindness.updated);
+        thisBtn.attr('disabled', false);
       },
       error: function (error) {
         console.log('fail==>', error);
         thisBtn.text(give_kindness.updateProfile);
+        thisBtn.attr('disabled', false);
       }
     });
 
@@ -769,6 +772,11 @@
       success: function(data) {
 
         console.log('response ==>', data);
+
+        if( requestData.btn ){
+          requestData.btn.attr('disabled', false);
+        }
+
         if( data.status === requestData.status ) {
 
           if(data.message.length > 0 ){
@@ -801,6 +809,8 @@
       return false; 
     }
 
+    that.attr('disabled', true);
+
     $.ajax({
       type: 'POST',
       dataType: 'json',
@@ -812,6 +822,8 @@
       },
       success: function(data) {
         
+        that.attr('disabled', false);
+
         if( data.status === 200 ) {
           window.location.reload();
         }
@@ -919,6 +931,7 @@
         },
         success: async function(data) {
 
+          console.log('register response==>',data);
           if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
             that.siblings('.give-donor-dashboard__auth-modal-error').text(data.message);
           } else {
@@ -934,11 +947,12 @@
                 password: password
               }, 
               status: 200,
-              reload: true
+              reload: true,
+              btn: that
             };
   
             await ajaxRequest(requestData);
-            that.attr('disabled', false);
+            //that.attr('disabled', false);
           }
 
         },
@@ -969,12 +983,14 @@
         user_id: give_kindness.userId
       }, 
       status: 200,
-      reload: false
+      reload: false,
+      btn: that
     };
 
     await ajaxRequest(requestData);
     that.text(give_kindness.sendAgain);
-    that.attr('disabled', false);
+    //that.attr('disabled', false);
+
     if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
       that.siblings('.give-donor-dashboard__auth-modal-error').text(give_kindness.pleaseCheckEmail);
     } else {
@@ -1110,7 +1126,7 @@
       fd.append( "medical_condition", $('#gk-medical-condition').val() );
       fd.append( "medical_document_type", $('#gk-medical-document').val() );
       fd.append( "campaign_email", $('#gk-campaign-email').val() );
-      fd.append( "medical_document_file", $('#medical-document-upload')[0].files[0]);
+      fd.append( "medical_document_file", $('#gk-medical-document-upload')[0].files[0]);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gk-campaign-country').val() );
       fd.append( "government_assistance", $('#gk-government-assistance').val() );
@@ -1123,13 +1139,14 @@
         url: give_kindness.giveKindnessApiURL+'create-campaign',
         data: fd, 
         status: 200,
-        reload: true
+        reload: true,
+        btn: that
       };
 
       that.attr('disabled', true);
       that.text(give_kindness.pleaseWait);
       await ajaxRequest(requestData);
-      that.attr('disabled', false);
+      //that.attr('disabled', false);
 
       if( submit_type == 'draft' ) {
         that.text(give_kindness.saveDraft);
@@ -1220,13 +1237,14 @@
         url: give_kindness.giveKindnessApiURL+'edit-campaign',
         data: fd, 
         status: 200,
-        reload: true
+        reload: true,
+        btn: that
       };
 
       that.attr('disabled', true);
       that.text(give_kindness.pleaseWait);
       await ajaxRequest(requestData);
-      await that.attr('disabled', false);
+      // await that.attr('disabled', false);
 
       if( submit_type == 'draft' ) {
         await that.text(give_kindness.saveDraft);
