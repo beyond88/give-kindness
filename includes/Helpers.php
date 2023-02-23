@@ -273,7 +273,7 @@ class Helpers
                             'introduction' => [
                                 'headline' => sanitize_text_field( $request['campaign_name'] ),
                                 'description' => sanitize_text_field( $request['campaign_detail'] ),
-                                // 'image' => esc_url( $img_url ),
+                                'image' => esc_url( $img_url ),
                             ]
                         ],
                         '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),

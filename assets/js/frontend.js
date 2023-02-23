@@ -989,7 +989,7 @@
   * to the person who needs help?
   * 
   ***************************/
-  $(document).on('click', '#gk-government-assistance-yes, #gk-government-assistance-no', function() {
+  $(document).on('click', '#gk-government-assistance-yes, #gk-government-assistance-no, #gke-government-assistance-yes, #gke-government-assistance-no', function() {
     let that = $(this);
     let buttonValue = that.data('button-value');
     $('#gk-government-assistance').val(buttonValue);
@@ -997,11 +997,32 @@
       $('.gk-government-assistance-area').show();
       $('#gk-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
       $('#gk-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+
+      $('.gke-government-assistance-area').show();
+      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+
     } else {
       $('.gk-government-assistance-area').hide();
       $('#gk-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
       $('#gk-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+
+      $('.gke-government-assistance-area').hide();
+      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
     }
+
+    $('#gke-government-assistance').val(buttonValue);
+    if( buttonValue == 'Yes' ) {
+      $('.gke-government-assistance-area').show();
+      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    } else {
+      $('.gke-government-assistance-area').hide();
+      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    }
+
   })
 
   /**************************
@@ -1010,7 +1031,7 @@
   * your funds raised for boosting?
   * 
   ***************************/
-  $(document).on('click', '#gk-campaign-boosting-no, #gk-campaign-boosting-yes', function() {
+  $(document).on('click', '#gk-campaign-boosting-no, #gk-campaign-boosting-yes, #gke-campaign-boosting-no, #gke-campaign-boosting-yes', function() {
     let that = $(this);
     let buttonValue = that.data('button-value');
     $('#gk-campaign-boosting').val(buttonValue);
@@ -1020,6 +1041,15 @@
     } else {
       $('#gk-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
       $('#gk-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    }
+
+    $('#gke-campaign-boosting').val(buttonValue);
+    if( buttonValue == 'Yes' ) {
+      $('#gke-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+    } else {
+      $('#gke-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
     }
   });
 
@@ -1156,6 +1186,7 @@
     // if( medical_document === 0 ) {
     //   status = false;
     // }
+
     // let campaign_id = $('#gke-campaign-id').val();
     // if (typeof campaign_id !== 'number') {
     //   status = false;
@@ -1175,7 +1206,7 @@
       fd.append( "medical_condition", $('#gke-medical-condition').val() );
       fd.append( "medical_document_type", $('#gke-medical-document').val() );
       fd.append( "campaign_email", $('#gke-campaign-email').val() );
-      // fd.append( "medical_document_file", $('#gke-medical-document-upload')[0].files[0]);
+      fd.append( "medical_document_file", $('#gke-medical-document-upload')[0].files[0]);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gke-campaign-country').val() );
       fd.append( "government_assistance", $('#gke-government-assistance').val() );
@@ -1195,12 +1226,12 @@
       that.attr('disabled', true);
       that.text(give_kindness.pleaseWait);
       await ajaxRequest(requestData);
-      that.attr('disabled', false);
+      await that.attr('disabled', false);
 
       if( submit_type == 'draft' ) {
-        that.text(give_kindness.saveDraft);
+        await that.text(give_kindness.saveDraft);
       } else {
-        that.text(give_kindness.submitForApproval);
+        await that.text(give_kindness.submitForApproval);
       }
 
     } else {
