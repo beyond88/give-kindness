@@ -1049,7 +1049,7 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gk-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
-    let medical_document = $('#medical-document-upload').get(0).files.length;
+    let medical_document = $('#gk-medical-document-upload').get(0).files.length;
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1109,6 +1109,102 @@
 
     } else {
       alert('All star marked fields are required!');
+    }
+
+  });
+
+  /**************************
+  *  
+  * Campaign edit
+  * 
+  ***************************/
+  $(document).on('click', '#give-kindness-save-draft-edit, #give-kindness-submit-approval-edit', async function() {
+      
+    let submit_type = $(this).data('submit-type');
+    let that = $(this);
+
+    let fields = [
+      '#gke-campaign-name',
+      '#gke-fundraising-target',
+      '#gke-beneficiary-name',
+      '#gke-mobile-code',
+      '#gke-mobile-number',
+      '#gke-beneficiary-relationship',
+      '#gke-beneficiary-country',
+      '#gke-beneficiary-age',
+      '#gke-medical-condition',
+      '#gke-medical-document',
+      '#gke-campaign-email',
+      '#gke-campaign-id'
+    ]
+
+    let status = true; 
+    let campaign_detail = tinymce.get( $("#gke-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
+    // let medical_document = $('#gke-medical-document-upload').get(0).files.length;
+    
+    for (let i = 0; i < fields.length; i++) {
+      if( $(fields[i]).val() == '' ){
+        status = false;
+        break;
+      }
+    }
+
+    if( campaign_detail == '' ) {
+      status = false;
+    }
+
+    // if( medical_document === 0 ) {
+    //   status = false;
+    // }
+    // let campaign_id = $('#gke-campaign-id').val();
+    // if (typeof campaign_id !== 'number') {
+    //   status = false;
+    // }
+
+    if( status ) {
+
+      var fd = new FormData();
+      fd.append( "campaign_name", $('#gke-campaign-name').val() );
+      fd.append( "fundrais_amount", $('#gke-fundraising-target').val() );
+      fd.append( "benefiary_name", $('#gke-beneficiary-name').val() );
+      fd.append( "mobile_code", $('#gke-mobile-code').val() );
+      fd.append( "mobile_number", $('#gke-mobile-number').val() );
+      fd.append( "beneficiary_relationship", $('#gke-beneficiary-relationship').val() );
+      fd.append( "beneficiary_country", $('#gke-beneficiary-country').val() );
+      fd.append( "beneficier_age", $('#gke-beneficiary-age').val() );
+      fd.append( "medical_condition", $('#gke-medical-condition').val() );
+      fd.append( "medical_document_type", $('#gke-medical-document').val() );
+      fd.append( "campaign_email", $('#gke-campaign-email').val() );
+      // fd.append( "medical_document_file", $('#gke-medical-document-upload')[0].files[0]);
+      fd.append( "campaign_detail", campaign_detail );
+      fd.append( "campaign_country", $('#gke-campaign-country').val() );
+      fd.append( "government_assistance", $('#gke-government-assistance').val() );
+      fd.append( "government_assistance_details", $('#gke-government-assistance-details').val() );
+      fd.append( "campaign_boosting", $('#gke-campaign-boosting').val() );
+      fd.append( "submit_type", submit_type );
+      fd.append( "campaign_id", $('#gke-campaign-id').val() );
+
+      let requestData = {
+        method: 'POST', 
+        url: give_kindness.giveKindnessApiURL+'edit-campaign',
+        data: fd, 
+        status: 200,
+        reload: true
+      };
+
+      that.attr('disabled', true);
+      that.text(give_kindness.pleaseWait);
+      await ajaxRequest(requestData);
+      that.attr('disabled', false);
+
+      if( submit_type == 'draft' ) {
+        that.text(give_kindness.saveDraft);
+      } else {
+        that.text(give_kindness.submitForApproval);
+      }
+
+    } else {
+      alert('Please check required fields or invalid data');
     }
 
   }); 
@@ -1348,6 +1444,7 @@ function editCampaign(dat){
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   document.getElementById('gke-file-image').src = medical_document_url;
   jQuery('.gke-uploader #gke-file-image.gke-hidden').show();
+  jQuery('#gke-campaign-id').val(campaign_id);
 
 }
 
