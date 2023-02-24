@@ -2,7 +2,7 @@
    <div class="give-donor-dashboard__auth">
       <div class="give-donor-dashboard__auth-modal">
          <div class="give-donor-dashboard__auth-modal-frame">
-            <div class="give-donor-dashboard__auth-modal-heading"><?php echo __('Log in to see your donor dashboard', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard__auth-modal-heading"><?php echo __('Sign up/in to see your dashboard', 'give-kindness'); ?></div>
             <div class="give-donor-dashboard__auth-modal-content">
                <form class="give-donor-dashboard__auth-modal-form give-kindness-signup-part" id="give-kindness-register-form" onSubmit="return false;">
                   <div class="give-donor-dashboard-text-control">
@@ -23,7 +23,7 @@
                   </div>
                   <div class="give-donor-dashboard__auth-modal-row">
                      <button class="give-donor-dashboard-button give-donor-dashboard-button--primary" type="submit" id="give-kindness-signup-submit">
-                        <?php echo __('Register', 'give-kindenss'); ?>
+                        <?php echo __('Sign Up', 'give-kindenss'); ?>
                         <svg aria-hidden="true" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10 fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                            <path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path>
                         </svg>

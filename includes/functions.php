@@ -180,6 +180,14 @@ function gk_user_verification_auto_login(){
             wp_set_current_user($meta_data->user_id, $user->user_login);
             wp_set_auth_cookie($meta_data->user_id);
             do_action('wp_login', $user->user_login, $user);
+
+            $dashboard_page_id = Helpers::get_dashboard_page_id();
+            $page_url = get_permalink($dashboard_page_id);
+            ?>
+            <script>
+                window.location.href = "<?php echo $page_url; ?>";
+            </script>    
+            <?php 
         }
     }
 }
@@ -233,4 +241,17 @@ function give_kindness_get_admin_post_id() {
 	$post_id = ! empty( $post_id ) ? $post_id : ( isset( $_REQUEST['post_ID'] ) ? absint( $_REQUEST['post_ID'] ) : null );
 
 	return $post_id;
+}
+
+add_action( 'wp_enqueue_scripts', 'fontawesome_cdn_enqueue' );
+/**
+ * Register and load font awesome CSS files using a CDN.
+ */
+function fontawesome_cdn_enqueue() {
+	wp_enqueue_style( 
+		'font-awesome-5', 
+		'https://use.fontawesome.com/releases/v5.3.0/css/all.css', 
+		array(), 
+		'5.3.0' 
+	);
 }
