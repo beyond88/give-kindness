@@ -19,7 +19,7 @@
             </div>
             <div class="give-donor-dashboard-logout-modal__body">
               <div class="give-donor-dashboard-logout-modal__buttons">
-                  <button class="give-donor-dashboard-button give-donor-dashboard-button--primary" id="give-kindness-logout">
+                  <button class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-logout" id="give-kindness-logout">
                   ${logOutYes}
                   </button>
                   <a class="give-donor-dashboard-logout-modal__cancel">
@@ -851,7 +851,7 @@
   * Logout
   * 
   ***************************/
-  $(document).on('click', '#give-kindness-logout', function(){
+  $(document).on('click', '#give-kindness-logout, .give-kindness-logout', function(){
 
     $.ajax({
       type: 'POST',
