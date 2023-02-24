@@ -1,6 +1,7 @@
 <?php
 
 namespace Give_Kindness;
+use Give_Kindness\Helpers;
 
 /**
  * Assets handlers class
@@ -90,6 +91,9 @@ class Assets {
             wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
         }
 
+        $dashboard_page_id = Helpers::get_dashboard_page_id();
+        $page_url = get_permalink($dashboard_page_id);
+
         wp_localize_script( 'give_kindness-admin-script', 'give_kindness', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce( 'give_kindness-admin-nonce' ),
@@ -113,6 +117,8 @@ class Assets {
             'pleaseCheckEmail' => 'Please your email inbox. An email has been sent.',
             'saveDraft' => __('Save draft', 'give-kindness'),
             'submitForApproval' => __('Submit for approval', 'give-kindness'),
+            'signUp' => __('Sign Up', 'give-kindness'),
+            'dashboardURL' => $page_url
         ] );
     }
 }

@@ -931,34 +931,47 @@
         },
         success: async function(data) {
 
-          console.log('register response==>',data);
+          console.log('register response==>',data)
           if( that.siblings('.give-donor-dashboard__auth-modal-error').length > 0 ){
             that.siblings('.give-donor-dashboard__auth-modal-error').text(data.message);
           } else {
             that.after(`<div class="give-donor-dashboard__auth-modal-error">${data.message}</div>`);
           }
 
-          if(data.status == 201){
-            let requestData = {
-              method: 'POST', 
-              url: give_kindness.giveApiURL+'donor-dashboard/login',
-              data: {
-                login: email,
-                password: password
-              }, 
-              status: 200,
-              reload: true,
-              btn: that
-            };
-  
-            await ajaxRequest(requestData);
-            //that.attr('disabled', false);
-          }
+          /***********************
+           * Auto login
+           * 
+           **********************/
+          $.ajax({
+            method: 'POST',
+            dataType: 'json',
+            cache: false,
+            headers: {'X-WP-Nonce': give_kindness.apiNonce },
+            url: give_kindness.giveApiURL+'donor-dashboard/login',
+            data: {
+              login: email,
+              password: password
+            }, 
+            success: function(data) {
+              console.log('login res ==>', data);
+              if( data.status === 200 ) {
+                // window.location.reload();
+                window.location.href= give_kindness.dashboardURL;
+              }
+              //that.attr('disabled', false);
+            },
+            error: function (error) {
+              console.log('fail==>', error);
+              alert('Auto login failed. Please try again.')
+            }
+          });
 
         },
         error: function (error) {
           console.log('fail==>', error);
           that.attr('disabled', false);
+          that.text(give_kindness.signUp);
+          alert('Something went wrong! Please try again.')
         }
       });
     }
