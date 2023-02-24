@@ -963,7 +963,7 @@ img.emoji {
   cursor: default;
   display: flex;
   margin-top: 8px;
-  min-height: 38px;
+  min-height: 38px !important;
   min-width: 190px;
   outline: 0 !important;
   overflow: hidden;

@@ -1024,32 +1024,33 @@
     $('#gk-government-assistance').val(buttonValue);
     if( buttonValue == 'Yes' ) {
       $('.gk-government-assistance-area').show();
-      $('#gk-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gk-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gk-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
 
       $('.gke-government-assistance-area').show();
-      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
 
     } else {
       $('.gk-government-assistance-area').hide();
-      $('#gk-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gk-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gk-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
 
       $('.gke-government-assistance-area').hide();
-      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     }
 
+    // For edit campaign
     $('#gke-government-assistance').val(buttonValue);
     if( buttonValue == 'Yes' ) {
       $('.gke-government-assistance-area').show();
-      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-government-assistance-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     } else {
       $('.gke-government-assistance-area').hide();
-      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-government-assistance-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-government-assistance-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     }
 
   })
@@ -1065,20 +1066,20 @@
     let buttonValue = that.data('button-value');
     $('#gk-campaign-boosting').val(buttonValue);
     if( buttonValue == 'Yes' ) {
-      $('#gk-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gk-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gk-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     } else {
-      $('#gk-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gk-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gk-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gk-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     }
 
     $('#gke-campaign-boosting').val(buttonValue);
     if( buttonValue == 'Yes' ) {
-      $('#gke-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-campaign-boosting-yes').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-campaign-boosting-no').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     } else {
-      $('#gke-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
-      $('#gke-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary');
+      $('#gke-campaign-boosting-no').addClass('give-donor-dashboard-button give-donor-dashboard-button--primary').removeClass('give-donor-dashboard-button give-donor-dashboard-button--default');
+      $('#gke-campaign-boosting-yes').removeClass('give-donor-dashboard-button give-donor-dashboard-button--primary').addClass('give-donor-dashboard-button give-donor-dashboard-button--default');
     }
   });
 

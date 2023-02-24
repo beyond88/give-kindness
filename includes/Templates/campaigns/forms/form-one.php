@@ -37,7 +37,7 @@
 
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-mobile-number">
+            <label class="give-donor-dashboard-text-control__label" for="gk-mobile-code">
                 <?php echo __('Mobile number*', 'give-kindness'); ?>
             </label>
             <select name="gk-mobile-code" id="gk-mobile-code" class="give-donor-dashboard-text-control__input">
@@ -262,7 +262,7 @@
                 &nbsp;
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-mobile-number" type="tel" placeholder="<?php echo __('Mobile number', 'give-kindness'); ?>">
+                <input id="gk-mobile-number" type="tel" placeholder="<?php echo __('Mobile number', 'give-kindness'); ?>"  maxlength="11">
             </div>
         </div>
     </div>
