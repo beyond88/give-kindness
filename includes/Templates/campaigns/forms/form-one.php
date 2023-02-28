@@ -573,20 +573,13 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <form id="gk-medical-document-upload-form" class="gk-uploader">
-                <input id="gk-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
+                <!-- <input id="gk-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*"> -->
                 <label for="gk-medical-document-upload" id="gk-file-drag">
-                    <img id="gk-file-image" src="#" alt="Preview" class="gk-hidden">
                     <div id="gk-start">
                         <i class="fa fa-download" aria-hidden="true"></i>
-                        <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
-                        <div id="gk-notimage" class="gk-hidden"><?php echo __( 'Please select an image', 'give-kindness' ); ?></div>
-                        <span id="gk-medical-document-upload-btn" class="gk-btn btn-primary"><?php echo __( 'Select a file', 'give-kindness' ); ?></span>
-                    </div>
-                    <div id="gk-response" class="gk-hidden">
-                    <div id="gk-messages"></div>
-                    <progress class="gk-progress" id="gk-file-progress" value="0">
-                        <span>0</span>%
-                    </progress>
+                        <div>
+                            <?php echo __( 'Select a file or drag here', 'give-kindness' ); ?>
+                        </div>
                     </div>
                 </label>
             </form>
