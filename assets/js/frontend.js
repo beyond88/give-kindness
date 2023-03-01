@@ -1085,6 +1085,59 @@
 
   /**************************
   *  
+  * Enable media uploader
+  * 
+  ***************************/
+	$(document).ready(function() {
+
+    let file_frame;
+    let attachment;
+    let wrapper = $('#give-kindness-media-items'); //Input image wrapper
+    $(document).on('click', '#gk-file-drag', function(event) { 
+      event.preventDefault();
+      if ( file_frame ) {
+        file_frame.open();
+        return;
+      }
+
+      file_frame = wp.media.frames.file_frame = wp.media({
+        title: 'File upload',
+        button: {
+          text: 'Upload now',
+        },
+        library: {
+          type: [ 'video', 'image', 'pdf' ]
+        },
+        multiple: true // set this to true for multiple file selection
+      });
+
+      file_frame.on( 'select', function() {
+        attachment = file_frame.state().get('selection').toJSON();
+        $('#give-kindness-media-items').removeClass('rx-hide');
+        $.each(attachment, function(index, value) {
+          $(wrapper).prepend(`<div class="give-kindness-media-item">
+              <img src="${value.url}" alt="">
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+        });
+      });
+
+      file_frame.open();
+    });
+
+		$(wrapper).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
+			e.preventDefault();
+			$(this).parent().remove(); //Remove image
+		});
+
+  });
+
+  /**************************
+  *  
   * Campaign create
   * 
   ***************************/
@@ -1109,7 +1162,14 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gk-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
-    let medical_document = $('#gk-medical-document-upload').get(0).files.length;
+    let medical_document = $('.gk-campaign-files');
+    let medical_documents = [];
+
+    if( medical_document.length > 0 ){
+      medical_documents = medical_document.map(function () {
+        return this.value;
+      }).get();
+    }
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1122,9 +1182,12 @@
       status = false;
     }
 
-    if( medical_document === 0 ) {
+    if( medical_document.length === 0 ) {
       status = false;
     }
+
+    console.log('files length==>', medical_document.length);
+    console.log('get files id==>', medical_documents);
 
     if( status ) {
 
@@ -1140,7 +1203,7 @@
       fd.append( "medical_condition", $('#gk-medical-condition').val() );
       fd.append( "medical_document_type", $('#gk-medical-document').val() );
       fd.append( "campaign_email", $('#gk-campaign-email').val() );
-      fd.append( "medical_document_file", $('#gk-medical-document-upload')[0].files[0]);
+      fd.append( "medical_document_file", medical_documents);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gk-campaign-country').val() );
       fd.append( "government_assistance", $('#gk-government-assistance').val() );
@@ -1269,52 +1332,6 @@
     } else {
       alert('Please check required fields or invalid data');
     }
-
-  }); 
-
-  /**************************
-  *  
-  * Enable media uploader
-  * 
-  ***************************/
-	$(document).ready(function() {
-
-    let file_frame;
-    let attachment;
-    let wrapper = $('#give-kindness-media-items'); //Input image wrapper
-    $(document).on('click', '#gk-file-drag', function(event) { 
-      event.preventDefault();
-      if ( file_frame ) {
-        file_frame.open();
-        return;
-      }
-
-      file_frame = wp.media.frames.file_frame = wp.media({
-        title: 'File upload',
-        button: {
-          text: 'Upload now',
-        },
-        library: {
-          type: [ 'video', 'image', 'pdf' ]
-        },
-        multiple: true // set this to true for multiple file selection
-      });
-
-      file_frame.on( 'select', function() {
-        attachment = file_frame.state().get('selection').toJSON();
-        $('#give-kindness-media-items').removeClass('rx-hide');
-        $.each(attachment, function(index, value) {
-          $(wrapper).prepend('<div class="give-kindness-media-item"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="gk-campaign-image[]" value="'+value.id+'"></div>'); // display image
-        });
-      });
-
-      file_frame.open();
-    });
-
-		$(wrapper).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
-			e.preventDefault();
-			$(this).parent().remove(); //Remove image
-		});
 
   });
 

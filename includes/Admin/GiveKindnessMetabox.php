@@ -109,7 +109,8 @@ class GiveKindnessMetabox {
     $government_assistance = get_post_meta( $campaign_id, 'government_assistance', true );
     $government_assistance_details = get_post_meta( $campaign_id, 'government_assistance_details', true );
     $campaign_boosting = get_post_meta( $campaign_id, 'campaign_boosting', true );
-
+    $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
+    print_r($medical_document);
     ?>
 
       <p>
@@ -147,6 +148,24 @@ class GiveKindnessMetabox {
       </p>
       <p>
         <strong>Campaign boosting:</strong> <?php echo esc_attr($campaign_boosting); ?>
+      </p>
+
+      <p>
+        <strong>Medical document:</strong> 
+
+        <?php 
+          $attach_ids = explode(",", $medical_document);
+          if( ! empty( $attach_ids ) && $medical_document_type == "image" ) {
+            foreach( $attach_ids as $attach_id) {
+              $image = wp_get_attachment_image_src( $attach_id, 'full' );
+              $image_url = $image[0];
+              ?>
+              <img src="<?php echo esc_url($image_url); ?>" with="100" height="100"/>
+              <?php
+            }
+          }
+        ?>
+
       </p>
         
     <?php
