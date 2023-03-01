@@ -76,6 +76,9 @@ class Assets {
      * @return void
      */
     public function register_assets() {
+
+        wp_enqueue_media();
+        
         $scripts = $this->get_scripts();
         $styles  = $this->get_styles();
 
@@ -90,6 +93,7 @@ class Assets {
 
             wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
         }
+
 
         $dashboard_page_id = Helpers::get_dashboard_page_id();
         $page_url = get_permalink($dashboard_page_id);

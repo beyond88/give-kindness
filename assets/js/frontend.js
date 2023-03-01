@@ -1,4 +1,4 @@
-(function($) {
+(function($, window, document ) {
   'use strict';
 
   /************************
@@ -1272,14 +1272,16 @@
 
   }); 
 
-
-
-
-
+  /**************************
+  *  
+  * Enable media uploader
+  * 
+  ***************************/
 	$(document).ready(function() {
-    // //Front-end review image upload
-    let file_frame; // variable for the wp.media file_frame
+
+    let file_frame;
     let attachment;
+    let wrapper = $('#give-kindness-media-items'); //Input image wrapper
     $(document).on('click', '#gk-file-drag', function(event) { 
       event.preventDefault();
       if ( file_frame ) {
@@ -1288,35 +1290,35 @@
       }
 
       file_frame = wp.media.frames.file_frame = wp.media({
-        title: $( this ).data( 'uploader_title' ),
+        title: 'File upload',
         button: {
-          text: $( this ).data( 'uploader_button_text' ),
+          text: 'Upload now',
         },
         library: {
-          type: [ 'video', 'image' ]
+          type: [ 'video', 'image', 'pdf' ]
         },
         multiple: true // set this to true for multiple file selection
       });
 
       file_frame.on( 'select', function() {
         attachment = file_frame.state().get('selection').toJSON();
-        // let wrapper = $('#rx-images'); //Input image wrapper
-        // $('#rx-images').removeClass('rx-hide');
+        $('#give-kindness-media-items').removeClass('rx-hide');
         $.each(attachment, function(index, value) {
-          // if( $('#attachment').data('multiple') == true ) {
-          //   $(wrapper).prepend('<div class="rx-image"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="remove_image" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="rx-image[]" value="'+value.id+'"></div>'); // display image
-          // } else {
-          //   $(wrapper).html("");
-          //   $(wrapper).prepend('<div class="rx-image"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="remove_image" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="rx-image[]" value="'+value.id+'"></div>'); // display image
-          // }
+          $(wrapper).prepend('<div class="give-kindness-media-item"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="gk-campaign-image[]" value="'+value.id+'"></div>'); // display image
         });
       });
 
       file_frame.open();
     });
-  })
 
-})(jQuery);
+		$(wrapper).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
+			e.preventDefault();
+			$(this).parent().remove(); //Remove image
+		});
+
+  });
+
+})(jQuery, window, document);
 
 /************************
 * 
@@ -1346,157 +1348,6 @@ function showHideContent(that, targetId) {
   jQuery(that).hide();
   jQuery(targetId).show();
 };
-
-/************************
-* 
-* Image upload
-* 
-************************/
-function ekUpload(){
-  function Init() {
-    var fileSelect    = document.getElementById('gk-medical-document-upload'),
-        fileDrag      = document.getElementById('gk-file-drag');
-
-    if (fileSelect){
-      fileSelect.addEventListener('change', fileSelectHandler, false);
-
-      // Is XHR2 available?
-      var xhr = new XMLHttpRequest();
-      if (xhr.upload) {
-        // File Drop
-        fileDrag.addEventListener('dragover', fileDragHover, false);
-        fileDrag.addEventListener('dragleave', fileDragHover, false);
-        fileDrag.addEventListener('drop', fileSelectHandler, false);
-      }
-    }
-
-    /**
-     * 
-     * File upload when editing a campaign
-     * 
-     */
-    var fileSelectEdit    = document.getElementById('gke-medical-document-upload'),
-        fileDragEdit      = document.getElementById('gke-file-drag');
-
-    if (fileSelectEdit){
-      fileSelectEdit.addEventListener('change', fileSelectHandler, false);
-
-      var xhrEdit = new XMLHttpRequest();
-      if (xhrEdit.upload) {
-        fileDragEdit.addEventListener('dragover', fileDragHover, false);
-        fileDragEdit.addEventListener('dragleave', fileDragHover, false);
-        fileDragEdit.addEventListener('drop', fileSelectHandler, false);
-      }
-    }
-
-  }
-
-  function fileDragHover(e) {
-    var fileDrag = document.getElementById('gk-file-drag');
-    var fileDragEdit = document.getElementById('gke-file-drag');
-
-    e.stopPropagation();
-    e.preventDefault();
-
-    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body gk-medical-document-upload');
-    fileDragEdit.className = (e.type === 'dragover' ? 'hover' : 'modal-body gke-medical-document-upload');
-  }
-
-  function fileSelectHandler(e) {
-    // Fetch FileList object
-    var files = e.target.files || e.dataTransfer.files;
-
-    // Cancel event and hover styling
-    fileDragHover(e);
-
-    // Process all File objects
-    for (var i = 0, f; f = files[i]; i++) {
-      parseFile(f);
-      uploadFile(f);
-    }
-  }
-
-  // Output
-  function output(msg) {
-    var m = document.getElementById('gk-messages');
-    m.innerHTML = msg;
-
-    var me = document.getElementById('gke-messages');
-    me.innerHTML = msg;
-  }
-
-  function parseFile(file) {
-
-    output(
-      '<strong>' + encodeURI(file.name) + '</strong>'
-    );
-    
-    var imageName = file.name;
-
-    var isGood = (/\.(?=gif|jpg|png|jpeg|pdf|docx|doc)/gi).test(imageName);
-
-    if (isGood) {
-      document.getElementById('gk-start').classList.add("gk-hidden");
-      document.getElementById('gk-response').classList.remove("gk-hidden");
-      document.getElementById('gk-notimage').classList.add("gk-hidden");
-      // Thumbnail Preview
-      document.getElementById('gk-file-image').classList.remove("gk-hidden");
-      document.getElementById('gk-file-image').src = URL.createObjectURL(file);
-    }
-    else {
-      document.getElementById('gk-file-image').classList.add("gk-hidden");
-      document.getElementById('gk-notimage').classList.remove("gk-hidden");
-      document.getElementById('gk-start').classList.remove("gk-hidden");
-      document.getElementById('gk-response').classList.add("gk-hidden");
-      document.getElementById("gk-medical-document-upload-form").reset();
-    }
-
-    /**
-     * 
-     * File upload when editing a campaign
-     * 
-     */
-    if (isGood) {
-      document.getElementById('gke-start').classList.add("gke-hidden");
-      document.getElementById('gke-response').classList.remove("gke-hidden");
-      document.getElementById('gke-notimage').classList.add("gke-hidden");
-      // Thumbnail Preview
-      document.getElementById('gke-file-image').classList.remove("gke-hidden");
-      document.getElementById('gke-file-image').src = URL.createObjectURL(file);
-    }
-    else {
-      document.getElementById('gke-file-image').classList.add("gke-hidden");
-      document.getElementById('gke-notimage').classList.remove("gke-hidden");
-      document.getElementById('gke-start').classList.remove("gke-hidden");
-      document.getElementById('gke-response').classList.add("gke-hidden");
-      document.getElementById("gke-medical-document-upload-form").reset();
-    }
-  }
-
-  function uploadFile(file) {
-
-    var xhr = new XMLHttpRequest(),
-      fileSizeLimit = 2024; // In MB
-      const fileSize = Math.round((file.size / 1024));
-
-    if (xhr.upload) {
-      // Check if file is less than x MB
-      if (fileSize <= fileSizeLimit ) {
-      } else {
-        output('<span style="color:red">Please upload a smaller file (< ' + fileSizeLimit + ' MB).</span>');
-      }
-    }
-  }
-
-  // Check for the various File API support.
-  if (window.File && window.FileList && window.FileReader) {
-    Init();
-  } else {
-    document.getElementById('gk-file-drag').style.display = 'none';
-    document.getElementById('gke-file-drag').style.display = 'none';
-  }
-}
-// ekUpload();
 
 /**************************
 *  
