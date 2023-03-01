@@ -1094,10 +1094,11 @@
     let attachment;
     let wrapper = $('#give-kindness-media-items'); //Input image wrapper
     $(document).on('click', '#gk-file-drag', function(event) { 
+      
       event.preventDefault();
+      let file_type = $('#gk-medical-document').val();
       if ( file_frame ) {
-        file_frame.open();
-        return;
+        file_frame = '';
       }
 
       file_frame = wp.media.frames.file_frame = wp.media({
@@ -1106,7 +1107,7 @@
           text: 'Upload now',
         },
         library: {
-          type: [ 'video', 'image', 'pdf' ]
+          type: [ file_type ]
         },
         multiple: true // set this to true for multiple file selection
       });
@@ -1115,7 +1116,9 @@
         attachment = file_frame.state().get('selection').toJSON();
         $('#give-kindness-media-items').removeClass('rx-hide');
         $.each(attachment, function(index, value) {
-          $(wrapper).prepend(`<div class="give-kindness-media-item">
+
+          if(file_type == 'image') {
+            $(wrapper).prepend(`<div class="give-kindness-media-item">
               <img src="${value.url}" alt="">
               <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
                 <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
@@ -1123,6 +1126,21 @@
               </a>
               <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
             </div>`); // display image
+          } else {
+            $(wrapper).prepend(`<div class="give-kindness-media-item">
+            <object data="${value.url}" type="application/pdf" width="100px" height="100px">
+              <embed src="${value.url}" type="application/pdf">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}">Download PDF</a>.</p>
+              </embed>
+            </object>
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          }
+
         });
       });
 

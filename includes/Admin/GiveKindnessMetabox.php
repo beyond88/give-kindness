@@ -110,7 +110,6 @@ class GiveKindnessMetabox {
     $government_assistance_details = get_post_meta( $campaign_id, 'government_assistance_details', true );
     $campaign_boosting = get_post_meta( $campaign_id, 'campaign_boosting', true );
     $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
-    print_r($medical_document);
     ?>
 
       <p>

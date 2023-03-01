@@ -565,15 +565,15 @@
             </label>
             <select name="gk-medical-document" id="gk-medical-document" class="give-donor-dashboard-text-control__input">
                 <option value="image"><?php echo __( 'Image', 'give-kindness' ); ?></option>
-                <option value="file"><?php echo __( 'File', 'give-kindness' ); ?></option>
+                <option value="pdf"><?php echo __( 'File', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
 
     <div class="give-kindness-media-items give-kindness-hide" id="give-kindness-media-items">
-        <!--
-            Image or file upload here
-        --->
+    <!--
+        Image or file upload here
+    --->
     </div>    
 
     <div class="give-donor-dashboard-field-row">
