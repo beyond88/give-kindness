@@ -69,16 +69,34 @@
                             $data['government_assistance'] = get_post_meta( $campaign_id, 'government_assistance', true );
                             $data['government_assistance_details'] = get_post_meta( $campaign_id, 'government_assistance_details', true );
                             $data['campaign_boosting'] = get_post_meta( $campaign_id, 'campaign_boosting', true );
+                            $medical_document_url = [];
 
                             $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
-                            $image = wp_get_attachment_image_src($medical_document, 'full');
-                            $img_src = '';
-                            if( !empty($image) ){
-                                $img_src = $image[0];
+                            $attach_ids = explode(',', $medical_document);
+                            if( count($attach_ids) ) {
+                                foreach( $attach_ids as $attach_id ) {
+
+                                    if( $data['medical_document_type'] == "pdf"){
+                                        $attach_url = wp_get_attachment_url( $attach_id );
+                                        array_push( $medical_document_url, $attach_url);
+                                    } else {
+                                        $image = wp_get_attachment_image_src($attach_id, 'full');
+                                        if( !empty( $image ) ) {
+                                            $attach_url = $image[0];
+                                            array_push( $medical_document_url, $attach_url);
+                                        }
+                                    }
+                                }
                             }
 
-                            $data['medical_document'] = $medical_document;
-                            $data['medical_document_url'] = $img_src;
+                            // $image = wp_get_attachment_image_src($medical_document, 'full');
+                            // $img_src = '';
+                            // if( !empty($image) ){
+                            //     $img_src = $image[0];
+                            // }
+
+                            $data['medical_document'] = $attach_ids;
+                            $data['medical_document_url'] = $medical_document_url;
                             $jsonData = json_encode($data);
 
                         ?>

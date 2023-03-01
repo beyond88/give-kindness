@@ -163,6 +163,21 @@ class GiveKindnessMetabox {
               <?php
             }
           }
+
+          if( ! empty( $attach_ids ) && $medical_document_type == "pdf" ) {
+            foreach( $attach_ids as $attach_id ) {
+              $attach_url = wp_get_attachment_url( $attach_id );
+
+              ?>
+              <object data="<?php echo esc_url( $attach_url ); ?>" type="application/pdf" width="150px" height="150px">
+                <embed src="<?php echo esc_url( $attach_url ); ?>" type="application/pdf">
+                  <p>This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo esc_url( $attach_url ); ?>" download>Download PDF</a>.</p>
+                </embed>
+              </object>
+              <?php
+
+            }
+          }
         ?>
 
       </p>

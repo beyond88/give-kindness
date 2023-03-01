@@ -1130,7 +1130,7 @@
             $(wrapper).prepend(`<div class="give-kindness-media-item">
             <object data="${value.url}" type="application/pdf" width="100px" height="100px">
               <embed src="${value.url}" type="application/pdf">
-                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}">Download PDF</a>.</p>
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}" download>Download PDF</a>.</p>
               </embed>
             </object>
               <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
@@ -1147,7 +1147,7 @@
       file_frame.open();
     });
 
-		$(wrapper).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
+		$(document).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
 			e.preventDefault();
 			$(this).parent().remove(); //Remove image
 		});
@@ -1203,9 +1203,6 @@
     if( medical_document.length === 0 ) {
       status = false;
     }
-
-    console.log('files length==>', medical_document.length);
-    console.log('get files id==>', medical_documents);
 
     if( status ) {
 
@@ -1282,7 +1279,6 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gke-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
-    // let medical_document = $('#gke-medical-document-upload').get(0).files.length;
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1435,8 +1431,38 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance').val(government_assistance);
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
-  document.getElementById('gke-file-image').src = medical_document_url;
-  jQuery('.gke-uploader #gke-file-image.gke-hidden').show();
   jQuery('#gke-campaign-id').val(campaign_id);
+
+  let medical_document_wrapper = jQuery('#give-kindness-edit-media-items');
+  medical_document_wrapper.html(""); //Initiallly blank
+
+  if( medical_document.length > 0){
+    for(let i=0; i < medical_document.length; i++){
+      if(medical_document_type == 'image') {
+        medical_document_wrapper.prepend(`<div class="give-kindness-media-item">
+          <img src="${medical_document_url[i]}" alt="">
+          <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+            <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+            </svg>
+          </a>
+          <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${medical_document[i]}">
+        </div>`); // display image
+      } else {
+        medical_document_wrapper.prepend(`<div class="give-kindness-media-item">
+        <object data="${medical_document_url[i]}" type="application/pdf" width="100px" height="100px">
+          <embed src="${medical_document_url[i]}" type="application/pdf">
+            <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${medical_document_url[i]}" download>Download PDF</a>.</p>
+          </embed>
+        </object>
+          <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+            <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+            </svg>
+          </a>
+          <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${medical_document[i]}">
+        </div>`); // display image
+      }
+    }
+
+  }
 
 }

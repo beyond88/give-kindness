@@ -585,6 +585,7 @@
                         <div>
                             <?php echo __( 'Select a file or drag here', 'give-kindness' ); ?>
                         </div>
+                        <span id="gk-medical-document-upload-btn" class="gk-btn btn-primary"><?php echo __( 'Select a file', 'give-kindness' ); ?></span>
                     </div>
                 </label>
             </form>
