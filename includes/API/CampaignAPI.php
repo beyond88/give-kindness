@@ -91,16 +91,18 @@ class CampaignAPI
     */
     public function edit_campaign( WP_REST_Request $request ) {
 
-        $img_src = NULL;
         $campaign_id = sanitize_text_field( $request['campaign_id'] );
-        $attach_id = Helpers::image_file_upload( $request );
+        $attach_id = 0;
+        $attach_ids = $request['medical_document_file'];
+        $attach_ids = explode(",", sanitize_text_field( $request['medical_document_file'] ) );
 
-        if( $attach_id != 0 ) {
-            update_post_meta( $campaign_id, 'medical_document', $attach_id );
-            $image = wp_get_attachment_image_src($attach_id, 'full');
-            $img_src = $image[0];
-        } else {
-            $image = wp_get_attachment_image_src($attach_id, 'full');
+        if( is_array( $attach_ids ) && $request['medical_document_type'] == 'image' ) {            
+            $attach_id = $attach_ids[0];
+        }
+
+        $img_src = '';
+        $image = wp_get_attachment_image_src( $attach_id, 'full' );
+        if( is_array( $image ) ) {
             $img_src = $image[0];
         }
 
@@ -111,9 +113,8 @@ class CampaignAPI
             $response['status'] = 200;
             $response['message'] = __( "Campaign updated successfully!", "give-kindness" );
             $response['campaign_id'] = $campaign_id;
-            $response['attach_id'] = $attach_id;
             return new WP_REST_Response( $response, 123 );
-            
+
         }
 
         $response['status'] = 409;
