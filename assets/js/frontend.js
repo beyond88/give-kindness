@@ -1114,7 +1114,7 @@
 
       file_frame.on( 'select', function() {
         attachment = file_frame.state().get('selection').toJSON();
-        $('#give-kindness-media-items').removeClass('rx-hide');
+        $('#give-kindness-media-items').removeClass('give-kindness-hide');
         $.each(attachment, function(index, value) {
 
           if(file_type == 'image') {
@@ -1128,6 +1128,66 @@
             </div>`); // display image
           } else {
             $(wrapper).prepend(`<div class="give-kindness-media-item">
+            <object data="${value.url}" type="application/pdf" width="100px" height="100px">
+              <embed src="${value.url}" type="application/pdf">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}" download>Download PDF</a>.</p>
+              </embed>
+            </object>
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          }
+
+        });
+      });
+
+      file_frame.open();
+    });
+
+    /****
+     * 
+     * 
+     */
+    $(document).on('click', '#gke-file-drag', function(event) { 
+      event.preventDefault();
+
+      let that = $(this);
+      let wrapper = $('#give-kindness-edit-media-items');
+      let file_type = $('#gke-medical-document').val();
+      if ( file_frame ) {
+        file_frame = '';
+      }
+
+      file_frame = wp.media.frames.file_frame = wp.media({
+        title: 'File upload',
+        button: {
+          text: 'Upload now',
+        },
+        library: {
+          type: [ file_type ]
+        },
+        multiple: true // set this to true for multiple file selection
+      });
+
+      file_frame.on( 'select', function() {
+        attachment = file_frame.state().get('selection').toJSON();
+        wrapper.removeClass('give-kindness-hide');
+        $.each(attachment, function(index, value) {
+
+          if(file_type == 'image') {
+            wrapper.prepend(`<div class="give-kindness-media-item">
+              <img src="${value.url}" alt="">
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          } else {
+            wrapper.prepend(`<div class="give-kindness-media-item">
             <object data="${value.url}" type="application/pdf" width="100px" height="100px">
               <embed src="${value.url}" type="application/pdf">
                 <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}" download>Download PDF</a>.</p>
@@ -1217,8 +1277,8 @@
       fd.append( "beneficier_age", $('#gk-beneficiary-age').val() );
       fd.append( "medical_condition", $('#gk-medical-condition').val() );
       fd.append( "medical_document_type", $('#gk-medical-document').val() );
-      fd.append( "campaign_email", $('#gk-campaign-email').val() );
       fd.append( "medical_document_file", medical_documents);
+      fd.append( "campaign_email", $('#gk-campaign-email').val() );
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gk-campaign-country').val() );
       fd.append( "government_assistance", $('#gk-government-assistance').val() );
@@ -1279,6 +1339,14 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gke-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
+    let medical_document = $('.gk-campaign-files');
+    let medical_documents = [];
+
+    if( medical_document.length > 0 ){
+      medical_documents = medical_document.map(function () {
+        return this.value;
+      }).get();
+    }
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1291,14 +1359,9 @@
       status = false;
     }
 
-    // if( medical_document === 0 ) {
-    //   status = false;
-    // }
-
-    // let campaign_id = $('#gke-campaign-id').val();
-    // if (typeof campaign_id !== 'number') {
-    //   status = false;
-    // }
+    if( medical_document.length === 0 ) {
+      status = false;
+    }
 
     if( status ) {
 
@@ -1313,8 +1376,8 @@
       fd.append( "beneficier_age", $('#gke-beneficiary-age').val() );
       fd.append( "medical_condition", $('#gke-medical-condition').val() );
       fd.append( "medical_document_type", $('#gke-medical-document').val() );
+      fd.append( "medical_document_file", medical_documents);
       fd.append( "campaign_email", $('#gke-campaign-email').val() );
-      fd.append( "medical_document_file", $('#gke-medical-document-upload')[0].files[0]);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gke-campaign-country').val() );
       fd.append( "government_assistance", $('#gke-government-assistance').val() );
