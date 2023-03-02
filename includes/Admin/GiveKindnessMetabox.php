@@ -149,7 +149,7 @@ class GiveKindnessMetabox {
         <strong>Campaign boosting:</strong> <?php echo esc_attr($campaign_boosting); ?>
       </p>
 
-      <p>
+      <p id="give-kindness-admin-campaign-images" class="thumbs">
         <strong>Medical document:</strong> 
 
         <?php 
@@ -159,7 +159,7 @@ class GiveKindnessMetabox {
               $image = wp_get_attachment_image_src( $attach_id, 'full' );
               $image_url = $image[0];
               ?>
-              <img src="<?php echo esc_url($image_url); ?>" with="100" height="100"/>
+                <img src="<?php echo esc_url($image_url); ?>" data-img-src="<?php echo esc_url($image_url); ?>" with="150px" height="150px" class="thumb"/>
               <?php
             }
           }

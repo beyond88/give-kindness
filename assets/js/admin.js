@@ -28,4 +28,6 @@
     //     event.preventDefault();
     // });
 
+    $( '.thumbs' ).ie8Gallery();
+
 })(jQuery);

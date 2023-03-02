@@ -28,16 +28,11 @@ class Assets {
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/frontend.js' ),
                 'deps'    => [ 'jquery' ]
             ],
-            // 'give_kindness-moment' => [
-            //     'src'     => GIVE_KINDNESS_ASSETS . '/js/moment.min.js',
-            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/moment.min.js' ),
-            //     'deps'    => [ 'jquery' ]
-            // ],    
-            // 'give_kindness-daterangepicker' => [
-            //     'src'     => GIVE_KINDNESS_ASSETS . '/js/daterangepicker.js',
-            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/daterangepicker.js' ),
-            //     'deps'    => []
-            // ],
+            'give_kindness-ie8gallery' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/js/ie8gallery.js',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/ie8gallery.js' ),
+                'deps'    => [ 'jquery' ]
+            ],  
             'give_kindness-admin-script' => [
                 'src'     => GIVE_KINDNESS_ASSETS . '/js/admin.js',
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/admin.js' ),
@@ -63,10 +58,10 @@ class Assets {
                 'src'     => GIVE_KINDNESS_ASSETS . '/css/admin.css',
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/admin.css' )
             ],
-            // 'give_kindness-daterangepicker' => [
-            //     'src'     => GIVE_KINDNESS_ASSETS . '/css/daterangepicker.css',
-            //     'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/daterangepicker.css' )
-            // ],
+            'give_kindness-ie8gallery' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/css/ie8gallery.css',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/css/ie8gallery.css' )
+            ],
         ];
     }
 
