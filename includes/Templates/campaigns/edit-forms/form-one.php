@@ -565,29 +565,26 @@
             </label>
             <select name="gke-medical-document" id="gke-medical-document" class="give-donor-dashboard-text-control__input">
                 <option value="image"><?php echo __( 'Image', 'give-kindness' ); ?></option>
-                <option value="file"><?php echo __( 'File', 'give-kindness' ); ?></option>
+                <option value="pdf"><?php echo __( 'File', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
 
+    <div class="give-kindness-media-items give-kindness-hide" id="give-kindness-edit-media-items">
+    <!--
+        Image or file upload here
+    --->
+    </div> 
+
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <form id="gke-medical-document-upload-form" class="gke-uploader">
-                <input id="gke-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*">
-
                 <label for="gke-medical-document-upload" id="gke-file-drag">
-                    <img id="gke-file-image" src="#" alt="Preview" class="gke-hidden">
                     <div id="gke-start">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         <div><?php echo __( 'Select a file or drag here', 'give-kindness' ); ?></div>
-                        <div id="gke-notimage" class="gke-hidden">Please select an image</div>
-                        <span id="gke-medical-document-upload-btn" class="gke-btn btn-primary">Select a file</span>
-                    </div>
-                    <div id="gke-response" class="gke-hidden">
-                    <div id="gke-messages"></div>
-                    <progress class="gke-progress" id="gke-file-progress" value="0">
-                        <span>0</span>%
-                    </progress>
+                        <div id="gke-notimage" class="gke-hidden"><?php echo __( 'Please select an image', 'give-kindness' ); ?></div>
+                        <span id="gke-medical-document-upload-btn" class="gke-btn btn-primary"><?php echo __( 'Select a file', 'give-kindness' ); ?></span>
                     </div>
                 </label>
             </form>

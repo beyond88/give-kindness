@@ -1,4 +1,4 @@
-(function($) {
+(function($, window, document ) {
   'use strict';
 
   /************************
@@ -1085,6 +1085,137 @@
 
   /**************************
   *  
+  * Enable media uploader
+  * 
+  ***************************/
+	$(document).ready(function() {
+
+    let file_frame;
+    let attachment;
+    let wrapper = $('#give-kindness-media-items'); //Input image wrapper
+    $(document).on('click', '#gk-file-drag', function(event) { 
+      
+      event.preventDefault();
+      let file_type = $('#gk-medical-document').val();
+      if ( file_frame ) {
+        file_frame = '';
+      }
+
+      file_frame = wp.media.frames.file_frame = wp.media({
+        title: 'File upload',
+        button: {
+          text: 'Upload now',
+        },
+        library: {
+          type: [ file_type ]
+        },
+        multiple: true // set this to true for multiple file selection
+      });
+
+      file_frame.on( 'select', function() {
+        attachment = file_frame.state().get('selection').toJSON();
+        $('#give-kindness-media-items').removeClass('give-kindness-hide');
+        $.each(attachment, function(index, value) {
+
+          if(file_type == 'image') {
+            $(wrapper).prepend(`<div class="give-kindness-media-item">
+              <img src="${value.url}" alt="">
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          } else {
+            $(wrapper).prepend(`<div class="give-kindness-media-item">
+            <object data="${value.url}" type="application/pdf" width="100px" height="100px">
+              <embed src="${value.url}" type="application/pdf">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}" download>Download PDF</a>.</p>
+              </embed>
+            </object>
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          }
+
+        });
+      });
+
+      file_frame.open();
+    });
+
+    /****
+     * 
+     * 
+     */
+    $(document).on('click', '#gke-file-drag', function(event) { 
+      event.preventDefault();
+
+      let that = $(this);
+      let wrapper = $('#give-kindness-edit-media-items');
+      let file_type = $('#gke-medical-document').val();
+      if ( file_frame ) {
+        file_frame = '';
+      }
+
+      file_frame = wp.media.frames.file_frame = wp.media({
+        title: 'File upload',
+        button: {
+          text: 'Upload now',
+        },
+        library: {
+          type: [ file_type ]
+        },
+        multiple: true // set this to true for multiple file selection
+      });
+
+      file_frame.on( 'select', function() {
+        attachment = file_frame.state().get('selection').toJSON();
+        wrapper.removeClass('give-kindness-hide');
+        $.each(attachment, function(index, value) {
+
+          if(file_type == 'image') {
+            wrapper.prepend(`<div class="give-kindness-media-item">
+              <img src="${value.url}" alt="">
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          } else {
+            wrapper.prepend(`<div class="give-kindness-media-item">
+            <object data="${value.url}" type="application/pdf" width="100px" height="100px">
+              <embed src="${value.url}" type="application/pdf">
+                <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${value.url}" download>Download PDF</a>.</p>
+              </embed>
+            </object>
+              <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+                <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+                </svg>
+              </a>
+              <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${value.id}">
+            </div>`); // display image
+          }
+
+        });
+      });
+
+      file_frame.open();
+    });
+
+		$(document).on('click', '.give-kindness-media-item-remove', function(e){ //Once remove button is clicked
+			e.preventDefault();
+			$(this).parent().remove(); //Remove image
+		});
+
+  });
+
+  /**************************
+  *  
   * Campaign create
   * 
   ***************************/
@@ -1109,7 +1240,14 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gk-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
-    let medical_document = $('#gk-medical-document-upload').get(0).files.length;
+    let medical_document = $('.gk-campaign-files');
+    let medical_documents = [];
+
+    if( medical_document.length > 0 ){
+      medical_documents = medical_document.map(function () {
+        return this.value;
+      }).get();
+    }
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1122,7 +1260,7 @@
       status = false;
     }
 
-    if( medical_document === 0 ) {
+    if( medical_document.length === 0 ) {
       status = false;
     }
 
@@ -1139,8 +1277,8 @@
       fd.append( "beneficier_age", $('#gk-beneficiary-age').val() );
       fd.append( "medical_condition", $('#gk-medical-condition').val() );
       fd.append( "medical_document_type", $('#gk-medical-document').val() );
+      fd.append( "medical_document_file", medical_documents);
       fd.append( "campaign_email", $('#gk-campaign-email').val() );
-      fd.append( "medical_document_file", $('#gk-medical-document-upload')[0].files[0]);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gk-campaign-country').val() );
       fd.append( "government_assistance", $('#gk-government-assistance').val() );
@@ -1201,7 +1339,14 @@
 
     let status = true; 
     let campaign_detail = tinymce.get( $("#gke-campaign-detail").attr( 'id' ) ).getContent( { format: 'text' } );
-    // let medical_document = $('#gke-medical-document-upload').get(0).files.length;
+    let medical_document = $('.gk-campaign-files');
+    let medical_documents = [];
+
+    if( medical_document.length > 0 ){
+      medical_documents = medical_document.map(function () {
+        return this.value;
+      }).get();
+    }
     
     for (let i = 0; i < fields.length; i++) {
       if( $(fields[i]).val() == '' ){
@@ -1214,14 +1359,9 @@
       status = false;
     }
 
-    // if( medical_document === 0 ) {
-    //   status = false;
-    // }
-
-    // let campaign_id = $('#gke-campaign-id').val();
-    // if (typeof campaign_id !== 'number') {
-    //   status = false;
-    // }
+    if( medical_document.length === 0 ) {
+      status = false;
+    }
 
     if( status ) {
 
@@ -1236,8 +1376,8 @@
       fd.append( "beneficier_age", $('#gke-beneficiary-age').val() );
       fd.append( "medical_condition", $('#gke-medical-condition').val() );
       fd.append( "medical_document_type", $('#gke-medical-document').val() );
+      fd.append( "medical_document_file", medical_documents);
       fd.append( "campaign_email", $('#gke-campaign-email').val() );
-      fd.append( "medical_document_file", $('#gke-medical-document-upload')[0].files[0]);
       fd.append( "campaign_detail", campaign_detail );
       fd.append( "campaign_country", $('#gke-campaign-country').val() );
       fd.append( "government_assistance", $('#gke-government-assistance').val() );
@@ -1270,53 +1410,9 @@
       alert('Please check required fields or invalid data');
     }
 
-  }); 
+  });
 
-
-
-
-
-	$(document).ready(function() {
-    // //Front-end review image upload
-    let file_frame; // variable for the wp.media file_frame
-    let attachment;
-    $(document).on('click', '#gk-file-drag', function(event) { 
-      event.preventDefault();
-      if ( file_frame ) {
-        file_frame.open();
-        return;
-      }
-
-      file_frame = wp.media.frames.file_frame = wp.media({
-        title: $( this ).data( 'uploader_title' ),
-        button: {
-          text: $( this ).data( 'uploader_button_text' ),
-        },
-        library: {
-          type: [ 'video', 'image' ]
-        },
-        multiple: true // set this to true for multiple file selection
-      });
-
-      file_frame.on( 'select', function() {
-        attachment = file_frame.state().get('selection').toJSON();
-        // let wrapper = $('#rx-images'); //Input image wrapper
-        // $('#rx-images').removeClass('rx-hide');
-        $.each(attachment, function(index, value) {
-          // if( $('#attachment').data('multiple') == true ) {
-          //   $(wrapper).prepend('<div class="rx-image"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="remove_image" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="rx-image[]" value="'+value.id+'"></div>'); // display image
-          // } else {
-          //   $(wrapper).html("");
-          //   $(wrapper).prepend('<div class="rx-image"><img src="'+value.url+'" alt=""><a href="javascript:void(0);" class="remove_image" title="Remove Image"><svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg></a><input type="hidden" name="rx-image[]" value="'+value.id+'"></div>'); // display image
-          // }
-        });
-      });
-
-      file_frame.open();
-    });
-  })
-
-})(jQuery);
+})(jQuery, window, document);
 
 /************************
 * 
@@ -1346,157 +1442,6 @@ function showHideContent(that, targetId) {
   jQuery(that).hide();
   jQuery(targetId).show();
 };
-
-/************************
-* 
-* Image upload
-* 
-************************/
-function ekUpload(){
-  function Init() {
-    var fileSelect    = document.getElementById('gk-medical-document-upload'),
-        fileDrag      = document.getElementById('gk-file-drag');
-
-    if (fileSelect){
-      fileSelect.addEventListener('change', fileSelectHandler, false);
-
-      // Is XHR2 available?
-      var xhr = new XMLHttpRequest();
-      if (xhr.upload) {
-        // File Drop
-        fileDrag.addEventListener('dragover', fileDragHover, false);
-        fileDrag.addEventListener('dragleave', fileDragHover, false);
-        fileDrag.addEventListener('drop', fileSelectHandler, false);
-      }
-    }
-
-    /**
-     * 
-     * File upload when editing a campaign
-     * 
-     */
-    var fileSelectEdit    = document.getElementById('gke-medical-document-upload'),
-        fileDragEdit      = document.getElementById('gke-file-drag');
-
-    if (fileSelectEdit){
-      fileSelectEdit.addEventListener('change', fileSelectHandler, false);
-
-      var xhrEdit = new XMLHttpRequest();
-      if (xhrEdit.upload) {
-        fileDragEdit.addEventListener('dragover', fileDragHover, false);
-        fileDragEdit.addEventListener('dragleave', fileDragHover, false);
-        fileDragEdit.addEventListener('drop', fileSelectHandler, false);
-      }
-    }
-
-  }
-
-  function fileDragHover(e) {
-    var fileDrag = document.getElementById('gk-file-drag');
-    var fileDragEdit = document.getElementById('gke-file-drag');
-
-    e.stopPropagation();
-    e.preventDefault();
-
-    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body gk-medical-document-upload');
-    fileDragEdit.className = (e.type === 'dragover' ? 'hover' : 'modal-body gke-medical-document-upload');
-  }
-
-  function fileSelectHandler(e) {
-    // Fetch FileList object
-    var files = e.target.files || e.dataTransfer.files;
-
-    // Cancel event and hover styling
-    fileDragHover(e);
-
-    // Process all File objects
-    for (var i = 0, f; f = files[i]; i++) {
-      parseFile(f);
-      uploadFile(f);
-    }
-  }
-
-  // Output
-  function output(msg) {
-    var m = document.getElementById('gk-messages');
-    m.innerHTML = msg;
-
-    var me = document.getElementById('gke-messages');
-    me.innerHTML = msg;
-  }
-
-  function parseFile(file) {
-
-    output(
-      '<strong>' + encodeURI(file.name) + '</strong>'
-    );
-    
-    var imageName = file.name;
-
-    var isGood = (/\.(?=gif|jpg|png|jpeg|pdf|docx|doc)/gi).test(imageName);
-
-    if (isGood) {
-      document.getElementById('gk-start').classList.add("gk-hidden");
-      document.getElementById('gk-response').classList.remove("gk-hidden");
-      document.getElementById('gk-notimage').classList.add("gk-hidden");
-      // Thumbnail Preview
-      document.getElementById('gk-file-image').classList.remove("gk-hidden");
-      document.getElementById('gk-file-image').src = URL.createObjectURL(file);
-    }
-    else {
-      document.getElementById('gk-file-image').classList.add("gk-hidden");
-      document.getElementById('gk-notimage').classList.remove("gk-hidden");
-      document.getElementById('gk-start').classList.remove("gk-hidden");
-      document.getElementById('gk-response').classList.add("gk-hidden");
-      document.getElementById("gk-medical-document-upload-form").reset();
-    }
-
-    /**
-     * 
-     * File upload when editing a campaign
-     * 
-     */
-    if (isGood) {
-      document.getElementById('gke-start').classList.add("gke-hidden");
-      document.getElementById('gke-response').classList.remove("gke-hidden");
-      document.getElementById('gke-notimage').classList.add("gke-hidden");
-      // Thumbnail Preview
-      document.getElementById('gke-file-image').classList.remove("gke-hidden");
-      document.getElementById('gke-file-image').src = URL.createObjectURL(file);
-    }
-    else {
-      document.getElementById('gke-file-image').classList.add("gke-hidden");
-      document.getElementById('gke-notimage').classList.remove("gke-hidden");
-      document.getElementById('gke-start').classList.remove("gke-hidden");
-      document.getElementById('gke-response').classList.add("gke-hidden");
-      document.getElementById("gke-medical-document-upload-form").reset();
-    }
-  }
-
-  function uploadFile(file) {
-
-    var xhr = new XMLHttpRequest(),
-      fileSizeLimit = 2024; // In MB
-      const fileSize = Math.round((file.size / 1024));
-
-    if (xhr.upload) {
-      // Check if file is less than x MB
-      if (fileSize <= fileSizeLimit ) {
-      } else {
-        output('<span style="color:red">Please upload a smaller file (< ' + fileSizeLimit + ' MB).</span>');
-      }
-    }
-  }
-
-  // Check for the various File API support.
-  if (window.File && window.FileList && window.FileReader) {
-    Init();
-  } else {
-    document.getElementById('gk-file-drag').style.display = 'none';
-    document.getElementById('gke-file-drag').style.display = 'none';
-  }
-}
-// ekUpload();
 
 /**************************
 *  
@@ -1549,8 +1494,38 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance').val(government_assistance);
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
-  document.getElementById('gke-file-image').src = medical_document_url;
-  jQuery('.gke-uploader #gke-file-image.gke-hidden').show();
   jQuery('#gke-campaign-id').val(campaign_id);
+
+  let medical_document_wrapper = jQuery('#give-kindness-edit-media-items');
+  medical_document_wrapper.html(""); //Initiallly blank
+
+  if( medical_document.length > 0){
+    for(let i=0; i < medical_document.length; i++){
+      if(medical_document_type == 'image') {
+        medical_document_wrapper.prepend(`<div class="give-kindness-media-item">
+          <img src="${medical_document_url[i]}" alt="">
+          <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+            <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+            </svg>
+          </a>
+          <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${medical_document[i]}">
+        </div>`); // display image
+      } else {
+        medical_document_wrapper.prepend(`<div class="give-kindness-media-item">
+        <object data="${medical_document_url[i]}" type="application/pdf" width="100px" height="100px">
+          <embed src="${medical_document_url[i]}" type="application/pdf">
+            <p>This browser does not support PDFs. Please download the PDF to view it: <a href="${medical_document_url[i]}" download>Download PDF</a>.</p>
+          </embed>
+        </object>
+          <a href="javascript:void(0);" class="give-kindness-media-item-remove" title="Remove Image">
+            <svg style="width: 15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
+            </svg>
+          </a>
+          <input type="hidden" class="gk-campaign-files" name="gk-campaign-files[]" value="${medical_document[i]}">
+        </div>`); // display image
+      }
+    }
+
+  }
 
 }

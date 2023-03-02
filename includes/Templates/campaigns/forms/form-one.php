@@ -565,21 +565,27 @@
             </label>
             <select name="gk-medical-document" id="gk-medical-document" class="give-donor-dashboard-text-control__input">
                 <option value="image"><?php echo __( 'Image', 'give-kindness' ); ?></option>
-                <option value="file"><?php echo __( 'File', 'give-kindness' ); ?></option>
+                <option value="pdf"><?php echo __( 'File', 'give-kindness' ); ?></option>
             </select>  
         </div>
     </div>
 
+    <div class="give-kindness-media-items give-kindness-hide" id="give-kindness-media-items">
+    <!--
+        Image or file upload here
+    --->
+    </div>    
+
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <form id="gk-medical-document-upload-form" class="gk-uploader">
-                <!-- <input id="gk-medical-document-upload" type="file" name="fileUpload" accept="application/msword, application/pdf, image/*"> -->
                 <label for="gk-medical-document-upload" id="gk-file-drag">
                     <div id="gk-start">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         <div>
                             <?php echo __( 'Select a file or drag here', 'give-kindness' ); ?>
                         </div>
+                        <span id="gk-medical-document-upload-btn" class="gk-btn btn-primary"><?php echo __( 'Select a file', 'give-kindness' ); ?></span>
                     </div>
                 </label>
             </form>

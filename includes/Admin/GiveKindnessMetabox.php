@@ -109,7 +109,7 @@ class GiveKindnessMetabox {
     $government_assistance = get_post_meta( $campaign_id, 'government_assistance', true );
     $government_assistance_details = get_post_meta( $campaign_id, 'government_assistance_details', true );
     $campaign_boosting = get_post_meta( $campaign_id, 'campaign_boosting', true );
-
+    $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
     ?>
 
       <p>
@@ -147,6 +147,39 @@ class GiveKindnessMetabox {
       </p>
       <p>
         <strong>Campaign boosting:</strong> <?php echo esc_attr($campaign_boosting); ?>
+      </p>
+
+      <p>
+        <strong>Medical document:</strong> 
+
+        <?php 
+          $attach_ids = explode(",", $medical_document);
+          if( ! empty( $attach_ids ) && $medical_document_type == "image" ) {
+            foreach( $attach_ids as $attach_id) {
+              $image = wp_get_attachment_image_src( $attach_id, 'full' );
+              $image_url = $image[0];
+              ?>
+              <img src="<?php echo esc_url($image_url); ?>" with="100" height="100"/>
+              <?php
+            }
+          }
+
+          if( ! empty( $attach_ids ) && $medical_document_type == "pdf" ) {
+            foreach( $attach_ids as $attach_id ) {
+              $attach_url = wp_get_attachment_url( $attach_id );
+
+              ?>
+              <object data="<?php echo esc_url( $attach_url ); ?>" type="application/pdf" width="150px" height="150px">
+                <embed src="<?php echo esc_url( $attach_url ); ?>" type="application/pdf">
+                  <p>This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo esc_url( $attach_url ); ?>" download>Download PDF</a>.</p>
+                </embed>
+              </object>
+              <?php
+
+            }
+          }
+        ?>
+
       </p>
         
     <?php
