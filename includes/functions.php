@@ -157,7 +157,6 @@ add_action('wp_footer', [ new Give_Kindness\User(), 'check_email_verification' ]
  * @param string, $object
  * @return string
  */
-add_action( 'init', 'gk_user_verification_auto_login' );
 function gk_user_verification_auto_login(){
     if (
         isset($_REQUEST['gk_user_verification_action']) && trim($_REQUEST['gk_user_verification_action']) == 'autologin' &&
@@ -191,6 +190,7 @@ function gk_user_verification_auto_login(){
         }
     }
 }
+add_action( 'init', 'gk_user_verification_auto_login' );
 
 /**
  * Add dummy donations
@@ -223,7 +223,6 @@ function gk_dummy_donations() {
     }
 
 }
-
 add_action( 'gk_dummy_donations', 'gk_dummy_donations' );
 
 /**
@@ -243,7 +242,6 @@ function give_kindness_get_admin_post_id() {
 	return $post_id;
 }
 
-add_action( 'wp_enqueue_scripts', 'fontawesome_cdn_enqueue' );
 /**
  * Register and load font awesome CSS files using a CDN.
  */
@@ -255,6 +253,7 @@ function fontawesome_cdn_enqueue() {
 		'5.3.0' 
 	);
 }
+add_action( 'wp_enqueue_scripts', 'fontawesome_cdn_enqueue' );
 
 /**
  * Allow upload media this specific user
@@ -274,3 +273,19 @@ function give_kindness_allow_user_media()
 
 }
 add_action( 'admin_init', 'give_kindness_allow_user_media' );
+
+/**
+ * For show current user attachment
+ *
+ * @param array $query
+ * @return array
+ */
+function give_kindness_show_current_user_attachments( $query = array() )
+{
+    $user_id = get_current_user_id();
+    if( $user_id && ! current_user_can('manage_options') ) {
+        $query['author'] = $user_id;
+    }
+    return $query;
+}
+add_filter( 'ajax_query_attachments_args', 'give_kindness_show_current_user_attachments', 10, 1 );
