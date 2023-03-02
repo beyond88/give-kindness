@@ -255,3 +255,22 @@ function fontawesome_cdn_enqueue() {
 		'5.3.0' 
 	);
 }
+
+/**
+ * Allow upload media this specific user
+ *
+ */
+function give_kindness_allow_user_media()
+{
+    global $wp_roles;
+    $roles = $wp_roles->get_names();
+    $create_role_names = ['administrator', 'editor', 'author', 'contributor', 'subscriber', 'customer', 'shop_manager', 'give_donor', 'give_worker', 'give_accountant', 'give_manager', 'translator'];
+    foreach ( $create_role_names as $create_role_name ) {
+        if( array_key_exists( $create_role_name, $roles) ) {
+            $customer = get_role( $create_role_name );
+            $customer->add_cap('upload_files');
+        }
+    }
+
+}
+add_action( 'admin_init', 'give_kindness_allow_user_media' );
