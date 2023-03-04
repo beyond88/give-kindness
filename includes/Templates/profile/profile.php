@@ -137,6 +137,7 @@
 
    <?php if( ! empty( $myProfile['addresses'] ) ) { ?>
    <?php foreach ( $myProfile['addresses']['billing'] as $address ){ ?>
+   <?php $country_code = isset($address['country']) ? $address['country'] : 'SG'; ?>
    <div class="give-donor-dashboard-heading">
       <?php echo __('Primary Address', 'give-kindness');?>
    </div>
@@ -149,7 +150,7 @@
          <div class="give_kindness-form-control give_kindness-country">
             <div class="give_kindness-form-item">
                <div class="selected-country-name">
-                  <?php echo give_get_country_name_by_key( $address['country'] ); ?>
+                  <?php echo give_get_country_name_by_key( $country_code ); ?>
                </div>
                <div class="give_kindness-form-child-item">
                   <div class="" style="display: inline-block;">
@@ -285,7 +286,7 @@
                   </div>
                   <div class="give_kindness-form-child-item">
                      <div class="" style="display: inline-block;">
-                        <input autocapitalize="none" autocomplete="off" autocorrect="off" id="gk-country" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="<?php echo $address['country']; ?>" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
+                        <input autocapitalize="none" autocomplete="off" autocorrect="off" id="gk-country" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="<?php if(isset($address['country'])) echo $address['country']; else echo ''; ?>" style="box-sizing: content-box; width: 2px; background: 0px center; border: 0px; font-size: inherit; opacity: 1; outline: 0px; padding: 0px; color: inherit;">
                         <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: Arial; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
                      </div>
                   </div>
