@@ -8,6 +8,16 @@
          <?php give_kindness_templates_part( 'campaigns/campaigns', $object ); ?>
          <?php give_kindness_templates_part( 'donations/donation-history', $object ); ?>
          <?php give_kindness_templates_part( 'profile/profile', $object ); ?>
+
+         <!--
+         |
+         | Update campaign template
+         |
+         -->
+         <?php give_kindness_templates_part( 'update-campaign/view-donations', $object ); ?>
+         <?php give_kindness_templates_part( 'update-campaign/edit-campaign', $object ); ?>
+         <?php give_kindness_templates_part( 'update-campaign/fundraisers', $object ); ?>
+         <?php give_kindness_templates_part( 'update-campaign/milestones', $object ); ?>
       </div>
    </div>
 </div>

@@ -2167,11 +2167,14 @@ textarea:focus,
 
 #give-kindness-campaign-form-two,
 #give-kindness-campaign-form-three,
-#give-kindness-campaign-form-four
+#give-kindness-campaign-form-four,
 /* #give-kindness-edit-campaign-form-two, */
 /* #give-kindness-edit-campaign-form-three, */
-/* #give-kindness-edit-campaign-form-four  */
-{
+/* #give-kindness-edit-campaign-form-four  */ 
+#give_kindness-edit-campaign,
+#give_kindness-view-donations,
+#give_kindness-campaign-milestones,
+#give_kindness-campaign-fundraisers {
   display: none;
 }
 
@@ -2474,4 +2477,8 @@ textarea:focus,
   position: absolute;
   right: 4px;
   top: 0px;
+}
+
+#give-kindness-campaign-edit-menu {
+  display: none;
 }
