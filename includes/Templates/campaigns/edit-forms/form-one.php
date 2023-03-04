@@ -2,10 +2,10 @@
     <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <label class="give-donor-dashboard-text-control__label" for="gke-campaign-name">
-                <?php echo __('Campaign name*', 'give-kindness'); ?>
+                <?php echo __('Campaign title*', 'give-kindness'); ?>
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gke-campaign-name" type="text" placeholder="<?php echo __('Campaign name', 'give-kindness'); ?>">
+                <input id="gke-campaign-name" type="text" placeholder="<?php echo __('Campaign title', 'give-kindness'); ?>">
             </div>
         </div>
     </div>

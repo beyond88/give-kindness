@@ -1453,6 +1453,10 @@ function editCampaign(dat){
     let currentTabContent = jQuery(this).data('tab-id');
     if( typeof currentTabContent != "undefined" ){   
       jQuery('#'+currentTabContent).hide();
+      if( currentTabContent == 'give_kindness-edit-campaign'){
+        jQuery(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
+        jQuery(this).addClass("give-donor-dashboard-tab-link--is-active");
+      }
     }
   });
 
@@ -1539,33 +1543,34 @@ function editCampaign(dat){
 
 }
 
-function showMenu(show_menu, hide_menu, show_menu_item = null, show_content = null ) {
+/**************************
+*  
+* Forcefully show/hide menu
+* 
+***************************/
+function showMenu(show_menu, hide_menu, show_menu_item = null, show_content = null, active_menu = null ) {
 
   jQuery(show_menu).show();
   jQuery(hide_menu).hide();
 
-  // $(".give-donor-dashboard-tab-link").removeClass("give-donor-dashboard-tab-link--is-active");
-  // $(this).addClass("give-donor-dashboard-tab-link--is-active");
-  // const targetTabContent = $(this).data('tab-id');
-  // $(".give-donor-dashboard-tab-link").each(function(index, item) {
-  //   let currentTabContent = $(this).data('tab-id');
-  //   if( typeof currentTabContent != "undefined" ){   
-  //     if( currentTabContent === targetTabContent ){
-  //       $('#'+currentTabContent).show();
-  //     } else {
-  //       if( typeof targetTabContent !== "undefined"){
-  //         $('#'+currentTabContent).hide();
-  //       }
-  //     }
-  //   }
-  // });
-
   if( show_menu_item != null ){
-
+    jQuery(show_menu_item).show();
   }
 
   if( show_content != null ){
     jQuery(show_content).show();
+  }
+
+  if( active_menu != null ){
+    const targetTabContent = active_menu;
+    jQuery(`${show_menu} .give-donor-dashboard-tab-link`).each(function(index, item) {
+      let currentTabContent = jQuery(this).data('tab-id');
+      if( typeof currentTabContent != "undefined" ){   
+        if( currentTabContent === targetTabContent ){
+          jQuery(this).addClass('give-donor-dashboard-tab-link give-donor-dashboard-tab-link--is-active');
+        } 
+      }
+    });
   }
 
 }
