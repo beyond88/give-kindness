@@ -278,12 +278,6 @@ class Helpers
                         ],
                         '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),
                         '_give_from_name' => sanitize_text_field( $request['benefiary_name'] ),
-                        '_give_from_email' => sanitize_text_field( $request['campaign_email'] ),
-                        '_give_new-donation_email_message' => sanitize_email( $request['campaign_email'] ),
-                        '_give_new-donation_recipient' => [
-                            'email' => sanitize_email( $request['campaign_email'] ),
-                        ],
-
                     ],
                 ]
             );
@@ -296,7 +290,6 @@ class Helpers
             update_post_meta( $campaign_id, 'beneficier_age', sanitize_text_field( $request['beneficier_age'] ) );
             update_post_meta( $campaign_id, 'medical_condition', sanitize_text_field( $request['medical_condition'] ) );
             update_post_meta( $campaign_id, 'medical_document_type', sanitize_text_field( $request['medical_document_type'] ) );
-            update_post_meta( $campaign_id, 'campaign_email', sanitize_text_field( $request['campaign_email'] ) );
             update_post_meta( $campaign_id, 'campaign_detail', sanitize_text_field( $request['campaign_detail'] ) );
             update_post_meta( $campaign_id, 'campaign_country', sanitize_text_field( $request['campaign_country'] ) );
             update_post_meta( $campaign_id, 'government_assistance', sanitize_text_field( $request['government_assistance'] ) );
