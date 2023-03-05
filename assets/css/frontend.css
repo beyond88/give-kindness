@@ -1433,6 +1433,8 @@ img.emoji {
     line-height: 1.4;
   }
 }
+
+.give-donor-dashboard-tab-link i, 
 .give-donor-dashboard-tab-link svg {
   margin-right: 8px;
 }
@@ -2174,7 +2176,8 @@ textarea:focus,
 #give_kindness-edit-campaign,
 #give_kindness-view-donations,
 #give_kindness-campaign-milestones,
-#give_kindness-campaign-fundraisers {
+#give_kindness-campaign-fundraisers,
+#give_kindness-donations-preset {
   display: none;
 }
 
@@ -2494,4 +2497,20 @@ textarea:focus,
 
 .give-kindness-campaign-action-delete {
   color: red;
+}
+
+.gk-margin-top-20 {
+  margin-top: 20px;
+}
+
+.gk-margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.gk-margin-left-20 {
+  margin-left: 20px;
+}
+
+.gk-margin-right-20 {
+  margin-right: 20px;
 }
