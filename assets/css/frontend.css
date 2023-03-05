@@ -2482,3 +2482,16 @@ textarea:focus,
 #give-kindness-campaign-edit-menu {
   display: none;
 }
+
+.give-kindness-forcefully-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.give-kindness-campaign-status {
+}
+
+.give-kindness-campaign-action-delete {
+  color: red;
+}
