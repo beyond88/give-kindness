@@ -9,7 +9,7 @@
         <div class="give-donor-dashboard-table__column">Amount</div>
     </div>
     <div class="give-donor-dashboard-table__rows">
-        <div class="give-donor-dashboard-table__row">
+        <!-- <div class="give-donor-dashboard-table__row">
             <div class="give-donor-dashboard-table__column">1</div>
             <div class="give-donor-dashboard-table__column">Stripe</div>
             <div class="give-donor-dashboard-table__column">Single</div>
@@ -18,9 +18,9 @@
             </div>
             <div class="give-donor-dashboard-table__column">Test Form</div>
             <div class="give-donor-dashboard-table__column">$25.00</div>
-        </div>
+        </div> -->
+        
     </div>
-    <div class="give-donor-dashboard-table__footer">
-    </div>
+    <div class="give-donor-dashboard-table__footer"></div>
     </div>
 </div>

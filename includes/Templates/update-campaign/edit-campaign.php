@@ -1,13 +1,14 @@
 <div class="give-donor-dashboard-tab-content" id="give_kindness-edit-campaign" data-tab-content="give_kindness-edit-campaign">
     <div class="give-donor-dashboard-heading give-kindness-forcefully-flex">
         <div class="give-kindness-campaign-status">
-            <?php echo __('Campaign status: draft', 'give-kindness'); ?>
+            <?php echo __('Campaign status: ', 'give-kindness'); ?> <span id="gke-campaign-status"></span>
         </div>
         <div class="give-kindness-campaign-action-delete">
             <?php echo __("DELETE", 'give-kindness'); ?>
         </div>
    </div>
    <div class="give-donor-dashboard-divider"></div>
+   
     <div id="give-kindness-edit-campaign-form-one">
         <div class="give-donor-dashboard-field-row">
             <div class="give-donor-dashboard-text-control">
@@ -599,17 +600,7 @@
                 </form>
             </div>
         </div>
-        
-        <!-- <div class="give-donor-dashboard-field-row">
-            <div class="give-donor-dashboard-text-control give-kindness-field-required">
-                <?php echo __('**All star marked fields are required**', 'give-kindness'); ?>
-            </div>
-            <div class="give-donor-dashboard-text-control give-kindness-form-next">
-                <button type="button" id="form-next" class="give-donor-dashboard-button give-donor-dashboard-button--primary give-kindness-form-next-btn" onClick="showHideContent('#give-kindness-edit-campaign-form-one', '#give-kindness-edit-campaign-form-two')">
-                    <?php echo __('Next', 'give-kindness'); ?> &raquo;
-                </button>   
-            </div>
-        </div> -->
+
     </div>
 
     <div id="give-kindness-edit-campaign-form-two">
@@ -630,14 +621,13 @@
 
     <div id="give-kindness-edit-campaign-form-three">
 
-
         <div class="give-donor-dashboard-field-row">
             <div class="give-donor-dashboard-text-control">
                 <label class="give-donor-dashboard-text-control__label" for="gke-campaign-country">
                     <?php echo __('Country', 'give-kindness'); ?>
                 </label>
                 <select name="gke-campaign-country" id="gke-campaign-country" class="give-donor-dashboard-text-control__input">
-                <option value="Afghanistan">Afghanistan</option>
+                    <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
@@ -885,7 +875,7 @@
             </div>
         </div>
 
-        <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-field-row gk-margin-top-20">
             <div class="give-donor-dashboard-text-control">
                 <label class="give-donor-dashboard-text-control__label" for="gke-government-assistance">
                     <?php echo __('Has any government assistance been offered to the person who needs help?', 'give-kindness'); ?>
@@ -894,7 +884,7 @@
                     <button type="button" id="gke-government-assistance-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                         <?php echo __('No', 'give-kindness'); ?>
                     </button>
-                    <button type="button" id="gke-government-assistance-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
+                    <button type="button" id="gke-government-assistance-yes" class="give-donor-dashboard-button give-donor-dashboard-button--default" data-button-value="Yes">
                         <?php echo __('Yes', 'give-kindness'); ?>
                     </button>
                     <input type="hidden" name="gke-government-assistance" id="gke-government-assistance" value="No" />
@@ -922,12 +912,13 @@
                     <button type="button" id="gke-campaign-boosting-no" class="give-donor-dashboard-button give-donor-dashboard-button--primary" data-button-value="No">
                         <?php echo __('No', 'give-kindness'); ?>
                     </button>
-                    <button type="button" id="gke-campaign-boosting-yes" class="give-donor-dashboard-button--default" data-button-value="Yes">
+                    <button type="button" id="gke-campaign-boosting-yes" class="give-donor-dashboard-button give-donor-dashboard-button--default" data-button-value="Yes">
                         <?php echo __('Yes', 'give-kindness'); ?>
                     </button>
                     <input type="hidden" name="gke-campaign-boosting" id="gke-campaign-boosting" value="No" />
                 </div>
             </div>
         </div>
+
     </div>
 </div>

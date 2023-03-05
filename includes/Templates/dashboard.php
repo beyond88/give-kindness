@@ -18,6 +18,7 @@
          <?php give_kindness_templates_part( 'update-campaign/edit-campaign', $object ); ?>
          <?php give_kindness_templates_part( 'update-campaign/fundraisers', $object ); ?>
          <?php give_kindness_templates_part( 'update-campaign/milestones', $object ); ?>
+         <?php give_kindness_templates_part( 'update-campaign/donation-preset-amounts', $object ); ?>
       </div>
    </div>
 </div>
