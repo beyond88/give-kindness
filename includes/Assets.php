@@ -117,7 +117,8 @@ class Assets {
             'saveDraft' => __('Save draft', 'give-kindness'),
             'submitForApproval' => __('Submit for approval', 'give-kindness'),
             'signUp' => __('Sign Up', 'give-kindness'),
-            'dashboardURL' => $page_url
+            'dashboardURL' => $page_url,
+            'saveSeeCampaign' => __('Save and see my campaign', 'give-kindness'),
         ] );
     }
 }

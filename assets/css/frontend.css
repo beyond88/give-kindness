@@ -1434,7 +1434,7 @@ img.emoji {
   }
 }
 
-.give-donor-dashboard-tab-link i, 
+.give-donor-dashboard-tab-link i,
 .give-donor-dashboard-tab-link svg {
   margin-right: 8px;
 }
@@ -2513,4 +2513,20 @@ textarea:focus,
 
 .gk-margin-right-20 {
   margin-right: 20px;
+}
+
+.gk-margin-top-10 {
+  margin-top: 10px;
+}
+
+.gk-margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.gk-margin-left-10 {
+  margin-left: 10px;
+}
+
+.gk-margin-right-10 {
+  margin-right: 10px;
 }
