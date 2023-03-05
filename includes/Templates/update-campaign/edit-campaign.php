@@ -1,4 +1,13 @@
 <div class="give-donor-dashboard-tab-content" id="give_kindness-edit-campaign" data-tab-content="give_kindness-edit-campaign">
+    <div class="give-donor-dashboard-heading give-kindness-forcefully-flex">
+        <div class="give-kindness-campaign-status">
+            <?php echo __('Campaign status: draft', 'give-kindness'); ?>
+        </div>
+        <div class="give-kindness-campaign-action-delete">
+            <?php echo __("DELETE", 'give-kindness'); ?>
+        </div>
+   </div>
+   <div class="give-donor-dashboard-divider"></div>
     <div id="give-kindness-edit-campaign-form-one">
         <div class="give-donor-dashboard-field-row">
             <div class="give-donor-dashboard-text-control">
