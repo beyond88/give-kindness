@@ -55,6 +55,7 @@
         if( typeof currentTabContent != "undefined" ){   
           if( currentTabContent === targetTabContent ){
             $('#'+currentTabContent).show();
+            $(this).addClass("give-donor-dashboard-tab-link--is-active");
           } else {
             if( typeof targetTabContent !== "undefined"){
               $('#'+currentTabContent).hide();
@@ -75,7 +76,6 @@
         * 
         ---------------------------------------------------*/
       if( $(this).parent().hasClass('give-donor-dashboard-logout') ){
-        console.log('checked', $(this).parent().hasClass('give-donor-dashboard-logout'));
         if( ! $('.give-donor-dashboard-desktop-layout__tab-menu').children().hasClass('give-donor-dashboard-logout-modal') ){
           $(this).parent().before(logoutModal);
         }
@@ -1559,18 +1559,6 @@ function showMenu(show_menu, hide_menu, show_menu_item = null, show_content = nu
 
   if( show_content != null ){
     jQuery(show_content).show();
-  }
-
-  if( active_menu != null ){
-    const targetTabContent = active_menu;
-    jQuery(`${show_menu} .give-donor-dashboard-tab-link`).each(function(index, item) {
-      let currentTabContent = jQuery(this).data('tab-id');
-      if( typeof currentTabContent != "undefined" ){   
-        if( currentTabContent === targetTabContent ){
-          jQuery(this).addClass('give-donor-dashboard-tab-link give-donor-dashboard-tab-link--is-active');
-        } 
-      }
-    });
   }
 
 }
