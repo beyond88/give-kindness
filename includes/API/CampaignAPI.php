@@ -82,7 +82,6 @@ class CampaignAPI
         return new WP_REST_Response($response, 123);
     }
 
-
     /**
     * Edit campaign
     * 
@@ -120,6 +119,18 @@ class CampaignAPI
         $response['status'] = 409;
         $response['message'] = __( "Something went wrong!", "give-kindness" );
         return new WP_REST_Response( $response, 123 );
+
+    }
+
+/**
+    * Edit campaign
+    * 
+    * @param array
+    * @return bool
+    */
+    public function get_donations( WP_REST_Request $request ) {
+
+        return wp_send_json('Hello world');
 
     }
 

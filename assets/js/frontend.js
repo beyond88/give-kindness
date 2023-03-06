@@ -1330,6 +1330,7 @@
       '#gke-beneficiary-country',
       '#gke-beneficiary-age',
       '#gke-medical-condition',
+      '#gke-campaign-email',
       '#gke-medical-document',
       '#gke-campaign-id'
     ]
@@ -1400,6 +1401,27 @@
     } else {
       alert('Please check required fields or invalid data');
     }
+
+  });
+
+  /************************
+  * 
+  * View donations
+  *
+  * == It will fire when 
+  * == click on view-donation menu 
+  * 
+  ************************/
+  $(document).on('click', '.give-donor-dashboard-tab-link', async function() {
+    const targetTabContent = 'give_kindness-view-donations';
+    $(".give-donor-dashboard-tab-link").each(function(index, item) {
+      let currentTabContent = $(this).data('tab-id');
+      if( typeof currentTabContent != "undefined" ) {
+        if( currentTabContent === targetTabContent ){
+
+        }
+      }
+    });
 
   });
 

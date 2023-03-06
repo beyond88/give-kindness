@@ -79,6 +79,12 @@ class GiveKindnessAPI
       'permission_callback' => '__return_true'
     ]);
 
+    register_rest_route( $this->restBase, '/donations', [
+      'methods'  => WP_REST_SERVER::READABLE,
+      'callback' => [ $this->campaignApi, 'get_donations' ],
+      'permission_callback' => '__return_true'
+    ]);
+
   }
 
   /**
