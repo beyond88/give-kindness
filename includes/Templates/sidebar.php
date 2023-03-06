@@ -39,14 +39,15 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             <?php echo __(' Back to campaign', 'give-kindness'); ?>
         </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-statistics">
+            <i class="fas fa-chart-bar"></i>
+            <?php echo __('Statistics', 'give-kindness'); ?>
+        </a>
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-donations">
             <i class="fa fa-solid fa-list"></i>
             <?php echo __('View donations', 'give-kindness'); ?>
         </a>
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-edit-campaign">
-            <!-- <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" class="svg-inline--fa fa-calendar-alt fa-w-14 fa-fw " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path>
-            </svg> -->
             <i class="fas fa-edit"></i>
             <?php echo __(' Edit', 'give-kindness'); ?>
         </a>
@@ -58,9 +59,25 @@
             <i class="fa fa-history" aria-hidden="true"></i>
             <?php echo __('Milestones', 'give-kindness'); ?>
         </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-chat">
+            <i class="far fa-comment-dots"></i>
+            <?php echo __('Chat preset', 'give-kindness'); ?>
+        </a>
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-donations-preset">
             <i class="fas fa-money-bill-alt" aria-hidden="true"></i>
             <?php echo __('Donation preset amounts', 'give-kindness'); ?>
+        </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-share">
+            <i class="fas fa-share-alt-square"></i>
+            <?php echo __('Share', 'give-kindness'); ?>
+        </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-docs">
+            <i class="far fa-file-word"></i>
+            <?php echo __('Docs', 'give-kindness'); ?>
+        </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-widget">
+            <i class="fas fa-th-large"></i>
+            <?php echo __('Widget', 'give-kindness'); ?>
         </a>
     </div>
 </div>
