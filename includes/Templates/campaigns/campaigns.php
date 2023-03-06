@@ -1,5 +1,9 @@
 <?php 
     $campaigns = $object->give_kindness_campaigns();
+
+    // echo "<pre>";
+    // print_r($campaigns);
+    // echo "</pre>";
 ?>
 <div class="give-donor-dashboard-tab-content" id="give_kindness-campaigns" data-tab-content="give_kindness-campaigns">
     <div class="give-donor-dashboard-heading give-donor-dashboard-campaign-heading">
@@ -16,6 +20,9 @@
     <div class="give-donor-dashboard-table">
         <div class="give-donor-dashboard-table__header">
             <div class="give-donor-dashboard-table__column"><?php echo __('Campaign','give-kindness');?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Goal','give-kindness');?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Donations','give-kindness');?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Revenue','give-kindness');?></div>
             <div class="give-donor-dashboard-table__column"><?php echo __('Date','give-kindness');?></div>
             <div class="give-donor-dashboard-table__column"><?php echo __('Status','give-kindness');?></div>
         </div>
@@ -23,9 +30,25 @@
         <div class="give-donor-dashboard-table__rows">
             <?php if( $campaigns->have_posts() ) : ?>
             <?php foreach( $campaigns->posts as $campaign ) : ?>
+            <?php 
+                $goal_stats = give_goal_progress_stats( $campaign->ID );
+                $goal = $goal_stats['goal'];
+                $donations = give_get_form_sales_stats( $campaign->ID );
+                $revenue = $goal_stats['actual'];
+
+            ?>
             <div class="give-donor-dashboard-table__row">
                 <div class="give-donor-dashboard-table__column">
                     <?php echo $campaign->post_title; ?>
+                </div>
+                <div class="give-donor-dashboard-table__column">
+                    <?php echo $goal; ?>
+                </div>
+                <div class="give-donor-dashboard-table__column">
+                    <?php echo $donations; ?>
+                </div>
+                <div class="give-donor-dashboard-table__column">
+                    <?php echo $revenue; ?>
                 </div>
                 <div class="give-donor-dashboard-table__column">
                     <div class="give-donor-dashboard-table__donation-date">

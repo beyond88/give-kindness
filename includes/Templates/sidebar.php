@@ -39,13 +39,13 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             <?php echo __(' Back to campaign', 'give-kindness'); ?>
         </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-statistics">
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-statistics">
             <i class="fas fa-chart-bar"></i>
-            <?php echo __('Statistics', 'give-kindness'); ?>
-        </a>
+            <?php echo __(' Statistics', 'give-kindness'); ?>
+        </a> -->
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-donations">
             <i class="fa fa-solid fa-list"></i>
-            <?php echo __('View donations', 'give-kindness'); ?>
+            <?php echo __( 'View donations', 'give-kindness'); ?>
         </a>
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-edit-campaign">
             <i class="fas fa-edit"></i>
@@ -55,29 +55,29 @@
             <i class="fa fa-users" aria-hidden="true"></i>
             <?php echo __(' Fundraisers', 'give-kindness'); ?>
         </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-milestones">
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-milestones">
             <i class="fa fa-history" aria-hidden="true"></i>
             <?php echo __('Milestones', 'give-kindness'); ?>
-        </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-chat">
+        </a> -->
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-chat">
             <i class="far fa-comment-dots"></i>
             <?php echo __('Chat preset', 'give-kindness'); ?>
-        </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-donations-preset">
+        </a> -->
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-donations-preset">
             <i class="fas fa-money-bill-alt" aria-hidden="true"></i>
             <?php echo __('Donation preset amounts', 'give-kindness'); ?>
-        </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-share">
+        </a> -->
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-share">
             <i class="fas fa-share-alt-square"></i>
             <?php echo __('Share', 'give-kindness'); ?>
-        </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-docs">
+        </a> -->
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-docs">
             <i class="far fa-file-word"></i>
             <?php echo __('Docs', 'give-kindness'); ?>
-        </a>
-        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-widget">
+        </a> -->
+        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-widget">
             <i class="fas fa-th-large"></i>
             <?php echo __('Widget', 'give-kindness'); ?>
-        </a>
+        </a> -->
     </div>
 </div>

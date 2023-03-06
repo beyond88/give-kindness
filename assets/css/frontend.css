@@ -2177,7 +2177,13 @@ textarea:focus,
 #give_kindness-view-donations,
 #give_kindness-campaign-milestones,
 #give_kindness-campaign-fundraisers,
-#give_kindness-donations-preset {
+#give_kindness-donations-preset, 
+
+#give_kindness-campaign-statistics,
+#give_kindness-campaign-docs,
+#give_kindness-campaign-chat,
+#give_kindness-campaign-share,
+#give_kindness-campaign-widget {
   display: none;
 }
 
