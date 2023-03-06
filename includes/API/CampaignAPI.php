@@ -122,15 +122,30 @@ class CampaignAPI
 
     }
 
-/**
-    * Edit campaign
+    /**
+    * Get donations by campaign id
     * 
     * @param array
-    * @return bool
+    * @return array
     */
     public function get_donations( WP_REST_Request $request ) {
 
-        return wp_send_json('Hello world');
+        $campaign_id = sanitize_text_field( $request['campaign_id'] );
+        $paged = sanitize_text_field( $request['paged'] );
+
+		// $args = [
+		// 	'output'     => 'payments',
+		// 	'number'     => 30,
+		// 	'page'       => isset( $paged ) ? $paged : null,
+		// 	'give_forms' => $campaign_id,
+		// ];
+        // $p_query = new \Give_Payments_Query( $args );
+        $post = wp_remote_get(
+            'http://wordpress.test/wp-json/give-api/v2/admin/donations?page=1&perPage=30&sortColumn=id&sortDirection=desc&locale=en-US&testMode=true&form=152
+            '
+        );
+
+        return $post;
 
     }
 

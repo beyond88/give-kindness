@@ -80,7 +80,7 @@ class GiveKindnessAPI
     ]);
 
     register_rest_route( $this->restBase, '/donations', [
-      'methods'  => WP_REST_SERVER::READABLE,
+      'methods'  => WP_REST_SERVER::CREATABLE,
       'callback' => [ $this->campaignApi, 'get_donations' ],
       'permission_callback' => '__return_true'
     ]);

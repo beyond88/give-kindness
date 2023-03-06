@@ -47,7 +47,7 @@
             <div class="give-donor-dashboard-table__column">Name</div>
             <div class="give-donor-dashboard-table__column">Amount</div>
         </div>
-        <div class="give-donor-dashboard-table__rows">
+        <div class="give-donor-dashboard-table__rows" id="give-kindness-campaign-donations" data-camapign-id="">
             <!-- <div class="give-donor-dashboard-table__row">
                 <div class="give-donor-dashboard-table__column">1</div>
                 <div class="give-donor-dashboard-table__column">Stripe</div>
