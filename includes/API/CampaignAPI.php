@@ -1,9 +1,11 @@
 <?php
+
 namespace Give_Kindness\API;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use Give_Kindness\Helpers; 
+use Give_Kindness\API\Handler\Donations;
 
 class CampaignAPI
 {
@@ -128,24 +130,18 @@ class CampaignAPI
     * @param array
     * @return array
     */
-    public function get_donations( WP_REST_Request $request ) {
+    public function get_donations( WP_REST_Request $request ): WP_REST_Response
+    {
+        // $donations = new Donations( $request );
+        // return $donations->handleRequest();
 
-        $campaign_id = sanitize_text_field( $request['campaign_id'] );
-        $paged = sanitize_text_field( $request['paged'] );
-
-		// $args = [
-		// 	'output'     => 'payments',
-		// 	'number'     => 30,
-		// 	'page'       => isset( $paged ) ? $paged : null,
-		// 	'give_forms' => $campaign_id,
-		// ];
-        // $p_query = new \Give_Payments_Query( $args );
-        $post = wp_remote_get(
-            'http://wordpress.test/wp-json/give-api/v2/admin/donations?page=1&perPage=30&sortColumn=id&sortDirection=desc&locale=en-US&testMode=true&form=152
-            '
+        error_log(new Donations( $request ));
+        // return new Donations( $request );
+        return new WP_REST_Response(
+            [
+                new Donations( $request )
+            ]
         );
-
-        return $post;
 
     }
 

@@ -1428,7 +1428,7 @@
           headers: {'X-WP-Nonce': give_kindness.apiNonce },
           url: give_kindness.giveKindnessApiURL+'donations',
           data: {
-            campaign_id: campaign_id
+            form: campaign_id
           },
           success: function(data) {
             console.log("response==>", data);
