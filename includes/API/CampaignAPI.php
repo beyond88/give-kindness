@@ -4,8 +4,8 @@ namespace Give_Kindness\API;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use Give_Kindness\Helpers; 
-use Give_Kindness\API\Handler\Donations;
+use Give_Kindness\Helpers;
+use Give_Kindness\API\Donations; 
 
 class CampaignAPI
 {
@@ -18,7 +18,7 @@ class CampaignAPI
     /**
      * Initializes a singleton instance
      *
-     * @return \MyDashboard
+     * @return \CampaignAPI
      */
     public static function init() {
         static $instance = false;
@@ -132,14 +132,12 @@ class CampaignAPI
     */
     public function get_donations( WP_REST_Request $request ): WP_REST_Response
     {
-        // $donations = new Donations( $request );
-        // return $donations->handleRequest();
+        $donations = new Donations( $request );
 
-        error_log(new Donations( $request ));
-        // return new Donations( $request );
+        //error_log(new onations( $request ) );
         return new WP_REST_Response(
             [
-                new Donations( $request )
+                $donations->get_data()
             ]
         );
 
