@@ -1431,8 +1431,8 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log("response==>", data);
-            $("#give-kindness-campaign-donations").html(data);
+            console.log("response==>", data.items);
+            //$("#give-kindness-campaign-donations").html(data);
           },
           error: function (error) {
             console.log('fail==>', error);
