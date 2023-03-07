@@ -296,6 +296,7 @@ class Helpers
             update_post_meta( $campaign_id, 'government_assistance_details', sanitize_text_field( $request['government_assistance_details'] ) );
             update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
             update_post_meta( $campaign_id, 'medical_document', sanitize_text_field( $request['medical_document_file'] ) );
+            update_post_meta( $campaign_id, 'campaign_email',  sanitize_email( $request['campaign_email'] ) );
 
             return $campaign_id;
 

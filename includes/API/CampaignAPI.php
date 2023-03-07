@@ -1,9 +1,11 @@
 <?php
+
 namespace Give_Kindness\API;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
 use Give_Kindness\Helpers; 
+use Give_Kindness\API\Handler\Donations;
 
 class CampaignAPI
 {
@@ -82,7 +84,6 @@ class CampaignAPI
         return new WP_REST_Response($response, 123);
     }
 
-
     /**
     * Edit campaign
     * 
@@ -120,6 +121,27 @@ class CampaignAPI
         $response['status'] = 409;
         $response['message'] = __( "Something went wrong!", "give-kindness" );
         return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Get donations by campaign id
+    * 
+    * @param array
+    * @return array
+    */
+    public function get_donations( WP_REST_Request $request ): WP_REST_Response
+    {
+        // $donations = new Donations( $request );
+        // return $donations->handleRequest();
+
+        error_log(new Donations( $request ));
+        // return new Donations( $request );
+        return new WP_REST_Response(
+            [
+                new Donations( $request )
+            ]
+        );
 
     }
 

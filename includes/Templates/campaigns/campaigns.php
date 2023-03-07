@@ -140,4 +140,3 @@
 </div>
 
 <?php give_kindness_templates_part('campaigns/create-campaign', $object); ?>
-<?php //give_kindness_templates_part('campaigns/edit-campaign', $object); ?>

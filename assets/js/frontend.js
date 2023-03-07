@@ -770,8 +770,6 @@
       data: requestData.data,
       success: function(data) {
 
-        console.log('response ==>', data);
-
         if( requestData.btn ){
           requestData.btn.attr('disabled', false);
         }
@@ -1330,8 +1328,8 @@
       '#gke-beneficiary-country',
       '#gke-beneficiary-age',
       '#gke-medical-condition',
-      '#gke-medical-document',
-      '#gke-campaign-id'
+      '#gke-campaign-email',
+      '#gke-medical-document'
     ]
 
     let status = true; 
@@ -1399,6 +1397,49 @@
       
     } else {
       alert('Please check required fields or invalid data');
+    }
+
+  });
+
+  /************************
+  * 
+  * View donations
+  *
+  * == It will fire when 
+  * == click on view-donation menu 
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-campaign-edit-menu .give-donor-dashboard-tab-link', async function() {
+
+    const targetTabContent = 'give_kindness-view-donations';
+    let currentTabContent = $(this).data('tab-id');
+
+    if( typeof currentTabContent != "undefined" ) {
+      if( currentTabContent === targetTabContent ) {
+
+        let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+        if( campaign_id == '' ) {
+          return; 
+        }
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          headers: {'X-WP-Nonce': give_kindness.apiNonce },
+          url: give_kindness.giveKindnessApiURL+'donations',
+          data: {
+            form: campaign_id
+          },
+          success: function(data) {
+            console.log("response==>", data);
+            $("#give-kindness-campaign-donations").html(data);
+          },
+          error: function (error) {
+            console.log('fail==>', error);
+          }
+        });
+
+      }
     }
 
   });
@@ -1483,7 +1524,6 @@ function editCampaign(dat){
   let campaign_boosting = data['campaign_boosting'];
   let campaign_id = data['campaign_id'];
   let status = data['status'];
-  // let status = data['status'];
 
   jQuery('#gke-campaign-name').val(campaign_name);
   jQuery('#gke-fundraising-target').val(fundraising_target);
@@ -1502,9 +1542,15 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance').val(government_assistance);
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
-  // jQuery('#gke-campaign-id').val(campaign_id);
   jQuery('#gke-campaign-status').text(status);
   jQuery('#give_kindness-update-campaign').attr('data-campaign-id', campaign_id);
+
+  /******
+   * 
+   * Set campaign id for view donations
+   * 
+   */
+  jQuery('#give-kindness-campaign-donations').attr('data-camapign-id', campaign_id);
 
   if( government_assistance == "Yes") {
     jQuery("#gke-government-assistance-no").removeClass("give-donor-dashboard-button--primary").addClass("give-donor-dashboard-button--default");
