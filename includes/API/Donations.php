@@ -15,12 +15,12 @@ class Donations {
     /**
      * @var WP_REST_Request
      */
-    protected $request;
+    public $request;
 
     /**
      * @var DonationsListTable
      */
-    protected $listTable;
+    public $listTable;
 
     public function __construct( $request ) {
         
@@ -36,19 +36,19 @@ class Donations {
      * @return WP_REST_Response
      * @throws ColumnIdCollisionException
      */
-    public function handleRequest()
-    {
+    public function handleRequest() {
 
+        // return $this->request; 
         $this->listTable = give(DonationsListTable::class);
 
         $donations = $this->getDonations();
         $donationsCount = $this->getTotalDonationsCount();
-        $totalPages = (int)ceil($donationsCount / $this->request->get_param('perPage'));
+        $totalPages = (int)ceil($donationsCount / $this->request['perPage']);
 
-        if ('model' === $this->request->get_param('return')) {
+        if ('model' === $this->request['return']) {
             $items = $donations;
         } else {
-            $this->listTable->items($donations, $this->request->get_param('locale') ?? '');
+            $this->listTable->items($donations, $this->request['locale'] ?? '');
             $items = $this->listTable->getItems();
         }
 
@@ -67,12 +67,11 @@ class Donations {
      *
      * @return array
      */
-    public function getDonations(): array
-    {
-        $page = $this->request->get_param('page');
-        $perPage = $this->request->get_param('perPage');
-        $sortColumns = $this->listTable->getSortColumnById($this->request->get_param('sortColumn') ?: 'id');
-        $sortDirection = $this->request->get_param('sortDirection') ?: 'desc';
+    public function getDonations(): array {
+        $page = $this->request['page'];
+        $perPage = $this->request['perPage'];
+        $sortColumns = $this->listTable->getSortColumnById($this->request['sortColumn'] ?: 'id');
+        $sortDirection = $this->request['sortDirection'] ?: 'desc';
 
         $query = give()->donations->prepareQuery();
         list($query) = $this->getWhereConditions($query);
@@ -99,8 +98,7 @@ class Donations {
      *
      * @return int
      */
-    public function getTotalDonationsCount(): int
-    {
+    public function getTotalDonationsCount(): int {
         $query = DB::table('posts')
             ->where('post_type', 'give_payment')
             ->groupBy('mode');
@@ -125,14 +123,13 @@ class Donations {
      *
      * @return array{0: QueryBuilder, 1: array<DonationMetaKeys>}
      */
-    private function getWhereConditions(QueryBuilder $query): array
-    {
-        $search = $this->request->get_param('search');
-        $start = $this->request->get_param('start');
-        $end = $this->request->get_param('end');
-        $form = $this->request->get_param('form');
-        $donor = $this->request->get_param('donor');
-        $testMode = $this->request->get_param('testMode');
+    private function getWhereConditions(QueryBuilder $query): array {
+        $search = $this->request['search'];
+        $start = $this->request['start'];
+        $end = $this->request['end'];
+        $form = $this->request['form'];
+        $donor = $this->request['donor'];
+        $testMode = $this->request['testMode'];
 
         $dependencies = [
             DonationMetaKeys::MODE(),

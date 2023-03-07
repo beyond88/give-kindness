@@ -130,15 +130,23 @@ class CampaignAPI
     * @param array
     * @return array
     */
-    public function get_donations( WP_REST_Request $request ): WP_REST_Response
-    {
-        $donations = new Donations( $request );
+    public function get_donations( WP_REST_Request $request ){
+
+        $req = [];
+        $req['form'] = $request['form'];
+        $req['page'] = 1;
+        $req['perPage'] = 30;
+        $req['sortColumn'] = 'id';
+        $req['sortDirection'] = 'desc';
+        $req['locale'] = 'en-US';
+        $req['testMode'] = true;
+
+        $donations = new Donations( $req );
 
         //error_log(new onations( $request ) );
         return new WP_REST_Response(
-            [
-                $donations->get_data()
-            ]
+            $donations->handleRequest(),
+            123
         );
 
     }
