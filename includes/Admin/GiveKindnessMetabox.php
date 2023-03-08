@@ -36,12 +36,12 @@ class GiveKindnessMetabox {
   */
   function __construct() {
 
-
     $this->post_type = 'give_forms';
 		$this->metabox_id    = 'give-metabox-campaign-data';
 		$this->metabox_label = __( 'Campaign Information', 'give-kindness' );
 
     add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
+    
   }
 
   /**
@@ -113,44 +113,44 @@ class GiveKindnessMetabox {
     ?>
 
       <p>
-        <strong>Beneficiary name:</strong> <?php echo esc_attr($benefiary_name); ?>
+        <strong><?php echo __('Beneficiary name:', 'give-kindness'); ?></strong> <?php echo esc_attr($benefiary_name); ?>
       </p>
       <p>
-        <strong>Beneficiary mobile:</strong> <?php echo esc_attr($mobile_number); ?>
+        <strong><?php echo __('Beneficiary mobile:', 'give-kindness'); ?></strong> <?php echo esc_attr($mobile_number); ?>
       </p>
       <p>
-        <strong>Beneficiary relationship:</strong> <?php echo esc_attr($beneficiary_relationship); ?>
+        <strong><?php echo __('Beneficiary relationship:', 'give-kindness'); ?></strong> <?php echo esc_attr($beneficiary_relationship); ?>
       </p>
       <p>
-        <strong>Beneficiary country:</strong> <?php echo esc_attr($beneficiary_country); ?>
+        <strong><?php echo __('Beneficiary country:', 'give-kindness'); ?></strong> <?php echo esc_attr($beneficiary_country); ?>
       </p>
       <p>
-        <strong>Beneficiary age:</strong> <?php echo esc_attr($beneficier_age); ?>
+        <strong><?php echo __('Beneficiary age:', 'give-kindness'); ?></strong> <?php echo esc_attr($beneficier_age); ?>
       </p>
       <p>
-        <strong>Medical condition:</strong> <?php echo esc_attr($medical_condition); ?>
+        <strong><?php echo __('Medical condition:', 'give-kindness'); ?></strong> <?php echo esc_attr($medical_condition); ?>
       </p>
       <p>
-        <strong>Medical document type:</strong> <?php echo esc_attr($medical_document_type); ?>
+        <strong><?php echo __('Medical document type:', 'give-kindness'); ?></strong> <?php echo esc_attr($medical_document_type); ?>
       </p>
       <p>
-        <strong>Email:</strong> <?php echo esc_attr($campaign_email); ?>
+        <strong><?php echo __('Email:', 'give-kindness'); ?></strong> <?php echo esc_attr($campaign_email); ?>
       </p>
       <p>
-        <strong>Campaign country:</strong> <?php echo esc_attr($campaign_country); ?>
+        <strong><?php echo __('Campaign country:', 'give-kindness'); ?></strong> <?php echo esc_attr($campaign_country); ?>
       </p>
       <p>
-        <strong>Government Assistance:</strong> <?php echo esc_attr($government_assistance); ?>
+        <strong><?php echo __('Government Assistance:', 'give-kindness'); ?></strong> <?php echo esc_attr($government_assistance); ?>
       </p>
       <p>
-        <strong>Government assistance details:</strong> <?php echo esc_attr($government_assistance_details); ?>
+        <strong><?php echo __('Government assistance details:', 'give-kindness'); ?></strong> <?php echo esc_attr($government_assistance_details); ?>
       </p>
       <p>
-        <strong>Campaign boosting:</strong> <?php echo esc_attr($campaign_boosting); ?>
+        <strong><?php echo __('Campaign boosting:', 'give-kindness'); ?></strong> <?php echo esc_attr($campaign_boosting); ?>
       </p>
 
       <p id="give-kindness-admin-campaign-images" class="thumbs">
-        <strong>Medical document:</strong> 
+        <strong><?php echo __('Medical document:', 'give-kindness'); ?></strong> 
 
         <?php 
           $attach_ids = explode(",", $medical_document);
@@ -171,7 +171,7 @@ class GiveKindnessMetabox {
               ?>
               <object data="<?php echo esc_url( $attach_url ); ?>" type="application/pdf" width="150px" height="150px">
                 <embed src="<?php echo esc_url( $attach_url ); ?>" type="application/pdf">
-                  <p>This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo esc_url( $attach_url ); ?>" download>Download PDF</a>.</p>
+                  <p><?php echo __('This browser does not support PDFs. Please download the PDF to view it:', 'give-kindness'); ?> <a href="<?php echo esc_url( $attach_url ); ?>" download><?php echo __('Download PDF', 'give-kindness'); ?></a>.</p>
                 </embed>
               </object>
               <?php
