@@ -91,6 +91,18 @@ class GiveKindnessAPI
       'permission_callback' => '__return_true'
     ]);
 
+    register_rest_route( $this->restBase, '/delete', [
+      'methods'  => WP_REST_SERVER::CREATABLE,
+      'callback' => [ $this->campaignApi, 'delete_campaign' ],
+      'permission_callback' => '__return_true'
+    ]);
+
+    register_rest_route( $this->restBase, '/suspend-request', [
+      'methods'  => WP_REST_SERVER::CREATABLE,
+      'callback' => [ $this->campaignApi, 'suspend_request' ],
+      'permission_callback' => '__return_true'
+    ]);
+
   }
 
   /**

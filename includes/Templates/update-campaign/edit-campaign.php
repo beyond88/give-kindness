@@ -3,11 +3,44 @@
         <div class="give-kindness-campaign-status">
             <?php echo __('Campaign status: ', 'give-kindness'); ?> <span id="gke-campaign-status"></span>
         </div>
-        <div class="give-kindness-campaign-action-delete">
+        <button type="button" class="give-kindness-campaign-action-delete" id="give-kindness-campaign-action-delete" data-campaign-id="">
             <?php echo __("DELETE", 'give-kindness'); ?>
-        </div>
+        </button>
+
+        <button type="button" class="give-kindness-campaign-action-suspend" id="give-kindness-campaign-action-suspend" data-campaign-id="" onClick="showHideContent('', '#give-kindness-suspend-request-modal')">
+            <?php echo __("SUSPEND", 'give-kindness'); ?>
+        </button>
    </div>
    <div class="give-donor-dashboard-divider"></div>
+
+    <!--================================
+    ||
+    ||  Suspend request modal
+    ||
+    !================================-->  
+    <div class="modal micromodal-slide" id="give-kindness-suspend-request-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">
+                        <?php echo __('Request for suspension',''); ?>
+                    </h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close onClick="showHideContent('#give-kindness-suspend-request-modal', '')"></button>
+                </header>
+                <main class="modal__content" id="modal-1-content">
+                    <textarea class="" id="give-kindness-suspend-request-msg" rows=5 cols=50></textarea>
+                </main>
+                <footer class="modal__footer">
+                    <button class="modal__btn modal__btn-primary" id="give-kindness-suspend-request-submit">
+                        <?php echo __('Submit', 'give-kindness'); ?>
+                    </button>
+                    <!-- <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">
+                        <?php echo __('Close', 'give-kindness'); ?>
+                    </button> -->
+                </footer>
+            </div>
+        </div>
+    </div>
    
     <div id="give-kindness-edit-campaign-form-one">
         <div class="give-donor-dashboard-field-row">

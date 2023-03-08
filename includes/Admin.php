@@ -3,6 +3,7 @@
 namespace Give_Kindness;
 
 use Give_Kindness\Admin\GiveKindnessMetabox;
+use Give_Kindness\Admin\CampaignSuspend;
 
 /**
  * The admin class
@@ -13,7 +14,8 @@ class Admin {
      * Initialize the class
      */
     function __construct() {
-        new  GiveKindnessMetabox();
+        new GiveKindnessMetabox();
+        new CampaignSuspend();
     }
 
     /**

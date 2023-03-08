@@ -119,6 +119,7 @@ class Assets {
             'signUp' => __('Sign Up', 'give-kindness'),
             'dashboardURL' => $page_url,
             'saveSeeCampaign' => __('Save and see my campaign', 'give-kindness'),
+            'deleteMsg' => __('Want to delete this campaign?', 'give-kindness'),
         ] );
     }
 }
