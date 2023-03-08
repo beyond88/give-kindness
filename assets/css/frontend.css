@@ -2501,13 +2501,21 @@ textarea:focus,
 .give-kindness-campaign-status {
 }
 
+#give-kindness-campaign-action-suspend {
+  display: none;
+}
+
+.give-kindness-campaign-action-suspend {
+  background-color: transparent;
+}
+
 .give-kindness-campaign-action-delete {
   color: red;
   background-color: transparent;
 }
 
+.give-kindness-campaign-action-suspend:hover,
 .give-kindness-campaign-action-delete:hover {
-  color: red;
   background-color: transparent;
 }
 
@@ -2549,4 +2557,37 @@ textarea:focus,
 
 .give-kindness-text-center {
   text-align: center;
+}
+
+.give-kindness-campaign-cancel-label {
+  color: #ffba00;
+}
+
+.give-kindness-campaign-reject-label {
+  color: #ff2f2f;
+}
+
+.give-kindness-campaign-suspend-label {
+  color: #6d6d6d;
+}
+
+.give-kindness-campaign-publish-label {
+  color: #7ad03a;
+}
+
+.give-kindness-campaign-draft-label {
+  color: #7ad03a;
+}
+
+.give-kindness-campaign-pending-label {
+  color: #009688;
+}
+
+.give-kindness-campaign-cancel-label,
+.give-kindness-campaign-reject-label,
+.give-kindness-campaign-suspend-label,
+.give-kindness-campaign-publish-label,
+.give-kindness-campaign-draft-label,
+.give-kindness-campaign-pending-label {
+  text-transform: uppercase;
 }

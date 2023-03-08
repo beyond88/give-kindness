@@ -6,6 +6,10 @@
         <button type="button" class="give-kindness-campaign-action-delete" id="give-kindness-campaign-action-delete" data-campaign-id="">
             <?php echo __("DELETE", 'give-kindness'); ?>
         </button>
+
+        <button type="button" class="give-kindness-campaign-action-suspend" id="give-kindness-campaign-action-suspend" data-campaign-id="">
+            <?php echo __("SUSPEND", 'give-kindness'); ?>
+        </button>
    </div>
    <div class="give-donor-dashboard-divider"></div>
    

@@ -1628,8 +1628,31 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   jQuery('#gke-campaign-status').text(status);
+
+  // Add CSS class to change status label color
+  jQuery('#gke-campaign-status').removeClass();
+  if(status == 'pending'){
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-pending-label');
+  } else if(status == 'draft') {
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-draft-label');
+  } else if(status == 'suspend') {
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-suspend-label');
+  } else if(status == 'publish') {
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-publish-label');
+  } else if(status == 'reject') {
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-reject-label');
+  } else {
+    jQuery('#gke-campaign-status').addClass('give-kindness-campaign-publish-label');
+  }
+
   jQuery('#give_kindness-update-campaign').attr('data-campaign-id', campaign_id); //for update campaign
   jQuery('#give-kindness-campaign-action-delete').attr('data-campaign-id', campaign_id); //for delete campaign
+  jQuery('#give-kindness-campaign-action-suspend').attr('data-campaign-id', campaign_id); //for campaign suspend
+
+  if( status == 'publish') {
+    jQuery('#give-kindness-campaign-action-delete').hide(); //for delete campaign
+    jQuery('#give-kindness-campaign-action-suspend').show(); //for campaign suspend
+  }
 
   /******
    * 
