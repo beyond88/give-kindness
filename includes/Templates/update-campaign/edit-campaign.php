@@ -3,9 +3,9 @@
         <div class="give-kindness-campaign-status">
             <?php echo __('Campaign status: ', 'give-kindness'); ?> <span id="gke-campaign-status"></span>
         </div>
-        <div class="give-kindness-campaign-action-delete">
+        <button type="button" class="give-kindness-campaign-action-delete" id="give-kindness-campaign-action-delete" data-campaign-id="">
             <?php echo __("DELETE", 'give-kindness'); ?>
-        </div>
+        </button>
    </div>
    <div class="give-donor-dashboard-divider"></div>
    

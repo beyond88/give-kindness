@@ -2503,6 +2503,12 @@ textarea:focus,
 
 .give-kindness-campaign-action-delete {
   color: red;
+  background-color: transparent;
+}
+
+.give-kindness-campaign-action-delete:hover {
+  color: red;
+  background-color: transparent;
 }
 
 .gk-margin-top-20 {

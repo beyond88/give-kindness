@@ -1404,9 +1404,13 @@
   /************************
   * 
   * View donations
-  *
   * == It will fire when 
-  * == click on view-donation menu 
+  * == click on view-donation menu
+  * 
+  * 
+  * View statistics 
+  * == It will fire when 
+  * == click on statistics menu
   * 
   ************************/
   $(document).on('click', '#give-kindness-campaign-edit-menu .give-donor-dashboard-tab-link', async function() {
@@ -1474,6 +1478,54 @@
       }
 
     }
+
+  });
+
+  /**************************
+  *  
+  * Campaign edit
+  * 
+  ***************************/
+  $(document).on('click', '#give-kindness-campaign-action-delete', async function() {
+    let that = $(this);
+    let campaign_id = that.attr('data-campaign-id');
+    
+    if( campaign_id == '' ){
+      return false;
+    }
+
+  var result = confirm(give_kindness.deleteMsg);
+  if (result) {
+
+    that.attr('disabled', true);
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      headers: {'X-WP-Nonce': give_kindness.apiNonce },
+      url: give_kindness.giveKindnessApiURL+'delete',
+      data: {
+        form: campaign_id
+      },
+      success: function(data) {
+        console.log("response==>", data);
+
+        if( data.status == 200 ) {
+          alert(data.message);
+          window.location.reload();
+        } else {
+          alert(data.message);
+          that.attr('disabled', false);
+        }
+        
+      },
+      error: function (error) {
+        that.attr('disabled', false);
+        console.log('fail==>', error);
+      }
+    });
+
+  }
 
   });
 
@@ -1576,7 +1628,8 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   jQuery('#gke-campaign-status').text(status);
-  jQuery('#give_kindness-update-campaign').attr('data-campaign-id', campaign_id);
+  jQuery('#give_kindness-update-campaign').attr('data-campaign-id', campaign_id); //for update campaign
+  jQuery('#give-kindness-campaign-action-delete').attr('data-campaign-id', campaign_id); //for delete campaign
 
   /******
    * 

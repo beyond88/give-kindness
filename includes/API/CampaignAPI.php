@@ -175,6 +175,32 @@ class CampaignAPI
         );
 
     }
+
+
+    /**
+    * Get donation statistics by campaign id
+    * 
+    * @param array
+    * @return array
+    */
+    public function delete_campaign( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $delete = wp_delete_post( $campaign_id );
+
+        if ( ! is_wp_error( $delete ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Campaign deleted successfully!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
     
 
 
