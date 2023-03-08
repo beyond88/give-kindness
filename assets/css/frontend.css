@@ -2536,3 +2536,11 @@ textarea:focus,
 .gk-margin-right-10 {
   margin-right: 10px;
 }
+
+.give-kindness-capitalize {
+  text-transform: capitalize;
+}
+
+.give-kindness-text-center {
+  text-align: center;
+}

@@ -39,6 +39,7 @@ class Donations {
     public function handleRequest() {
 
         // return $this->request; 
+        $form_id = $this->request['form'];
         $this->listTable = give(DonationsListTable::class);
 
         $donations = $this->getDonations();
@@ -52,13 +53,35 @@ class Donations {
             $items = $this->listTable->getItems();
         }
 
-        return 
-            [
-                'items' => $items,
-                'totalItems' => $donationsCount,
-                'totalPages' => $totalPages,
-            ]
-        ;
+        $output = '';
+
+        if( ! empty( $items ) ) {
+            foreach( $items as $item ) { 
+                $output .='<div class="give-donor-dashboard-table__row">
+                    <div class="give-donor-dashboard-table__column">'.$item['id'].'</div>
+                    <div class="give-donor-dashboard-table__column">'.Strip_tags($item['donor']).'</div>
+                    <div class="give-donor-dashboard-table__column">'.$item['amount'].'</div>
+                    <div class="give-donor-dashboard-table__column">'.Strip_tags($item['gateway']).'</div>
+                    <div class="give-donor-dashboard-table__column give-kindness-capitalize">'.Strip_tags($item['paymentType']).'</div>
+                    <div class="give-donor-dashboard-table__column">
+                        <div class="give-donor-dashboard-table__donation-date">'.$item['createdAt'].'</div>
+                    </div>
+                </div>';
+            }
+        } else {
+            $output .='<div class="give-donor-dashboard-table__row">
+                    <div class="give-donor-dashboard-table__column give-kindness-text-center">'.__("You did not get any donations yet", "give-kindness").'</div>
+                </div>';
+        }
+
+        return $output; 
+        // return 
+        //     [
+        //         'items' => $items,
+        //         'totalItems' => $donationsCount,
+        //         'totalPages' => $totalPages,
+        //     ]
+        // ;
     }
 
     /**
