@@ -1483,7 +1483,7 @@
 
   /**************************
   *  
-  * Campaign edit
+  * Campaign delete
   * 
   ***************************/
   $(document).on('click', '#give-kindness-campaign-action-delete', async function() {
@@ -1494,25 +1494,70 @@
       return false;
     }
 
-  var result = confirm(give_kindness.deleteMsg);
-  if (result) {
+    var result = confirm(give_kindness.deleteMsg);
+    if (result) {
+
+      that.attr('disabled', true);
+
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.giveKindnessApiURL+'delete',
+        data: {
+          form: campaign_id
+        },
+        success: function(data) {
+
+          if( data.status == 200 ) {
+            alert(data.message);
+            window.location.reload();
+          } else {
+            alert(data.message);
+            that.attr('disabled', false);
+          }
+          
+        },
+        error: function (error) {
+          that.attr('disabled', false);
+          console.log('fail==>', error);
+        }
+      });
+
+    }
+
+  });
+
+  /**************************
+    *  
+    * Campaign suspend request
+    * 
+    ***************************/
+  $(document).on('click', '#give-kindness-suspend-request-submit', async function() {
+    
+    let that = $(this);
+    let campaign_id = $("#give-kindness-campaign-action-suspend").attr('data-campaign-id');
+    let suspend_request = $("#give-kindness-suspend-request-msg").val();
+    
+    if( campaign_id == '' || suspend_request == ''){
+      return false;
+    }
 
     that.attr('disabled', true);
-
     $.ajax({
       type: 'POST',
       dataType: 'json',
       headers: {'X-WP-Nonce': give_kindness.apiNonce },
-      url: give_kindness.giveKindnessApiURL+'delete',
+      url: give_kindness.giveKindnessApiURL+'suspend-request',
       data: {
-        form: campaign_id
+        form: campaign_id,
+        msg: suspend_request
       },
       success: function(data) {
-        console.log("response==>", data);
 
         if( data.status == 200 ) {
-          alert(data.message);
-          window.location.reload();
+          that.after(`<span class="give-kindness-suspend-request-submit-status-msg">${data.message}</span>`);
+          setTimeout(showHideContent('#give-kindness-suspend-request-modal', ''), 1000);
         } else {
           alert(data.message);
           that.attr('disabled', false);
@@ -1524,8 +1569,6 @@
         console.log('fail==>', error);
       }
     });
-
-  }
 
   });
 

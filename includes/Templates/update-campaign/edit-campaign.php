@@ -28,7 +28,7 @@
                     <button class="modal__close" aria-label="Close modal" data-micromodal-close onClick="showHideContent('#give-kindness-suspend-request-modal', '')"></button>
                 </header>
                 <main class="modal__content" id="modal-1-content">
-                    <textarea class="" id="give-kindness-suspend-request-msg" rows=5 cols=100></textarea>
+                    <textarea class="" id="give-kindness-suspend-request-msg" rows=5 cols=50></textarea>
                 </main>
                 <footer class="modal__footer">
                     <button class="modal__btn modal__btn-primary" id="give-kindness-suspend-request-submit">

@@ -2641,9 +2641,9 @@ textarea:focus,
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.25;
-  color: #00449e;
+  color: #333333;
   box-sizing: border-box;
 }
 
@@ -2768,4 +2768,11 @@ textarea:focus,
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
   will-change: transform;
+}
+
+.give-kindness-suspend-request-submit-status-msg {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #333;
+  font-weight: 400;
 }
