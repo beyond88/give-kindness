@@ -39,10 +39,10 @@
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             <?php echo __(' Back to campaign', 'give-kindness'); ?>
         </a>
-        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-statistics">
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-statistics">
             <i class="fas fa-chart-bar"></i>
             <?php echo __(' Statistics', 'give-kindness'); ?>
-        </a> -->
+        </a>
         <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-view-donations">
             <i class="fa fa-solid fa-list"></i>
             <?php echo __( 'View donations', 'give-kindness'); ?>

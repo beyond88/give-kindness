@@ -4,60 +4,20 @@
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chart-line" class="svg-inline--fa fa-chart-line fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path fill="currentColor" d="M496 384H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM464 96H345.94c-21.38 0-32.09 25.85-16.97 40.97l32.4 32.4L288 242.75l-73.37-73.37c-12.5-12.5-32.76-12.5-45.25 0l-68.69 68.69c-6.25 6.25-6.25 16.38 0 22.63l22.62 22.62c6.25 6.25 16.38 6.25 22.63 0L192 237.25l73.37 73.37c12.5 12.5 32.76 12.5 45.25 0l96-96 32.4 32.4c15.12 15.12 40.97 4.41 40.97-16.97V112c.01-8.84-7.15-16-15.99-16z"></path>
         </svg>
-        <?php echo __('Donations Stats','give-kindness'); ?>
+        <?php echo __('Donations','give-kindness'); ?>
     </div>
-    <div class="give-donor-dashboard-dashboard__stats">
-        <div class="give-donor-dashboard-dashboard__stat">
-            <div class="give-donor-dashboard-dashboard__figure" style="color: rgb(104, 187, 108);">
-                <span class="give-donor-dashboard-dashboard__figure-currency">
-                    <?php echo give_currency_symbol(give_get_currency(), true); ?>
-                </span>
-                0
-            </div>
-            <div class="give-donor-dashboard-dashboard__detail">
-                <?php echo __('Goal','give-kindness');?>
-            </div>
-        </div>
-        <div class="give-donor-dashboard-dashboard__stat">
-            <div class="give-donor-dashboard-dashboard__figure" style="color: rgb(104, 187, 108);">
-                <span class="give-donor-dashboard-dashboard__figure-currency">
-                    <?php echo give_currency_symbol(give_get_currency(), true); ?>
-                </span>
-                0
-            </div>
-            <div class="give-donor-dashboard-dashboard__detail">
-                <?php echo __('Revenue','give-kindness');?>
-            </div>
-        </div>
-        <div class="give-donor-dashboard-dashboard__stat">
-            <div class="give-donor-dashboard-dashboard__figure" style="color: rgb(104, 187, 108);">0</div>
-            <div class="give-donor-dashboard-dashboard__detail"><?php echo __('Number of donations','give-kindness');?></div>
-        </div>
-    </div>
-
-    <div class="give-donor-dashboard-heading">
-    </div>
+    <div class="give-donor-dashboard-heading"></div>
 
     <div class="give-donor-dashboard-table">
         <div class="give-donor-dashboard-table__header">
-            <div class="give-donor-dashboard-table__column">ID</div>
-            <div class="give-donor-dashboard-table__column">Payment Platform</div>
-            <div class="give-donor-dashboard-table__column">Donation Type</div>
-            <div class="give-donor-dashboard-table__column">Date</div>
-            <div class="give-donor-dashboard-table__column">Name</div>
-            <div class="give-donor-dashboard-table__column">Amount</div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('ID', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Name', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Amount', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Payment Platform', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Donation Type', 'give-kindness'); ?></div>
+            <div class="give-donor-dashboard-table__column"><?php echo __('Date', 'give-kindness'); ?></div>
         </div>
         <div class="give-donor-dashboard-table__rows" id="give-kindness-campaign-donations" data-camapign-id="">
-            <div class="give-donor-dashboard-table__row">
-                <div class="give-donor-dashboard-table__column">1</div>
-                <div class="give-donor-dashboard-table__column">Stripe</div>
-                <div class="give-donor-dashboard-table__column">Single</div>
-                <div class="give-donor-dashboard-table__column">
-                    <div class="give-donor-dashboard-table__donation-date">March 4, 2023</div>
-                </div>
-                <div class="give-donor-dashboard-table__column">Test Form</div>
-                <div class="give-donor-dashboard-table__column">$25.00</div>
-            </div>
         </div>
         <div class="give-donor-dashboard-table__footer"></div>
     </div>
