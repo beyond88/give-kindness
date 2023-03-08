@@ -1411,11 +1411,12 @@
   ************************/
   $(document).on('click', '#give-kindness-campaign-edit-menu .give-donor-dashboard-tab-link', async function() {
 
-    const targetTabContent = 'give_kindness-view-donations';
+    const viewDonations = 'give_kindness-view-donations';
+    const viewStatistics = 'give_kindness-campaign-statistics';
     let currentTabContent = $(this).data('tab-id');
 
     if( typeof currentTabContent != "undefined" ) {
-      if( currentTabContent === targetTabContent ) {
+      if( currentTabContent === viewDonations ) {
 
         let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
         if( campaign_id == '' ) {
@@ -1440,6 +1441,38 @@
         });
 
       }
+
+      if( currentTabContent === viewStatistics ) {
+
+        let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+        if( campaign_id == '' ) {
+          return; 
+        }
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          headers: {'X-WP-Nonce': give_kindness.apiNonce },
+          url: give_kindness.giveKindnessApiURL+'statistics',
+          data: {
+            form: campaign_id
+          },
+          success: function(data) {
+            console.log("response==>", data);
+            $("#give-kindness-campaign-donations").html(data);
+            if( data !='' ) {
+              $("#give-kindness-goal").html(data.goal);
+              $("#give-kindness-donations").html(data.donations);
+              $("#give-kindness-revenue").html(data.revenue);
+            }
+          },
+          error: function (error) {
+            console.log('fail==>', error);
+          }
+        });
+
+      }
+
     }
 
   });
