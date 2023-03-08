@@ -35,7 +35,6 @@
                 $goal = $goal_stats['goal'];
                 $donations = give_get_form_sales_stats( $campaign->ID );
                 $revenue = $goal_stats['actual'];
-
             ?>
             <div class="give-donor-dashboard-table__row">
                 <div class="give-donor-dashboard-table__column">

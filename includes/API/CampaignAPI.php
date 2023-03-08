@@ -143,13 +143,39 @@ class CampaignAPI
 
         $donations = new Donations( $req );
 
-        //error_log(new onations( $request ) );
         return new WP_REST_Response(
             $donations->handleRequest(),
             123
         );
 
     }
+
+    /**
+    * Get donation statistics by campaign id
+    * 
+    * @param array
+    * @return array
+    */
+    public function get_statistics( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $goal_stats = give_goal_progress_stats( $campaign_id );
+        $goal = html_entity_decode( $goal_stats['goal'] );
+        $donations = give_get_form_sales_stats( $campaign_id );
+        $revenue = html_entity_decode( $goal_stats['actual'] );
+
+        return new WP_REST_Response(
+            [
+                'goal' => str_replace("$", "", $goal),
+                'donations' => $donations,
+                'revenue' => str_replace("$", "", $revenue),
+                // $goal_stats
+            ],
+            123
+        );
+
+    }
+    
 
 
 }
