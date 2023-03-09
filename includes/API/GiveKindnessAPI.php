@@ -103,6 +103,12 @@ class GiveKindnessAPI
       'permission_callback' => '__return_true'
     ]);
 
+    register_rest_route( $this->restBase, '/suspend-request-status', [
+      'methods'  => WP_REST_SERVER::CREATABLE,
+      'callback' => [ $this->campaignApi, 'suspend_request_status' ],
+      'permission_callback' => '__return_true'
+    ]);
+
   }
 
   /**

@@ -81,12 +81,64 @@ if ( ! class_exists( 'SuspendRequestsTable' ) ) :
                 case 'name':
                     return esc_html( $item->post_title );
                 case 'requested_by':
-                    return esc_html( $item->ID );
+                    return $this->get_user_name( $item->post_author )->user_login;
                 case 'reason':
-                    return esc_html( $item->post_title );
+                    return $this->get_suspend_request_msg( $item->ID );
                 case 'status':
-                    return esc_html( $item->post_title );
+                    return $this->get_suspend_request_status( $item->ID );
+                case 'action':
+                    return '<div class="give-kindness-float-wrapper">
+                            <input type="checkbox" />
+                            <div class="fab"></div>
+                            <div class="fac">
+                                <a href="javascript:void(0);" class="give-kindness-suspend-request-action" data-action="accept" data-suspend-id="'.$item->ID.'">'.__('Accept', 'give-kindness').'</a>
+                                <a href="javascript:void(0);" class="give-kindness-suspend-request-action" data-action="reject" data-suspend-id="'.$item->ID.'">'.__('Reject', 'give-kindness').'</a>
+                            </div>
+                        </div>';
+                default:
                 return 'Unknown';
+            }
+        }
+
+        /**
+         * Get user name
+         *
+         * @since  1.1
+         * @access protected
+         */
+        protected function get_user_name( $user_id ){
+            $user = get_user_by( 'id', $user_id );
+            return $user;
+        }
+
+        /**
+         * Get suspend request message
+         *
+         * @since  1.1
+         * @access protected
+         */
+        protected function get_suspend_request_msg( $id ){
+            $suspend_request = get_post_meta( $id, 'suspend_request', true );
+            return $suspend_request;
+        }
+
+        /**
+         * Get suspend request status
+         *
+         * @since  1.1
+         * @access protected
+         */
+        protected function get_suspend_request_status( $id ) {
+            
+            $status = get_post_meta( $id, 'suspend_request_status', true );
+
+            switch ( $status ) {
+                case 'reject':
+                    return '<span class="give-kindness-suspend-request-reject-label-color">'.__('Reject', 'give-kindness').'</span>';
+                case 'accept':
+                    return '<span class="give-kindness-suspend-request-accept-label-color">'.__('Accepted', 'give-kindness').'</span>';
+                default:
+                    return __('Pending', 'give-kindness');
             }
         }
 
