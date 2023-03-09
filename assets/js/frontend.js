@@ -1427,6 +1427,9 @@
           return; 
         }
 
+        $("#give-kindness-campaign-donations").html(give_kindness.pleaseWait);
+        $("#give-kindness-campaign-donations").css({'opacity': '0.5'});
+
         $.ajax({
           type: 'POST',
           dataType: 'json',
@@ -1436,11 +1439,12 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log("response==>", data);
+            $("#give-kindness-campaign-donations").css({'opacity': '1'});
             $("#give-kindness-campaign-donations").html(data);
           },
           error: function (error) {
             console.log('fail==>', error);
+            $("#give-kindness-campaign-donations").css({'opacity': '1'});
           }
         });
 
@@ -1462,8 +1466,6 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log("response==>", data);
-            $("#give-kindness-campaign-donations").html(data);
             if( data !='' ) {
               $("#give-kindness-goal").html(data.goal);
               $("#give-kindness-donations").html(data.donations);
