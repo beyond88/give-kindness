@@ -1,10 +1,11 @@
 <?php
 namespace Give_Kindness\Admin;
+use Give_Kindness\Admin\SuspendRequestsTable;
 
 /**
  * The suspend requests class
  */
-class CampaignSuspend {
+class SuspendRequests {
 
 	/**
 	 * This function initiates a submenu page
@@ -57,6 +58,8 @@ class CampaignSuspend {
 	 * @return string Column Name
 	 */
     public function output() {
+
+		$suspend_requests = new SuspendRequestsTable();
         include 'views/html-suspend-requests.php';
     }
 
