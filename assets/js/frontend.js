@@ -1558,8 +1558,10 @@
       success: function(data) {
 
         if( data.status == 200 ) {
+          $("#give-kindness-suspend-request-msg").val("");
+          that.attr('disabled', false);
           that.after(`<span class="give-kindness-suspend-request-submit-status-msg">${data.message}</span>`);
-          setTimeout(showHideContent('#give-kindness-suspend-request-modal', ''), 1000);
+          setTimeout(showHideContent('#give-kindness-suspend-request-modal', ''), 500);
         } else {
           alert(data.message);
           that.attr('disabled', false);
