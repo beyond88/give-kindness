@@ -20,13 +20,6 @@ if ( ! class_exists( 'SuspendRequestsTable' ) ) :
     class SuspendRequestsTable extends \WP_List_Table {
 
         /**
-         * @var SuspendRequestsTable $email_notifications
-         * @since  1.1
-         * @access private
-         */
-        private $email_notifications;
-
-        /**
          * Number of email notifications per page
          *
          * @since  1.1
@@ -48,8 +41,6 @@ if ( ! class_exists( 'SuspendRequestsTable' ) ) :
                     'plural'   => 'suspendrequests',
                 )
             );
-
-            $this->email_notifications = SuspendRequestsTable::get_instance();
         }
 
         /**
@@ -80,176 +71,60 @@ if ( ! class_exists( 'SuspendRequestsTable' ) ) :
         }
 
         /**
-         * Get name column.
-         *
-         * @since  1.1
-         * @access public
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return  string
-         */
-        public function column_name( $email ) {
-            // $edit_url = esc_url( admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=emails&section=' . $email->config['id'] ) );
-            // $actions  = $this->get_row_actions( $email );
-
-            // ob_start();
-            // ?>
-            // <a class="row-title" href="<?php echo $edit_url; ?>"><?php echo $email->config['label']; ?></a>
-
-            // <?php echo $this->row_actions( $actions ); ?>
-            // <?php
-            // return ob_get_clean();
-
-            return '';
+        * Generates content for a single row of the table.
+        *
+        * @param object $item The current item.
+        * @param string $column_name The current column name.
+        */
+        protected function column_default( $item, $column_name ) {
+            switch ( $column_name ) {
+                case 'name':
+                    return esc_html( $item->post_title );
+                case 'requested_by':
+                    return esc_html( $item->ID );
+                case 'reason':
+                    return esc_html( $item->post_title );
+                case 'status':
+                    return esc_html( $item->post_title );
+                return 'Unknown';
+            }
         }
 
         /**
-         * Get recipient column.
+         * Prepare suspend requests data
          *
          * @since  1.1
          * @access public
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return string
          */
-        public function column_requested_by( $email ) {
-            // ob_start();
+        public function get_suspend_requests() {
 
-            // if ( Give_Email_Notification_Util::has_recipient_field( $email ) ) {
-            //     $recipients = $email->get_recipient();
-            //     if ( is_array( $recipients ) ) {
-            //         $recipients = implode( '<br>', $recipients );
-            //     }
+            $suspend_requests_args = array(
+                'post_type' => 'give_forms',
+                'orderby'   => 'meta_value',
+                'order' => 'DESC',
+                'meta_query' => array(
+                     'meta_value' => array(
+                          'key' => 'suspend_request'
+              )));
+          
+            return new \WP_Query($suspend_requests_args);
 
-            //     echo $recipients;
-
-            // } elseif ( ! empty( $email->config['recipient_group_name'] ) ) {
-            //     echo $email->config['recipient_group_name'];
-            // }
-
-            // return ob_get_clean();
-
-            return '';
         }
 
         /**
-         * Get status column.
-         *
-         * @since  1.1
-         * @access public
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return string
+         * Decide which columns to activate the sorting functionality on
+         * @return array $sortable, the array of columns that can be sorted by the user
          */
-        public function column_cb( $email ) {
-            // $notification_status  = $email->get_notification_status();
-            // $user_can_edit_status = (int) Give_Email_Notification_Util::is_notification_status_editable( $email );
-            // $icon_classes         = Give_Email_Notification_Util::is_email_notification_active( $email )
-            //     ? 'dashicons dashicons-yes'
-            //     : 'dashicons dashicons-no-alt';
-            // $attributes           = array(
-            //     'class'       => "give-email-notification-status give-email-notification-{$notification_status}",
-            //     'data-id'     => $email->config['id'],
-            //     'data-status' => $email->get_notification_status(),
-            //     'data-edit'   => $user_can_edit_status,
-            // );
+        public function get_sortable_columns() {
+            $sortable_columns = [
+                'name' => [ 'name',true ],
+                'requested_by' => [ 'requested_by',true ],
+                'reason' => [ 'reason',true ],
+                'status' => [ 'status',true ],
+                'action' => [ 'action',true ],
+            ]; 
+            return $sortable_columns;
 
-            // if ( ! $user_can_edit_status ) {
-            //     $icon_classes = 'dashicons dashicons-lock';
-
-            //     $attributes['data-notice'] = esc_attr( $email->config['notices']['non-notification-status-editable'] );
-            // }
-
-            // $html = sprintf(
-            //     '<span %1$s><i class="%2$s"></i></span></span><span class="spinner"></span>',
-            //     give_get_attribute_str( $attributes ),
-            //     $icon_classes
-            // );
-            $html = ''; 
-
-            return $html;
-        }
-
-        /**
-         * Get email_type column.
-         *
-         * @since  1.1
-         * @access public
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return string
-         */
-        public function column_reason( Give_Email_Notification $email ) {
-            // $email_content_type_label = apply_filters(
-            //     "give_email_list_render_{$email->config['id']}_email_content_type",
-            //     Give_Email_Notification_Util::get_formatted_email_type( $email->config['content_type'] ),
-            //     $email
-            // );
-
-            // return $email_content_type_label;
-            return '';
-        }
-
-        /**
-         * Get setting column.
-         *
-         * @since  1.1
-         * @access public
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return string
-         */
-        public function column_status( Give_Email_Notification $email ) {
-            // return Give()->tooltips->render_link(
-            //     array(
-            //         'label'       => __( 'Edit', 'give' ) . " {$email->config['label']}",
-            //         'tag_content' => '<span class="dashicons dashicons-admin-generic"></span>',
-            //         'link'        => esc_url( admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=emails&section=' . $email->config['id'] ) ),
-            //         'attributes'  => array(
-            //             'class' => 'button button-small',
-            //         ),
-            //     )
-            // );
-
-            return '';
-        }
-
-        /**
-         * Print row actions.
-         *
-         * @since  1.1
-         * @access private
-         *
-         * @param Give_Email_Notification $email
-         *
-         * @return array
-         */
-        private function get_row_actions( $email ) {
-            // $edit_url = esc_url( admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=emails&section=' . $email->config['id'] ) );
-
-            // /**
-            //  * Filter the row actions
-            //  *
-            //  * @since 1.1
-            //  *
-            //  * @param array $row_actions
-            //  */
-            // $row_actions = apply_filters(
-            //     'give_email_notification_row_actions',
-            //     array(
-            //         'edit' => "<a href=\"{$edit_url}\">" . __( 'Edit', 'give' ) . '</a>',
-            //     ),
-            //     $email
-            // );
-
-            $row_actions = '';
-
-            return $row_actions;
         }
 
         /**
@@ -262,12 +137,17 @@ if ( ! class_exists( 'SuspendRequestsTable' ) ) :
             // Set columns.
             $columns               = $this->get_columns();
             $hidden                = array();
-            $email_notifications   = array();
+            $suspend_requests       = array();
             $sortable              = $this->get_sortable_columns();
             $this->_column_headers = array( $columns, $hidden, $sortable, $this->get_primary_column_name() );
 
-            $total_items = count( $email_notifications );
-            $this->items = $email_notifications;
+            $suspend_requests = $this->get_suspend_requests();
+            // echo "<pre>";
+            // print_r($suspend_requests->posts);
+            // echo "</pre>";
+
+            $total_items = $suspend_requests->post_count;
+            $this->items = (array) $suspend_requests->posts;
             $this->set_pagination_args(
                 array(
                     'total_items' => $total_items,
