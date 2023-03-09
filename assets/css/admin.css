@@ -5,3 +5,11 @@
 .misc-pub-visibility {
   display: none;
 }
+
+.give-kindness-suspend-request-accept-label-color{
+  color: #66bb6a;
+}
+
+.give-kindness-suspend-request-reject-label-color{
+  color: #e84b3b;
+}

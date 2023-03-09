@@ -1574,6 +1574,48 @@
 
   });
 
+  /**************************
+  *  
+  * Suspend request accept/reject
+  * 
+  ***************************/
+  $(document).on('click', '.give-kindness-suspend-request-action', async function() {
+      
+    let that = $(this);
+
+    console.log('this action==>', that.attr('data-suspend-id'));
+    let campaign_id = that.attr('data-suspend-id');
+    let action = that.attr('data-action');
+    
+    if( campaign_id == '' || action == ''){
+      return false;
+    }
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      headers: {'X-WP-Nonce': give_kindness.apiNonce },
+      url: give_kindness.giveKindnessApiURL+'suspend-request-status',
+      data: {
+        form: campaign_id,
+        action: action
+      },
+      success: function(data) {
+
+        if( data.status == 200 ) {
+          window.location.reload();
+        } else {
+          alert(data.message);
+        }
+        
+      },
+      error: function (error) {
+        console.log('fail==>', error);
+      }
+    });
+
+  });
+
 
 })(jQuery, window, document);
 

@@ -210,14 +210,41 @@ class CampaignAPI
     public function suspend_request( WP_REST_Request $request ) {
 
         $campaign_id = sanitize_text_field( $request['form'] );
-        $msg = sanitize_text_field( $request['msg'] );
+        $msg = sanitize_textarea_field( $request['msg'] );
 
-        $update = update_post_meta( $campaign_id, 'suspend_request', $msg);
+        $update = update_post_meta( $campaign_id, 'suspend_request', $msg );
 
         if ( ! is_wp_error( $update ) ) {
 
             $response['status'] = 200;
             $response['message'] = __( "Suspend request is submitted!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Set suspend request status 
+    * 
+    * @param array
+    * @return array
+    */
+    public function suspend_request_status( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $action      = sanitize_text_field( $request['action'] );
+
+        $update = update_post_meta( $campaign_id, 'suspend_request_status', $action );
+
+        if ( ! is_wp_error( $update ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Submitted!", "give-kindness" );
             return new WP_REST_Response( $response, 123 );
 
         }
