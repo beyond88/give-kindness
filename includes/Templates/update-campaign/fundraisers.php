@@ -38,4 +38,26 @@
             </div>
         </div>
     </div>
+
+    <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <div class="give-kindness-fundraisers-invite">
+                <label class="give-donor-dashboard-text-control__label">
+                    <i class="fas fa-plus-circle"></i>
+                    <?php echo __('Invite co-fundraisers', 'give-kindness'); ?>
+                </label>
+                <div class="give-donor-dashboard-text-control__input">
+                    <input id="give-kindness-fundraisers-invite-email" type="email" placeholder="<?php echo __('Add an email of your co-founder', 'give-kindness'); ?>">
+                </div>
+                <div class="give_kindness-fundraisers-invite-send-area">
+                    <div class=""></div>
+                    <button class="give-donor-dashboard-button give-donor-dashboard-button--primary give_kindness-fundraisers-invite-send" id="give_kindness-fundraisers-invite-send">
+                        <?php echo __('Send Invite', 'give-kindness'); ?>
+                    </button>
+                </div> 
+            </div>
+
+        </div>
+    </div>    
+                    
 </div>

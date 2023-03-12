@@ -2830,8 +2830,6 @@ textarea:focus,
   position: absolute;
   background: #fff;
   z-index: 2;
-  /* padding: 0.5rem 0.5rem; */
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); */
   opacity: 0;
   top: -110px;
   display: flex;
@@ -2839,19 +2837,6 @@ textarea:focus,
   justify-content: space-around;
   align-items: center;
   transition: opacity 0.2s ease-in, top 0.2s ease-in, width 0.1s ease-in;
-  /*&::after {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background: #fff;
-    border-radius: 3px;
-    position: absolute;
-    left: 50%;
-    margin-left: -10px;
-    bottom: -8px;
-    transform: rotate(45deg);
-    z-index: 0;
-  }*/
 }
 .give-kindness-float-wrapper .fac a {
   color: #fff;
@@ -2963,4 +2948,26 @@ textarea:focus,
 
 .give-kindness-fundairser-rank {
   font-size: 12px;
+}
+
+.give-kindness-fundraisers-invite {
+  padding: 20px !important;
+  border-style: dotted !important;
+  color: #666;
+  border: 1px;
+  border-radius: 10px;
+}
+
+.give-kindness-fundraisers-invite label {
+  font-size: 20px !important;
+}
+
+.give_kindness-fundraisers-invite-send {
+  margin-bottom: 0px !important;
+  padding: 10px 23px;
+}
+
+.give_kindness-fundraisers-invite-send-area {
+  display: flex; 
+  justify-content: space-between;
 }
