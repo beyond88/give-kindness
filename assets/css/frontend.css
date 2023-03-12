@@ -2939,3 +2939,28 @@ textarea:focus,
     transform: scale(1, 1);
   }
 }
+
+.give-kindness-fundraisers-list {
+  padding: 15px !important;
+  background-color: #eff5f0 !important;
+  border: 2px solid #e4e4e4 !important;
+  border-radius: 10px !important;
+}
+
+.give-kindness-fundraiser-info {
+  margin-left: 20px;
+}
+
+.give-kindness-fundraiser-avater img {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
+
+.give-kindness-fundairser-name {
+  font-weight: 600;
+}
+
+.give-kindness-fundairser-rank {
+  font-size: 12px;
+}
