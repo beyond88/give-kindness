@@ -3026,6 +3026,8 @@ input:checked + .give-kindness-slider:before {
 
 .give-kindness-milestone-hide {
   display: none;
-  /* -webkit-transition: 0.4s;
-  transition: 0.4s; */
+}
+
+.give_kindness-donations-preset-area textarea {
+  background-color: transparent;
 }

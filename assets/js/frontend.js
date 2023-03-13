@@ -1660,6 +1660,32 @@
   });
 
 
+  /************************
+  * 
+  * Add donation preset
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-donations-preset-add', function() {
+    $(this).before(`
+      <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <div class="give-donor-dashboard-text-control__input">
+                <input class="gk-preset-amount" name="gk-preset-amount[]" type="text" placeholder="$25" maxlength="20">
+            </div>
+        </div>
+      </div>
+
+      <div class="give-donor-dashboard-field-row">
+          <div class="give-donor-dashboard-text-control">
+              <div class="give-donor-dashboard-text-control__input">
+                  <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="Description"></textarea>
+              </div>
+          </div>
+      </div>
+    `);
+  });
+
+
 })(jQuery, window, document);
 
 /************************
