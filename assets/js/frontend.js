@@ -1531,10 +1531,10 @@
   });
 
   /**************************
-    *  
-    * Campaign suspend request
-    * 
-    ***************************/
+  *  
+  * Campaign suspend request
+  * 
+  ***************************/
   $(document).on('click', '#give-kindness-suspend-request-submit', async function() {
     
     let that = $(this);
@@ -1616,6 +1616,47 @@
       }
     });
 
+  });
+
+  /************************
+  * 
+  * Enable milestone goal
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-milestone-switch', function() {
+    if($(this).is(":checked")){
+      $('.give-kindness-milestone-hide').fadeIn('slow');
+    } else {
+      $('.give-kindness-milestone-hide').fadeOut('slow');
+    }
+  })
+
+  /************************
+  * 
+  * Add milestone goal
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-milestone-add', function() {
+    $(this).before(`
+      <div class="give-donor-dashboard-field-row">
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+              Milestone GOAL
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+                <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder=""  maxlength="20">
+            </div>
+        </div>
+        <div class="give-donor-dashboard-text-control">
+            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+              Label (40 characters)
+            </label>
+            <div class="give-donor-dashboard-text-control__input">
+              <input id="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="Final Milestone"  maxlength="40">
+            </div>
+        </div>
+      </div>
+    `);
   });
 
 

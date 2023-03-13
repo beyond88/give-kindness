@@ -51,14 +51,14 @@
             <i class="fas fa-edit"></i>
             <?php echo __(' Edit', 'give-kindness'); ?>
         </a>
-        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-fundraisers">
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-fundraisers">
             <i class="fa fa-users" aria-hidden="true"></i>
             <?php echo __(' Fundraisers', 'give-kindness'); ?>
-        </a> -->
-        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-milestones">
+        </a>
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-milestones">
             <i class="fa fa-history" aria-hidden="true"></i>
             <?php echo __('Milestones', 'give-kindness'); ?>
-        </a> -->
+        </a>
         <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-chat">
             <i class="far fa-comment-dots"></i>
             <?php echo __('Chat preset', 'give-kindness'); ?>
