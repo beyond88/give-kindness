@@ -91,6 +91,8 @@
                             $data['government_assistance'] = get_post_meta( $campaign_id, 'government_assistance', true );
                             $data['government_assistance_details'] = get_post_meta( $campaign_id, 'government_assistance_details', true );
                             $data['campaign_boosting'] = get_post_meta( $campaign_id, 'campaign_boosting', true );
+                            $data['campaign_currency'] = give_currency_symbol(give_get_currency(), true);
+                            
                             $medical_document_url = [];
 
                             $medical_document = get_post_meta( $campaign_id, 'medical_document', true );

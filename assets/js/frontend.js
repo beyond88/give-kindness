@@ -1991,6 +1991,7 @@ function editCampaign(dat){
   let campaign_boosting = data['campaign_boosting'];
   let campaign_id = data['campaign_id'];
   let status = data['status'];
+  let campaign_currency = data['campaign_currency'];
 
   jQuery('#gke-campaign-name').val(campaign_name);
   jQuery('#gke-fundraising-target').val(fundraising_target);
@@ -2010,8 +2011,7 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   jQuery('#gke-campaign-status').text(status);
-  jQuery('#give-kindness-milestone-label').text(fundraising_target);
-  
+  jQuery('#give-kindness-milestone-label').text(campaign_currency+fundraising_target);
 
   // Add CSS class to change status label color
   jQuery('#gke-campaign-status').removeClass();
