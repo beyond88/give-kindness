@@ -299,21 +299,25 @@ class CampaignAPI
         $html = '';
         if( ! empty( $presets ) ) {
             foreach( $presets as $preset ) {
-                $html .='<div class="give-donor-dashboard-field-row">
-                    <div class="give-donor-dashboard-text-control">
-                        <div class="give-donor-dashboard-text-control__input">
-                            <input class="gk-preset-amount" name="gk-preset-amount[]" type="number" min="1" maxlength="20" value='.number_format($preset['_give_amount'], 2).'>
+
+                $html .='<div class="give_kindness-donations-preset-wrapper"><i class="fa fa-trash" aria-hidden="true"></i>';
+                
+                    $html .='<div class="give-donor-dashboard-field-row">
+                        <div class="give-donor-dashboard-text-control">
+                            <div class="give-donor-dashboard-text-control__input">
+                                <input class="gk-preset-amount" name="gk-preset-amount[]" type="number" min="1" maxlength="20" value='.number_format($preset['_give_amount'], 2).'>
+                            </div>
                         </div>
                     </div>
-                </div>
-        
-                <div class="give-donor-dashboard-field-row">
-                    <div class="give-donor-dashboard-text-control">
-                        <div class="give-donor-dashboard-text-control__input">
-                            <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" maxlength="100">'.$preset['_give_text'].'</textarea>
+            
+                    <div class="give-donor-dashboard-field-row">
+                        <div class="give-donor-dashboard-text-control">
+                            <div class="give-donor-dashboard-text-control__input">
+                                <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" maxlength="100">'.$preset['_give_text'].'</textarea>
+                            </div>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
+                $html .='</div>';
 
             }
         }
@@ -364,6 +368,31 @@ class CampaignAPI
 
             $response['status'] = 200;
             $response['message'] = __( "Donation preset amounts is created!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Set milestones
+    * 
+    * @param array
+    * @return array
+    */
+    public function set_milestones( WP_REST_Request $request ) {
+
+
+        $res = '';
+
+        if ( ! is_wp_error( $res ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Milestones is created!", "give-kindness" );
             return new WP_REST_Response( $response, 123 );
 
         }

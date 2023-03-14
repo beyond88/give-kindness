@@ -1494,7 +1494,6 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log('donation preset==>', data);
             $("#give_kindness-donations-preset-area").html(data.presets);
           },
           error: function (error) {
@@ -1662,25 +1661,89 @@
   ************************/
   $(document).on('click', '#give-kindness-milestone-add', function() {
     $(this).before(`
-      <div class="give-donor-dashboard-field-row">
-        <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
-              Milestone GOAL
-            </label>
-            <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder="$1000"  maxlength="20">
-            </div>
-        </div>
-        <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
-              Label (40 characters)
-            </label>
-            <div class="give-donor-dashboard-text-control__input">
-              <input id="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="Final Milestone"  maxlength="40">
-            </div>
+      <div class="give-kindness-milestone-wrapper">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        <div class="give-donor-dashboard-field-row">
+          <div class="give-donor-dashboard-text-control">
+              <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+                Milestone GOAL
+              </label>
+              <div class="give-donor-dashboard-text-control__input">
+                  <input class="gk-milestone-goal" name="gk-milestone-goal[]" type="number" placeholder="$1000" min="1">
+              </div>
+          </div>
+          <div class="give-donor-dashboard-text-control">
+              <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal-label">
+                Label (40 characters)
+              </label>
+              <div class="give-donor-dashboard-text-control__input">
+                <input class="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="Final Milestone" maxlength="40">
+              </div>
+          </div>
         </div>
       </div>
     `);
+  });
+
+  /************************
+  * 
+  * Add milestone goal
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-milestone-save', function() {
+
+    let that = $(this);
+    let milestoneGoal = [];
+    let milestoneGoalLabel = [];
+    let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+    let enable_milestone = $('#give-kindness-milestone-switch').val();
+
+    jQuery(".gk-milestone-goal").each(function(index, item) {
+      if(item.value !=''){
+        milestoneGoal.push(item.value);
+      }
+    });
+
+    jQuery(".gk-milestone-goal-label").each(function(index, item) {
+      if(item.value !=''){
+        milestoneGoalLabel.push(item.value);
+      }
+    });
+
+    if( milestoneGoal.length > 0 ) {
+
+      that.attr('disabled', true);
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.giveKindnessApiURL+'set-milestones',
+        data: {
+          form: campaign_id,
+          enable_milestone: enable_milestone,
+          amount: JSON.stringify(milestoneGoal),
+          label: JSON.stringify(milestoneGoalLabel),
+        },
+        success: function(data) {
+          alert(data.message);
+          that.attr('disabled', false);
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+          that.attr('disabled', false);
+        }
+      });
+    }
+
+  });
+
+  /************************
+  * 
+  * Delete donation preset amounts
+  * 
+  ************************/
+  $(document).on('click', '.give-kindness-milestone-wrapper i', function() {
+    $(this).parent().remove();
   });
 
   /************************
@@ -1781,7 +1844,6 @@
       }
     });
 
-
     if( presetAmount.length > 0 ) {
 
       that.attr('disabled', true);
@@ -1807,6 +1869,16 @@
     }
 
   });
+
+  /************************
+  * 
+  * Delete donation preset amounts
+  * 
+  ************************/
+  $(document).on('click', '.give_kindness-donations-preset-wrapper i', function() {
+    $(this).parent().remove();
+  });
+  
 
 })(jQuery, window, document);
 
