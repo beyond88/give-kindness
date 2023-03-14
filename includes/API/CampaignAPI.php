@@ -378,4 +378,29 @@ class CampaignAPI
 
     }
 
+    /**
+    * Set milestones
+    * 
+    * @param array
+    * @return array
+    */
+    public function set_milestones( WP_REST_Request $request ) {
+
+
+        $res = '';
+
+        if ( ! is_wp_error( $res ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Milestones is created!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
 }

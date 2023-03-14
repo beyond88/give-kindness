@@ -32,7 +32,7 @@
                         <?php echo __('Milestone GOAL', 'give-kindness'); ?>
                     </label>
                     <div class="give-donor-dashboard-text-control__input">
-                        <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder="<?php echo __('$1000', 'give-kindness'); ?>"  maxlength="20">
+                        <input class="gk-milestone-goal" name="gk-milestone-goal[]" type="number" placeholder="<?php echo __('$1000', 'give-kindness'); ?>" min="1">
                     </div>
                 </div>
                 <div class="give-donor-dashboard-text-control">
@@ -40,7 +40,7 @@
                         <?php echo __('Label (40 characters)', 'give-kindness'); ?>
                     </label>
                     <div class="give-donor-dashboard-text-control__input">
-                        <input id="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="<?php echo __('Final Milestone', 'give-kindness'); ?>"  maxlength="40">
+                        <input class="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="<?php echo __('Final Milestone', 'give-kindness'); ?>" maxlength="40">
                     </div>
                 </div>
             </div>
