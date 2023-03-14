@@ -1518,7 +1518,6 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log('milestones==>', data)
             $("#give-kindness-milestone-operate").html(data.milestones);
             if( data.milestones_switch == 1) {
               $('#give-kindness-milestone-switch').attr('checked', true);
@@ -2011,6 +2010,8 @@ function editCampaign(dat){
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
   jQuery('#gke-campaign-boosting').val(campaign_boosting);
   jQuery('#gke-campaign-status').text(status);
+  jQuery('#give-kindness-milestone-label').text(fundraising_target);
+  
 
   // Add CSS class to change status label color
   jQuery('#gke-campaign-status').removeClass();
