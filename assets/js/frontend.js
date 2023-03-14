@@ -583,7 +583,6 @@
     });
   });
 
-    
   /**************************
   *  
   * Check donation anonymous giving 
@@ -1417,6 +1416,7 @@
 
     const viewDonations = 'give_kindness-view-donations';
     const viewStatistics = 'give_kindness-campaign-statistics';
+    const viewDonationPresets = 'give_kindness-donations-preset';
     let currentTabContent = $(this).data('tab-id');
 
     if( typeof currentTabContent != "undefined" ) {
@@ -1477,6 +1477,30 @@
           }
         });
 
+      }
+
+      if( currentTabContent === viewDonationPresets ) {
+        let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+        if( campaign_id == '' ) {
+          return; 
+        }
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          headers: {'X-WP-Nonce': give_kindness.apiNonce },
+          url: give_kindness.giveKindnessApiURL+'get-donation-preset-amounts',
+          data: {
+            form: campaign_id
+          },
+          success: function(data) {
+            console.log('donation preset==>', data);
+            $("#give_kindness-donations-preset-area").html(data.presets);
+          },
+          error: function (error) {
+            console.log('fail==>', error);
+          }
+        });
       }
 
     }
@@ -1644,7 +1668,7 @@
               Milestone GOAL
             </label>
             <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder=""  maxlength="20">
+                <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder="$1000"  maxlength="20">
             </div>
         </div>
         <div class="give-donor-dashboard-text-control">
@@ -1659,18 +1683,17 @@
     `);
   });
 
-
   /************************
   * 
   * Add donation preset
   * 
   ************************/
   $(document).on('click', '#give-kindness-donations-preset-add', function() {
-    $(this).before(`
+    $('#give_kindness-donations-preset-area').append(`
       <div class="give-donor-dashboard-field-row">
         <div class="give-donor-dashboard-text-control">
             <div class="give-donor-dashboard-text-control__input">
-                <input class="gk-preset-amount" name="gk-preset-amount[]" type="text" placeholder="$25" maxlength="20">
+              <input class="gk-preset-amount" name="gk-preset-amount[]" type="text" placeholder="$25" maxlength="20">
             </div>
         </div>
       </div>
@@ -1678,13 +1701,112 @@
       <div class="give-donor-dashboard-field-row">
           <div class="give-donor-dashboard-text-control">
               <div class="give-donor-dashboard-text-control__input">
-                  <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="Description"></textarea>
+                <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="Description"></textarea>
               </div>
           </div>
       </div>
     `);
   });
+  
+  /************************
+  * 
+  * Invite co-fundraisers
+  * 
+  ************************/
+  $(document).on('click', '#give_kindness-fundraisers-invite-send', function() {
 
+    var regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    let email = $('#give-kindness-fundraisers-invite-email').val();
+    let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+    
+    if( email == '' || !regexEmail.test(email) ) {
+      alert(give_kindness.inValidEmail);
+      return false;
+    }
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      headers: {'X-WP-Nonce': give_kindness.apiNonce },
+      url: give_kindness.giveKindnessApiURL+'invite-fundraisers',
+      data: {
+        form: campaign_id,
+        email: email
+      },
+      success: function(data) {
+        console.log('res==>',data);
+        if( data.status == 200 ) {
+        } else {
+          alert(data.message);
+        }
+      },
+      error: function (error) {
+        console.log('fail==>', error);
+      }
+    });
+
+  });
+
+  /************************
+  * 
+  * 
+  * 
+  ************************/
+  $(document).on('click', '#give_kindness-fundraisers-invite-send', function() {
+
+  });
+
+
+  /************************
+  * 
+  * Save donation preset amounts
+  * 
+  ************************/
+  $(document).on('click', '#give-kindness-donations-preset-save', function() {
+
+    let that = $(this);
+    let presetAmount = [];
+    let presetDetail = [];
+    let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+
+    jQuery(".gk-preset-amount").each(function(index, item) {
+      if(item.value !=''){
+        presetAmount.push(item.value);
+      }
+    });
+
+    jQuery(".gk-preset-amount-label").each(function(index, item) {
+      if(item.value !='') {
+        presetDetail.push(item.value);
+      }
+    });
+
+
+    if( presetAmount.length > 0 ) {
+
+      that.attr('disabled', true);
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        headers: {'X-WP-Nonce': give_kindness.apiNonce },
+        url: give_kindness.giveKindnessApiURL+'donation-preset-amounts',
+        data: {
+          form: campaign_id,
+          amount: JSON.stringify(presetAmount),
+          detail: JSON.stringify(presetDetail),
+        },
+        success: function(data) {
+          alert(data.message);
+          that.attr('disabled', false);
+        },
+        error: function (error) {
+          console.log('fail==>', error);
+          that.attr('disabled', false);
+        }
+      });
+    }
+
+  });
 
 })(jQuery, window, document);
 

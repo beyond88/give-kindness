@@ -120,6 +120,7 @@ class Assets {
             'dashboardURL' => $page_url,
             'saveSeeCampaign' => __('Save and see my campaign', 'give-kindness'),
             'deleteMsg' => __('Want to delete this campaign?', 'give-kindness'),
+            'inValidEmail' => __('Invalid email!', 'give-kindness'),
         ] );
     }
 }
