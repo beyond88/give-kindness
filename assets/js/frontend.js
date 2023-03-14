@@ -1417,6 +1417,7 @@
     const viewDonations = 'give_kindness-view-donations';
     const viewStatistics = 'give_kindness-campaign-statistics';
     const viewDonationPresets = 'give_kindness-donations-preset';
+    const viewMilestones = 'give_kindness-campaign-milestones';
     let currentTabContent = $(this).data('tab-id');
 
     if( typeof currentTabContent != "undefined" ) {
@@ -1495,6 +1496,34 @@
           },
           success: function(data) {
             $("#give_kindness-donations-preset-area").html(data.presets);
+          },
+          error: function (error) {
+            console.log('fail==>', error);
+          }
+        });
+      }
+
+      if( currentTabContent === viewMilestones ) {
+        let campaign_id = jQuery('#give_kindness-update-campaign').attr('data-campaign-id');
+        if( campaign_id == '' ) {
+          return; 
+        }
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          headers: {'X-WP-Nonce': give_kindness.apiNonce },
+          url: give_kindness.giveKindnessApiURL+'get-milestones',
+          data: {
+            form: campaign_id
+          },
+          success: function(data) {
+            console.log('milestones==>', data)
+            $("#give-kindness-milestone-operate").html(data.milestones);
+            if( data.milestones_switch == 1) {
+              $('#give-kindness-milestone-switch').attr('checked', true);
+              $('.give-kindness-milestone-hide').fadeIn('slow');
+            }
           },
           error: function (error) {
             console.log('fail==>', error);
@@ -1647,7 +1676,7 @@
   * 
   ************************/
   $(document).on('click', '#give-kindness-milestone-switch', function() {
-    if($(this).is(":checked")){
+    if( $(this).is(":checked") ) {
       $('.give-kindness-milestone-hide').fadeIn('slow');
     } else {
       $('.give-kindness-milestone-hide').fadeOut('slow');
@@ -1721,10 +1750,12 @@
         data: {
           form: campaign_id,
           enable_milestone: enable_milestone,
-          amount: JSON.stringify(milestoneGoal),
+          goal: JSON.stringify(milestoneGoal),
           label: JSON.stringify(milestoneGoalLabel),
         },
         success: function(data) {
+
+          console.log('res==>',data);
           alert(data.message);
           that.attr('disabled', false);
         },
@@ -1733,6 +1764,7 @@
           that.attr('disabled', false);
         }
       });
+
     }
 
   });

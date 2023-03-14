@@ -344,7 +344,6 @@ class CampaignAPI
         if( ! empty( $amount ) ) {
             $i = 0;
             foreach( $amount as $item ) {
-
                 $data_sort = [
                     '_give_id' =>
                         [
@@ -386,19 +385,93 @@ class CampaignAPI
     */
     public function set_milestones( WP_REST_Request $request ) {
 
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $goal      = json_decode( $request['goal'], true );
+        $label      = json_decode( $request['label'], true );
+        $enable      = sanitize_text_field( $request['enable_milestone'] );
+        $data        = [];
+        $res    = '';
+        if( ! empty( $goal ) ) {
+            $i = 0;
+            foreach( $goal as $item ) {
+                $data_sort = [
+                    '_milestone_amount' => give_sanitize_amount_for_db($item),
+                    '_milestone_text' => $label[$i]
+                    ]; 
+                   
+                array_push( $data,  $data_sort);
+                $i++;
+            }
 
-        $res = '';
+            update_post_meta( $campaign_id, '_give_milestone_enable', $enable );
+
+            if( ! empty( $data ) ) {
+                $res = update_post_meta( $campaign_id, '_give_milestone', $data );
+            }
+        }
 
         if ( ! is_wp_error( $res ) ) {
 
             $response['status'] = 200;
             $response['message'] = __( "Milestones is created!", "give-kindness" );
+            $response['request'] = $request;
             return new WP_REST_Response( $response, 123 );
 
         }
 
         $response['status'] = 409;
         $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Get milestones
+    * 
+    * @param array
+    * @return array
+    */
+    public function get_milestones( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+
+        $data        = [];
+        $res        = '';
+
+        $milestone_switch = get_post_meta( $campaign_id, '_give_milestone_enable', true );
+        $milestones =  get_post_meta( $campaign_id, '_give_milestone', true );
+
+        $html = '';
+        if( ! empty( $milestones ) ) {
+            foreach( $milestones as $item ) {
+
+                $html .='<div class="give-kindness-milestone-wrapper"><i class="fa fa-trash" aria-hidden="true"></i>';
+                    $html .='
+                        <div class="give-donor-dashboard-field-row">
+                            <div class="give-donor-dashboard-text-control">
+                                <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+                                    Milestone GOAL
+                                </label>
+                                <div class="give-donor-dashboard-text-control__input">
+                                    <input class="gk-milestone-goal" name="gk-milestone-goal[]" type="number" min="1" value="'.str_replace(",", "", number_format($item['_milestone_amount'], 2)).'">
+                                </div>
+                            </div>
+                            <div class="give-donor-dashboard-text-control">
+                                <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+                                    Label (40 characters)
+                                </label>
+                                <div class="give-donor-dashboard-text-control__input">
+                                    <input class="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" maxlength="40" value="'.$item['_milestone_text'].'">
+                                </div>
+                            </div>
+                        </div>';
+                $html .='</div>';
+
+            }
+        }
+
+        $response['milestones_switch'] = $milestone_switch;
+        $response['milestones'] = $html;
         return new WP_REST_Response( $response, 123 );
 
     }

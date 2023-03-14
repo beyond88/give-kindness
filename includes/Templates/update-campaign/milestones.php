@@ -17,13 +17,12 @@
                 <?php echo __('Fundraising target', 'give-kindness'); ?>
             </label>
             <h4 class="give-kindness-milestone-label" id="give-kindness-milestone-label">
-            $10000
+                $10000
             </h4>
         </div>
     </div>
 
     <div class="give-kindness-milestone-operate give-kindness-milestone-hide" id="give-kindness-milestone-operate">
-
         <div class="give-kindness-milestone-wrapper">
             <i class="fa fa-trash" aria-hidden="true"></i>
             <div class="give-donor-dashboard-field-row">
