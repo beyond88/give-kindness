@@ -76,7 +76,7 @@
                             $campaign_id = $campaign->ID;
                             $data['campaign_id'] = $campaign_id;
                             $data['campaign_name'] = $campaign->post_title;
-                            $data['fundraising_target'] = give_get_meta( $campaign_id, '_give_set_goal', true );;
+                            $data['fundraising_target'] = str_replace(",", "", number_format( give_get_meta( $campaign_id, '_give_set_goal', true ), 2 ) );
                             $data['beneficiary_name'] = get_post_meta( $campaign_id, 'benefiary_name', true );
                             $data['mobile_code'] = get_post_meta( $campaign_id, 'mobile_code', true );
                             $data['mobile_number'] = get_post_meta( $campaign_id, 'mobile_number', true );
@@ -91,6 +91,8 @@
                             $data['government_assistance'] = get_post_meta( $campaign_id, 'government_assistance', true );
                             $data['government_assistance_details'] = get_post_meta( $campaign_id, 'government_assistance_details', true );
                             $data['campaign_boosting'] = get_post_meta( $campaign_id, 'campaign_boosting', true );
+                            $data['campaign_currency'] = give_currency_symbol(give_get_currency(), true);
+                            
                             $medical_document_url = [];
 
                             $medical_document = get_post_meta( $campaign_id, 'medical_document', true );
