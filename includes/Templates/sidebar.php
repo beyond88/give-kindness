@@ -63,10 +63,10 @@
             <i class="far fa-comment-dots"></i>
             <?php echo __('Chat preset', 'give-kindness'); ?>
         </a> -->
-        <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-donations-preset">
+        <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-donations-preset">
             <i class="fas fa-money-bill-alt" aria-hidden="true"></i>
             <?php echo __('Donation preset amounts', 'give-kindness'); ?>
-        </a> -->
+        </a>
         <!-- <a class="give-donor-dashboard-tab-link" href="javascript:void(0)" data-tab-id="give_kindness-campaign-share">
             <i class="fas fa-share-alt-square"></i>
             <?php echo __('Share', 'give-kindness'); ?>

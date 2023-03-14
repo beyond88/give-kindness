@@ -20,9 +20,9 @@
          <?php give_kindness_templates_part( 'update-campaign/fundraisers', $object ); ?>
          <?php give_kindness_templates_part( 'update-campaign/milestones', $object ); ?>
          <?php //give_kindness_templates_part( 'update-campaign/chat-presets', $object ); ?>
-         <?php //give_kindness_templates_part( 'update-campaign/donation-preset-amounts', $object ); ?>
+         <?php give_kindness_templates_part( 'update-campaign/donation-preset-amounts', $object ); ?>
          <?php //give_kindness_templates_part( 'update-campaign/share', $object ); ?>
-         <?php give_kindness_templates_part( 'update-campaign/docs', $object ); ?>
+         <?php //give_kindness_templates_part( 'update-campaign/docs', $object ); ?>
          <?php //give_kindness_templates_part( 'update-campaign/widget', $object ); ?>
 
       </div>

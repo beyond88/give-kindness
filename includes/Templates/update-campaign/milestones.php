@@ -17,7 +17,7 @@
                 <?php echo __('Fundraising target', 'give-kindness'); ?>
             </label>
             <h4 class="give-kindness-milestone-label" id="give-kindness-milestone-label">
-                $10000
+            $10000
             </h4>
         </div>
     </div>

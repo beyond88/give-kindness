@@ -254,7 +254,124 @@ class CampaignAPI
         return new WP_REST_Response( $response, 123 );
 
     }
-    
 
+    /**
+    * Set suspend request status 
+    * 
+    * @param array
+    * @return array
+    */
+    public function invite_fundraisers( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $email      = sanitize_text_field( $request['email'] );
+
+        $res = '';
+
+        if ( ! is_wp_error( $res ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Invitation has been sent!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Get donation preset amounts
+    * 
+    * @param array
+    * @return array
+    */
+    public function get_donation_preset_amounts( WP_REST_Request $request ) {
+
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $multi = get_post_meta( $campaign_id, '_give_price_option', true );
+        $presets = get_post_meta( $campaign_id, '_give_donation_levels', true );
+        $response['status'] = 200;
+        $response['option'] = $multi;
+
+        $html = '';
+        if( ! empty( $presets ) ) {
+            foreach( $presets as $preset ) {
+                $html .='<div class="give-donor-dashboard-field-row">
+                    <div class="give-donor-dashboard-text-control">
+                        <div class="give-donor-dashboard-text-control__input">
+                            <input class="gk-preset-amount" name="gk-preset-amount[]" type="number" min="1" maxlength="20" value='.number_format($preset['_give_amount'], 2).'>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="give-donor-dashboard-field-row">
+                    <div class="give-donor-dashboard-text-control">
+                        <div class="give-donor-dashboard-text-control__input">
+                            <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" maxlength="100">'.$preset['_give_text'].'</textarea>
+                        </div>
+                    </div>
+                </div>';
+
+            }
+        }
+
+        $response['presets'] = $html;
+        return new WP_REST_Response( $response, 123 );
+
+    }
+
+    /**
+    * Set donation preset amounts
+    * 
+    * @param array
+    * @return array
+    */
+    public function donation_preset_amounts( WP_REST_Request $request ) {
+
+        $res = '';
+        $campaign_id = sanitize_text_field( $request['form'] );
+        $amount      = json_decode( $request['amount'], true );
+        $detail      = json_decode( $request['detail'], true );
+        $data        = [];
+
+        if( ! empty( $amount ) ) {
+            $i = 0;
+            foreach( $amount as $item ) {
+
+                $data_sort = [
+                    '_give_id' =>
+                        [
+                            'level_id' => $i,
+                        ],
+                    '_give_amount' => give_sanitize_amount_for_db($item),
+                    '_give_text' => $detail[$i]
+                    ]; 
+                   
+                array_push( $data,  $data_sort);
+                $i++;
+            }
+            update_post_meta( $campaign_id, '_give_price_option', 'multi' );
+
+            if( ! empty( $data ) ) {
+                $res = update_post_meta( $campaign_id, '_give_donation_levels', $data );
+            }
+        }
+
+        if ( ! is_wp_error( $res ) ) {
+
+            $response['status'] = 200;
+            $response['message'] = __( "Donation preset amounts is created!", "give-kindness" );
+            return new WP_REST_Response( $response, 123 );
+
+        }
+
+        $response['status'] = 409;
+        $response['message'] = __( "Something went wrong!", "give-kindness" );
+        return new WP_REST_Response( $response, 123 );
+
+    }
 
 }
