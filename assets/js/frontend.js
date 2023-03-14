@@ -1661,25 +1661,37 @@
   ************************/
   $(document).on('click', '#give-kindness-milestone-add', function() {
     $(this).before(`
-      <div class="give-donor-dashboard-field-row">
-        <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
-              Milestone GOAL
-            </label>
-            <div class="give-donor-dashboard-text-control__input">
-                <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder="$1000"  maxlength="20">
-            </div>
-        </div>
-        <div class="give-donor-dashboard-text-control">
-            <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
-              Label (40 characters)
-            </label>
-            <div class="give-donor-dashboard-text-control__input">
-              <input id="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="Final Milestone"  maxlength="40">
-            </div>
+      <div class="give-kindness-milestone-wrapper">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        <div class="give-donor-dashboard-field-row">
+          <div class="give-donor-dashboard-text-control">
+              <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+                Milestone GOAL
+              </label>
+              <div class="give-donor-dashboard-text-control__input">
+                  <input id="gk-milestone-goal" name="gk-milestone-goal[]" type="text" placeholder="$1000"  maxlength="20">
+              </div>
+          </div>
+          <div class="give-donor-dashboard-text-control">
+              <label class="give-donor-dashboard-text-control__label" for="gk-milestone-goal">
+                Label (40 characters)
+              </label>
+              <div class="give-donor-dashboard-text-control__input">
+                <input id="gk-milestone-goal-label" name="gk-milestone-goal-label[]" type="text" placeholder="Final Milestone"  maxlength="40">
+              </div>
+          </div>
         </div>
       </div>
     `);
+  });
+
+  /************************
+  * 
+  * Delete donation preset amounts
+  * 
+  ************************/
+  $(document).on('click', '.give-kindness-milestone-wrapper i', function() {
+    $(this).parent().remove();
   });
 
   /************************
@@ -1814,7 +1826,7 @@
   ************************/
   $(document).on('click', '.give_kindness-donations-preset-wrapper i', function() {
     $(this).parent().remove();
-  })
+  });
   
 
 })(jQuery, window, document);

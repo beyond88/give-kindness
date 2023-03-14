@@ -3032,17 +3032,20 @@ input:checked + .give-kindness-slider:before {
   background-color: transparent;
 }
 
-.give_kindness-donations-preset-wrapper {
+.give_kindness-donations-preset-wrapper,
+.give-kindness-milestone-wrapper {
   position: relative;
 }
 
-.give_kindness-donations-preset-wrapper i {
+.give_kindness-donations-preset-wrapper i,
+.give-kindness-milestone-wrapper i {
   cursor: pointer;
   position: absolute;
   right: 0;
 }
 
 .give_kindness-donations-preset-wrapper
-  .give-donor-dashboard-field-row:last-child {
+  .give-donor-dashboard-field-row:last-child,
+.give-kindness-milestone-wrapper .give-donor-dashboard-field-row:last-child {
   margin-bottom: 20px;
 }
