@@ -1494,7 +1494,6 @@
             form: campaign_id
           },
           success: function(data) {
-            console.log('donation preset==>', data);
             $("#give_kindness-donations-preset-area").html(data.presets);
           },
           error: function (error) {
@@ -1807,6 +1806,16 @@
     }
 
   });
+
+  /************************
+  * 
+  * Delete donation preset amounts
+  * 
+  ************************/
+  $(document).on('click', '.give_kindness-donations-preset-wrapper i', function() {
+    $(this).parent().remove();
+  })
+  
 
 })(jQuery, window, document);
 

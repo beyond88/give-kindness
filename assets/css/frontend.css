@@ -3031,3 +3031,18 @@ input:checked + .give-kindness-slider:before {
 .give_kindness-donations-preset-area textarea {
   background-color: transparent;
 }
+
+.give_kindness-donations-preset-wrapper {
+  position: relative;
+}
+
+.give_kindness-donations-preset-wrapper i {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+.give_kindness-donations-preset-wrapper
+  .give-donor-dashboard-field-row:last-child {
+  margin-bottom: 20px;
+}

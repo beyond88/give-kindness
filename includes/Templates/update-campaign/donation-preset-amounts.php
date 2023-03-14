@@ -2,24 +2,28 @@
     <h4 class='gk-margin-bottom-10'>
         <?php echo __('Donation preset amounts', 'give-kindness'); ?>
     </h4>
-    <div class="give-donor-dashboard-divider"></div>
+    <div class="give-donor-dashboard-divider gk-margin-bottom-10"></div>
 
     <div class="give_kindness-donations-preset-area" id="give_kindness-donations-preset-area">
-        <div class="give-donor-dashboard-field-row">
-            <div class="give-donor-dashboard-text-control">
-                <div class="give-donor-dashboard-text-control__input">
-                    <input class="gk-preset-amount" name="gk-preset-amount[]" type="number" min="1" placeholder="<?php echo __('$25', 'give-kindness'); ?>" maxlength="20">
+
+        <div class="give_kindness-donations-preset-wrapper">
+            <div class="give-donor-dashboard-field-row">
+                <div class="give-donor-dashboard-text-control">
+                    <div class="give-donor-dashboard-text-control__input">
+                        <input class="gk-preset-amount" name="gk-preset-amount[]" type="number" min="1" placeholder="<?php echo __('$25', 'give-kindness'); ?>" maxlength="20">
+                    </div>
+                </div>
+            </div>
+
+            <div class="give-donor-dashboard-field-row">
+                <div class="give-donor-dashboard-text-control">
+                    <div class="give-donor-dashboard-text-control__input">
+                        <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="<?php echo __('Description', 'give-kindness'); ?>" maxlength="100"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="give-donor-dashboard-field-row">
-            <div class="give-donor-dashboard-text-control">
-                <div class="give-donor-dashboard-text-control__input">
-                    <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="<?php echo __('Description', 'give-kindness'); ?>" maxlength="100"></textarea>
-                </div>
-            </div>
-        </div>
     </div>
     
     <div class="give_kindness-donations-preset-area">
