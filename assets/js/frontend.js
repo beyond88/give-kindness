@@ -1784,20 +1784,23 @@
   ************************/
   $(document).on('click', '#give-kindness-donations-preset-add', function() {
     $('#give_kindness-donations-preset-area').append(`
-      <div class="give-donor-dashboard-field-row">
-        <div class="give-donor-dashboard-text-control">
-            <div class="give-donor-dashboard-text-control__input">
-              <input class="gk-preset-amount" name="gk-preset-amount[]" type="text" placeholder="$25" maxlength="20">
-            </div>
-        </div>
-      </div>
-
-      <div class="give-donor-dashboard-field-row">
+      <div class="give-kindness-milestone-wrapper">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        <div class="give-donor-dashboard-field-row">
           <div class="give-donor-dashboard-text-control">
               <div class="give-donor-dashboard-text-control__input">
-                <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="Description"></textarea>
+                <input class="gk-preset-amount" name="gk-preset-amount[]" type="text" placeholder="$25" maxlength="20">
               </div>
           </div>
+        </div>
+
+        <div class="give-donor-dashboard-field-row">
+            <div class="give-donor-dashboard-text-control">
+                <div class="give-donor-dashboard-text-control__input">
+                  <textarea class="gk-preset-amount-label" name="gk-preset-amount-label[]" placeholder="Description"></textarea>
+                </div>
+            </div>
+        </div>
       </div>
     `);
   });
