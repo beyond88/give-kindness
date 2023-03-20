@@ -156,6 +156,9 @@ class GiveKindnessMetabox {
           $attach_ids = explode(",", $medical_document);
           if( ! empty( $attach_ids ) && $medical_document_type == "image" ) {
             foreach( $attach_ids as $attach_id) {
+              if( $attach_id == ''){
+                continue;
+              }
               $image = wp_get_attachment_image_src( $attach_id, 'full' );
               $image_url = $image[0];
               ?>

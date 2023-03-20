@@ -77,6 +77,7 @@
                             $data['campaign_id'] = $campaign_id;
                             $data['campaign_name'] = $campaign->post_title;
                             $data['fundraising_target'] = str_replace(",", "", number_format( give_get_meta( $campaign_id, '_give_set_goal', true ), 2 ) );
+                            $data['fundraising_target'] = give_get_meta( $campaign_id, '_give_set_goal', true );
                             $data['beneficiary_name'] = get_post_meta( $campaign_id, 'benefiary_name', true );
                             $data['mobile_code'] = get_post_meta( $campaign_id, 'mobile_code', true );
                             $data['mobile_number'] = get_post_meta( $campaign_id, 'mobile_number', true );
