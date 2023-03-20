@@ -261,42 +261,90 @@ class Helpers
     public static function edit_campaign( $request, $img_url = NULL ) {
 
         $campaign_id = sanitize_text_field( $request['campaign_id'] );
+
         if( ! is_null( get_post( $campaign_id ) ) ) {
 
-            wp_update_post(
-                [
-                    'ID'        => sanitize_text_field( $request['campaign_id'] ),
-                    'post_title' => sanitize_text_field( $request['campaign_name'] ),
-                    'post_status' => sanitize_text_field( $request['submit_type'] ), // @TODO: Preview needs to work with Draft status.
-                    'meta_input' => [
-                        '_give_sequoia_form_template_settings' => [
-                            'introduction' => [
-                                'headline' => sanitize_text_field( $request['campaign_name'] ),
-                                'description' => sanitize_text_field( $request['campaign_detail'] ),
-                                'image' => esc_url( $img_url ),
-                            ]
+            if( ! empty( $request['campaign_name'] ) ) {
+                wp_update_post(
+                    [
+                        'ID'        => sanitize_text_field( $request['campaign_id'] ),
+                        'post_title' => sanitize_text_field( $request['campaign_name'] ),
+                        'post_status' => sanitize_text_field( $request['submit_type'] ), // @TODO: Preview needs to work with Draft status.
+                        'meta_input' => [
+                            '_give_sequoia_form_template_settings' => [
+                                'introduction' => [
+                                    'headline' => sanitize_text_field( $request['campaign_name'] ),
+                                    'description' => sanitize_text_field( $request['campaign_detail'] ),
+                                    //'image' => esc_url( $img_url ),
+                                ]
+                            ],
+                            '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),
+                            '_give_from_name' => sanitize_text_field( $request['benefiary_name'] ),
                         ],
-                        '_give_set_goal' => sanitize_text_field( $request['fundrais_amount'] ),
-                        '_give_from_name' => sanitize_text_field( $request['benefiary_name'] ),
-                    ],
-                ]
-            );
+                    ]
+                );
+            }
+            //medical_document_file
 
-            update_post_meta( $campaign_id, 'benefiary_name', sanitize_text_field( $request['benefiary_name'] ) );
-            update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $request['mobile_code'] ) );
-            update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $request['mobile_number'] ) );
-            update_post_meta( $campaign_id, 'beneficiary_relationship', sanitize_text_field( $request['beneficiary_relationship'] ) );
-            update_post_meta( $campaign_id, 'beneficiary_country', sanitize_text_field( $request['beneficiary_country'] ) );
-            update_post_meta( $campaign_id, 'beneficier_age', sanitize_text_field( $request['beneficier_age'] ) );
-            update_post_meta( $campaign_id, 'medical_condition', sanitize_text_field( $request['medical_condition'] ) );
-            update_post_meta( $campaign_id, 'medical_document_type', sanitize_text_field( $request['medical_document_type'] ) );
-            update_post_meta( $campaign_id, 'campaign_detail', sanitize_text_field( $request['campaign_detail'] ) );
-            update_post_meta( $campaign_id, 'campaign_country', sanitize_text_field( $request['campaign_country'] ) );
-            update_post_meta( $campaign_id, 'government_assistance', sanitize_text_field( $request['government_assistance'] ) );
-            update_post_meta( $campaign_id, 'government_assistance_details', sanitize_text_field( $request['government_assistance_details'] ) );
-            update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
-            update_post_meta( $campaign_id, 'medical_document', sanitize_text_field( $request['medical_document_file'] ) );
-            update_post_meta( $campaign_id, 'campaign_email',  sanitize_email( $request['campaign_email'] ) );
+            if( ! empty( $request['benefiary_name'] ) ) {
+                update_post_meta( $campaign_id, 'benefiary_name', sanitize_text_field( $request['benefiary_name'] ) );
+            }
+
+            if( ! empty( $request['mobile_code'] ) ) {
+                update_post_meta( $campaign_id, 'mobile_code', sanitize_text_field( $request['mobile_code'] ) );
+            }
+
+            if( ! empty( $request['mobile_number'] ) ) {
+                update_post_meta( $campaign_id, 'mobile_number', sanitize_text_field( $request['mobile_number'] ) );
+            }
+
+            if( ! empty( $request['beneficiary_relationship'] ) ) {
+                update_post_meta( $campaign_id, 'beneficiary_relationship', sanitize_text_field( $request['beneficiary_relationship'] ) );
+            }
+
+            if( ! empty( $request['beneficiary_country'] ) ) {
+                update_post_meta( $campaign_id, 'beneficiary_country', sanitize_text_field( $request['beneficiary_country'] ) );
+            }
+
+            if( ! empty( $request['beneficier_age'] ) ) {
+                update_post_meta( $campaign_id, 'beneficier_age', sanitize_text_field( $request['beneficier_age'] ) );
+            }
+
+            if( ! empty( $request['medical_condition'] ) ) {
+                update_post_meta( $campaign_id, 'medical_condition', sanitize_text_field( $request['medical_condition'] ) );
+            }
+
+            if( ! empty( $request['medical_document_type'] ) ) {
+                update_post_meta( $campaign_id, 'medical_document_type', sanitize_text_field( $request['medical_document_type'] ) );
+            }
+
+            if( ! empty( $request['campaign_detail'] ) ) {
+                update_post_meta( $campaign_id, 'campaign_detail', sanitize_text_field( $request['campaign_detail'] ) );
+            }
+
+            if( ! empty( $request['campaign_country'] ) ) {
+                update_post_meta( $campaign_id, 'campaign_country', sanitize_text_field( $request['campaign_country'] ) );
+            }
+
+            if( ! empty( $request['government_assistance'] ) ) {
+                update_post_meta( $campaign_id, 'government_assistance', sanitize_text_field( $request['government_assistance'] ) );
+            }
+
+            if( ! empty( $request['government_assistance_details'] ) ) {
+                update_post_meta( $campaign_id, 'government_assistance_details', sanitize_text_field( $request['government_assistance_details'] ) );
+            }
+
+            if( ! empty( $request['campaign_boosting'] ) ) {
+                update_post_meta( $campaign_id, 'campaign_boosting', sanitize_text_field( $request['campaign_boosting'] ) );
+            }
+
+            if( ! empty( $request['medical_document_file'] ) ) {
+                update_post_meta( $campaign_id, 'medical_document', sanitize_text_field( $request['medical_document_file'] ) );
+            }
+
+            if( ! empty( $request['campaign_email'] ) ) {
+                update_post_meta( $campaign_id, 'campaign_email', sanitize_text_field( $request['campaign_email'] ) );
+            }
 
             return $campaign_id;
 

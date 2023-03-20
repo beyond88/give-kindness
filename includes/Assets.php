@@ -121,6 +121,7 @@ class Assets {
             'saveSeeCampaign' => __('Save and see my campaign', 'give-kindness'),
             'deleteMsg' => __('Want to delete this campaign?', 'give-kindness'),
             'inValidEmail' => __('Invalid email!', 'give-kindness'),
+            'save' => __('Save', 'give-kindness'),
         ] );
     }
 }

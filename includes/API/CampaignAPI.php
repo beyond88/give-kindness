@@ -94,17 +94,20 @@ class CampaignAPI
 
         $campaign_id = sanitize_text_field( $request['campaign_id'] );
         $attach_id = 0;
-        $attach_ids = $request['medical_document_file'];
-        $attach_ids = explode(",", sanitize_text_field( $request['medical_document_file'] ) );
-
-        if( is_array( $attach_ids ) && $request['medical_document_type'] == 'image' ) {            
-            $attach_id = $attach_ids[0];
-        }
-
         $img_src = '';
-        $image = wp_get_attachment_image_src( $attach_id, 'full' );
-        if( is_array( $image ) ) {
-            $img_src = $image[0];
+
+        if( isset( $request['medical_document_file'] ) ) {
+            $attach_ids = $request['medical_document_file'];
+            $attach_ids = explode(",", sanitize_text_field( $request['medical_document_file'] ) );
+
+            if( is_array( $attach_ids ) && $request['medical_document_type'] == 'image' ) {            
+                $attach_id = $attach_ids[0];
+            }
+
+            $image = wp_get_attachment_image_src( $attach_id, 'full' );
+            if( is_array( $image ) ) {
+                $img_src = $image[0];
+            }
         }
 
         $campaign_id = Helpers::edit_campaign( $request, $img_src );
