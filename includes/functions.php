@@ -206,11 +206,12 @@ function gk_dummy_donations() {
     $role = 'administrator';
     $status = 1;
     $meta_key = 'gk_user_verify';
+    $capabilities = $wpdb->prefix .'capabilities';
 
     $query = "SELECT u.ID, u.user_login, u.user_email
                 FROM ".$user_table." u, ".$user_meta_table." m
                     WHERE u.ID = m.user_id
-                        AND m.meta_key LIKE 'wp_capabilities'
+                        AND m.meta_key LIKE '".$capabilities."'
                             AND m.meta_value LIKE '%".$role."%'";
 
     $results = $wpdb->get_results( $query, ARRAY_A );
