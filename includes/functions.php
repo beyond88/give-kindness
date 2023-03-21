@@ -299,18 +299,40 @@ function donation_history_pagination() {
 ?>
 <script>
       (function ($) {
-        var paginator = new $(".give-kindness-items-container").joldPaginator({
+        var statsPagination = new $(".give-kindness-stats-container").joldPaginator({
           perPage: 5,
-          items: ".give-kindness-item",
-          paginator: ".give-kindness-pagination-container",
+          items: ".give-kindness-stats-item",
+          paginator: ".give-kindness-stats-pagination-container",
           indicator: {
-            selector: ".give-kindness-pagination-indicator",
+            selector: ".give-kindness-stats-pagination-indicator",
             text: "Showing item {start}-{end} of {total}",
           },
         });
 
-         // Reset the paginator
-         paginator.init();
+        var donationsPaginator = new $(".give-kindness-donation-history-container").joldPaginator({
+          perPage: 5,
+          items: ".give-kindness-donation-item",
+          paginator: ".give-kindness-donation-pagination-container",
+          indicator: {
+            selector: ".give-kindness-donation-pagination-indicator",
+            text: "Showing item {start}-{end} of {total}",
+          },
+        });
+
+        var campaignsPaginator = new $(".give-kindness-campaigns-container").joldPaginator({
+          perPage: 5,
+          items: ".give-kindness-campaigns-item",
+          paginator: ".give-kindness-campaigns-pagination-container",
+          indicator: {
+            selector: ".give-kindness-campaigns-pagination-indicator",
+            text: "Showing item {start}-{end} of {total}",
+          },
+        });
+
+        // Reset the paginator
+        statsPagination.init();
+        donationsPaginator.init();
+        campaignsPaginator.init();
       })(jQuery);
     </script>
 <?php

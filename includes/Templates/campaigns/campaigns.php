@@ -27,7 +27,7 @@
             <div class="give-donor-dashboard-table__column"><?php echo __('Status','give-kindness');?></div>
         </div>
 
-        <div class="give-donor-dashboard-table__rows give-kindness-items-container">
+        <div class="give-donor-dashboard-table__rows give-kindness-campaigns-container give-kindness-items-container">
             <?php if( $campaigns->have_posts() ) : ?>
             <?php foreach( $campaigns->posts as $campaign ) : ?>
             <?php 
@@ -36,7 +36,7 @@
                 $donations = give_get_form_sales_stats( $campaign->ID );
                 $revenue = $goal_stats['actual'];
             ?>
-            <div class="give-donor-dashboard-table__row give-kindness-item item-visible">
+            <div class="give-donor-dashboard-table__row give-kindness-campaigns-item item-visible">
                 <div class="give-donor-dashboard-table__column">
                     <?php echo $campaign->post_title; ?>
                 </div>
@@ -134,9 +134,9 @@
         </div>
 
         <div class="give-donor-dashboard-table__footer">
-            <div class="give-donor-dashboard-table__footer-text give-kindness-pagination-indicator"></div>
+            <div class="give-donor-dashboard-table__footer-text give-kindness-pagination-indicator give-kindness-campaigns-pagination-indicator"></div>
             <div class="give-donor-dashboard-table__footer-nav">
-                <ul class="give-kindness-pagination-container"></ul>
+                <ul class="give-kindness-pagination-container give-kindness-campaigns-pagination-container"></ul>
             </div>
         </div>
     </div>
