@@ -28,6 +28,11 @@ class Assets {
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/frontend.js' ),
                 'deps'    => [ 'jquery' ]
             ],
+            'give_kindness-jold' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/js/jquery.jold.paginator.min.js',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/jquery.jold.paginator.min.js' ),
+                // 'deps'    => [ 'jquery' ]
+            ],
             'give_kindness-ie8gallery' => [
                 'src'     => GIVE_KINDNESS_ASSETS . '/js/ie8gallery.js',
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/ie8gallery.js' ),

@@ -260,8 +260,7 @@ add_action( 'wp_enqueue_scripts', 'fontawesome_cdn_enqueue' );
  * Allow upload media this specific user
  *
  */
-function give_kindness_allow_user_media()
-{
+function give_kindness_allow_user_media() {
     global $wp_roles;
     $roles = $wp_roles->get_names();
     $create_role_names = ['administrator', 'editor', 'author', 'contributor', 'subscriber', 'customer', 'shop_manager', 'give_donor', 'give_worker', 'give_accountant', 'give_manager', 'translator'];
@@ -281,8 +280,7 @@ add_action( 'admin_init', 'give_kindness_allow_user_media' );
  * @param array $query
  * @return array
  */
-function give_kindness_show_current_user_attachments( $query = array() )
-{
+function give_kindness_show_current_user_attachments( $query = array() ) {
     $user_id = get_current_user_id();
     if( $user_id && ! current_user_can('manage_options') ) {
         $query['author'] = $user_id;
@@ -290,3 +288,31 @@ function give_kindness_show_current_user_attachments( $query = array() )
     return $query;
 }
 add_filter( 'ajax_query_attachments_args', 'give_kindness_show_current_user_attachments', 10, 1 );
+
+/**
+ * Pagination for donation history
+ * 
+ * @param none
+ * @return string
+ */
+function donation_history_pagination() {
+?>
+<script>
+      (function ($) {
+        var paginator = new $(".give-kindness-items-container").joldPaginator({
+          perPage: 5,
+          items: ".give-kindness-item",
+          paginator: ".give-kindness-pagination-container",
+          indicator: {
+            selector: ".give-kindness-pagination-indicator",
+            text: "Showing item {start}-{end} of {total}",
+          },
+        });
+
+         // Reset the paginator
+         paginator.init();
+      })(jQuery);
+    </script>
+<?php
+}
+add_action('wp_footer', 'donation_history_pagination', 100 );

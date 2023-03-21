@@ -40,7 +40,7 @@
             <div class="give-donor-dashboard-table__column"><?php echo __('Status','give-kindness');?></div>
         </div>
 
-        <div class="give-donor-dashboard-table__rows">
+        <div class="give-donor-dashboard-table__rows give-kindness-items-container">
 
             <?php if( ! empty( $donations ) ) : ?>
             <?php $reciept = count($donations); ?>
@@ -56,7 +56,7 @@
                 $color = $donation['payment']['status']['color'];
                 $recieptNo = $reciept-1;
             ?>
-            <div class="give-donor-dashboard-table__row">
+            <div class="give-donor-dashboard-table__row give-kindness-item item-visible">
                 <div class="give-donor-dashboard-table__column">
                     <div class="give-donor-dashboard-table__donation-amount"><?php echo $total; ?></div>
                 </div>
@@ -91,10 +91,10 @@
         </div>
 
         <div class="give-donor-dashboard-table__footer">
-            <div class="give-donor-dashboard-table__footer-text">
-                <?php echo sprintf(__('Showing %s - %s of %s Donations', 'give-kindness'), 1, 2, 2); ?>
+            <div class="give-donor-dashboard-table__footer-text give-kindness-pagination-indicator"></div>
+            <div class="give-donor-dashboard-table__footer-nav">
+                <ul class="give-kindness-pagination-container"></ul>
             </div>
-            <div class="give-donor-dashboard-table__footer-nav"></div>
         </div>
     </div>
 </div>
