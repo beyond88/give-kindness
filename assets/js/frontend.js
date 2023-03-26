@@ -1895,16 +1895,6 @@
 
   /************************
   * 
-  * 
-  * 
-  ************************/
-  $(document).on('click', '#give_kindness-fundraisers-invite-send', function() {
-
-  });
-
-
-  /************************
-  * 
   * Save donation preset amounts
   * 
   ************************/
