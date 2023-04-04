@@ -1,4 +1,4 @@
-# give-kindness
+# Give Kindness
 ## GiveWP Crowdfund Extension
 
 Currently, GiveWP does not support or allow users to submit their personal campaigns. We need a custom add-on to GiveWP that would allow.
