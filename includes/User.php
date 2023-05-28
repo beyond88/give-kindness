@@ -23,7 +23,7 @@ class User {
      */
     public function generate_username( $email, $prefix = '' ) {
 
-        if( empty( $email ) ){
+        if( empty( $email ) ) {
             return NULL; 
         }
         

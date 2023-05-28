@@ -29,6 +29,10 @@
             $status = $donation['payment']['status']['label'];
             $color = $donation['payment']['status']['color'];
             $recieptNo = $reciept-1;
+
+            $tip_type = give_get_meta( $id, '_give_tip_type', true );
+            $tip_amount = give_get_meta( $id, '_give_tip_amount', true );
+
         ?>
          <div class="give-donor-dashboard-table__row give-kindness-donation-item item-visible">
             <div class="give-donor-dashboard-table__column">

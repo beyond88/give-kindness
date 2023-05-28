@@ -103,8 +103,14 @@
 <?php $reciepts = count($donations); ?>
 <?php foreach( $donations as $donation ): ?>
 <?php 
+
+    // echo "<pre>";
+    // print_r($donation);
+    // echo "</pre>";
+    
     $recieptNO = $reciepts; 
-    $formId = $donation['id'];
+    $id = $donation['id'];
+    $formId = $donation['form']['id'];
     $fullName = $donation['donor']['first_name'].' '.$donation['donor']['last_name'];
     $email = $donation['donor']['email'];
     $title = $donation['form']['title'];
@@ -115,8 +121,25 @@
     $method = $donation['payment']['method'];
     $status = $donation['payment']['status']['label'];
     $color = $donation['payment']['status']['color'];
+    $form_currency  = give_get_currency( $id );
+
+    $tip_amount = give_get_meta( $id, '_give_tip_amount', true );
+    $fee = give_get_meta( $id, '_give_fee_amount', true );
+    if( ! isset( $fee ) ) {
+        $fee = 0;
+    }
+
+    $donation_total = give_get_meta( $id, '_give_payment_total', true );
+
+    if( isset( $tip_amount ) ) {
+        $donation_total = ( $donation_total - $tip_amount) - $fee;
+        $donation_total = give_currency_filter( give_format_amount( $donation_total, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $formId ) ] );
+        $tip_amount = give_currency_filter( give_format_amount( $tip_amount, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $id ) ] );
+        $fee = give_currency_filter( give_format_amount( $fee, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $formId ) ] );
+    }
+
 ?>
-<div class="give-donor-dashboard-tab-content view-receipt-details" id="receipt-no-<?php echo $formId; ?>" style="display:none;">
+<div class="give-donor-dashboard-tab-content view-receipt-details" id="receipt-no-<?php echo $id; ?>" style="display:none;">
    <div class="give-donor-dashboard-heading"><?php echo sprintf(__('Donation Receipt #%s', 'give-kindness'), $recieptNO); ?></div>
    <div class="give-donor-dashboard-donation-receipt__table">
       <div class="give-donor-dashboard-donation-receipt__row">
@@ -140,11 +163,11 @@
    </div>
    <div class="give-donor-dashboard-donation-receipt__table">
       <div class="give-donor-dashboard-donation-receipt__row">
-         <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Payment Status', 'give-kindness'); ?> </div>
-         <div class="give-donor-dashboard-donation-receipt__value">
+        <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Payment Status', 'give-kindness'); ?> </div>
+        <div class="give-donor-dashboard-donation-receipt__value">
             <div class="give-donor-dashboard-donation-receipt__status-indicator" style="background: rgb(122, 208, 58);"></div>
             <?php echo $status; ?>
-         </div>
+        </div>
       </div>
       <div class="give-donor-dashboard-donation-receipt__row">
          <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Payment Method', 'give-kindness'); ?></div>
@@ -152,6 +175,20 @@
       </div>
       <div class="give-donor-dashboard-donation-receipt__row">
          <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Donation Amount', 'give-kindness'); ?></div>
+         <div class="give-donor-dashboard-donation-receipt__value"><?php echo $donation_total; ?></div>
+      </div>
+      <?php if( isset($tip_amount) ): ?>
+      <div class="give-donor-dashboard-donation-receipt__row">
+         <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Tip Amount', 'give-kindness'); ?></div>
+         <div class="give-donor-dashboard-donation-receipt__value"><?php echo $tip_amount; ?></div>
+      </div>
+      <?php endif; ?>
+      <div class="give-donor-dashboard-donation-receipt__row">
+         <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Donation Fee', 'give-kindness'); ?></div>
+         <div class="give-donor-dashboard-donation-receipt__value"><?php echo $fee; ?></div>
+      </div>
+      <div class="give-donor-dashboard-donation-receipt__row">
+         <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Total Donation', 'give-kindness'); ?></div>
          <div class="give-donor-dashboard-donation-receipt__value"><?php echo $amount; ?></div>
       </div>
       <div class="give-donor-dashboard-donation-receipt__row give-donor-dashboard-donation-receipt__row--footer">
@@ -160,7 +197,7 @@
       </div>
    </div>
    <div class="give-donor-dashboard__donation-history-footer">
-      <a href="javascript:void(0)" class="close-receipt" data-receipt-no="<?php echo $formId; ?>" onClick="closeReceipt(this, 'give_kindness-stats')">
+      <a href="javascript:void(0)" class="close-receipt" data-receipt-no="<?php echo $id; ?>" onClick="closeReceipt(this, 'give_kindness-stats')">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
         </svg>
