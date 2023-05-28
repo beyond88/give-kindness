@@ -21,7 +21,7 @@ class User {
      * @param string
      * @return string
      */
-    public function generate_username( $prefix = '', $email ) {
+    public function generate_username( $email, $prefix = '' ) {
 
         if( empty( $email ) ){
             return NULL; 
@@ -70,7 +70,7 @@ class User {
         }
 
         $user_prefix = '';
-        $username = $this->generate_username( $user_prefix, $email );
+        $username = $this->generate_username( $email, $user_prefix );
 
         $user_id = username_exists( $username );
         if ( ! $user_id && email_exists( $email ) == false ) {
