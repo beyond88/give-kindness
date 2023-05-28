@@ -56,11 +56,26 @@ class Donations {
         $output = '';
 
         if( ! empty( $items ) ) {
-            foreach( $items as $item ) { 
+            foreach( $items as $item ) {
+                
+                $id = $item['id'];
+                $total_donation = give_get_meta( $id, '_give_payment_total', true );
+                $tip_amount = !empty( give_get_meta( $id, '_give_tip_amount', true ) ) ? give_get_meta( $id, '_give_tip_amount', true ): 0;
+                $fee = !empty( give_get_meta( $id, '_give_fee_amount', true ) ) ? give_get_meta( $id, '_give_fee_amount', true ): 0;
+                if( isset($tip_amount) ) {
+                    $total_donation = $total_donation - $tip_amount;
+                }
+
+                if( isset($fee) ) {
+                    $total_donation = $total_donation - $fee;
+                }
+
+                $total_donation = give_currency_filter( give_format_amount( $total_donation, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $item['id'] ) ] );
+
                 $output .='<div class="give-donor-dashboard-table__row">
                     <div class="give-donor-dashboard-table__column">'.$item['id'].'</div>
                     <div class="give-donor-dashboard-table__column">'.Strip_tags($item['donor']).'</div>
-                    <div class="give-donor-dashboard-table__column">'.$item['amount'].'</div>
+                    <div class="give-donor-dashboard-table__column">'.$total_donation.'</div>
                     <div class="give-donor-dashboard-table__column">'.Strip_tags($item['gateway']).'</div>
                     <div class="give-donor-dashboard-table__column give-kindness-capitalize">'.Strip_tags($item['paymentType']).'</div>
                     <div class="give-donor-dashboard-table__column">

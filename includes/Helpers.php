@@ -101,7 +101,6 @@ class Helpers
 
     }
 
-
     /**
     * Display posts
     *
@@ -133,7 +132,6 @@ class Helpers
         }
 
     }
-
 
     /**
      * Image upload
@@ -352,6 +350,23 @@ class Helpers
             return new WP_Error( 'campaign_update', 'Campaign update failed!' );
         }
 
+    }
+
+    /**
+    * Display posts
+    *
+    *@param string integer
+    *@return array | object
+    */
+    public static function check_fundraiser( $author_id, $form_id ) {
+
+        $post = get_post( $form_id );
+        if( $post->post_author == $author_id ) {
+            return TRUE;
+        }
+
+        return FALSE;
+        
     }
 
 }

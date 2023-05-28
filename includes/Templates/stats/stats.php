@@ -1,4 +1,5 @@
 <?php
+    use Give_Kindness\Helpers;
     $repository = $object->donations();
     $donations = $repository['donations'];
     $count = $repository['count'];
@@ -43,7 +44,6 @@
         <div class="give-donor-dashboard-table__rows give-kindness-items-container give-kindness-stats-container">
 
             <?php if( ! empty( $donations ) ) : ?>
-            <?php $reciept = count($donations); ?>
             <?php foreach( $donations as $donation ): ?>
             <?php 
                 $id = $donation['id'];
@@ -54,7 +54,7 @@
                 $method = $donation['payment']['method'];
                 $status = $donation['payment']['status']['label'];
                 $color = $donation['payment']['status']['color'];
-                $recieptNo = $reciept-1;
+                $recieptNo = $donation['payment']['serialCode'];
             ?>
             <div class="give-donor-dashboard-table__row give-kindness-stats-item item-visible">
                 <div class="give-donor-dashboard-table__column">
@@ -73,7 +73,7 @@
                     <div class="give-donor-dashboard-table__donation-test-tag"><?php echo $method; ?></div>
                 </div>
                 <div class="give-donor-dashboard-table__pill">
-                    <div class="give-donor-dashboard-table__donation-id"><?php echo __('ID:', 'give-kindness'); ?>  <?php echo $reciept; ?></div>
+                    <div class="give-donor-dashboard-table__donation-id"><?php echo __('ID:', 'give-kindness'); ?>  <?php echo $recieptNo; ?></div>
                     <div class="give-donor-dashboard-table__donation-receipt">
                         <a href="javascript:void(0)" data-receipt-no="<?php echo $id; ?>" class="view-receipt-btn" onClick="viewReceipt(this, 'give_kindness-stats')">
                             <?php echo __('View Receipt', 'give-kindness'); ?> 
@@ -85,7 +85,6 @@
                 </div>
             </div>
 
-            <?php $reciept--; ?>
             <?php endforeach; ?>
             <?php endif; ?>
         </div>
@@ -100,7 +99,6 @@
 </div>
 
 <?php if( ! empty( $donations ) ) : ?>
-<?php $reciepts = count($donations); ?>
 <?php foreach( $donations as $donation ): ?>
 <?php 
 
@@ -108,7 +106,7 @@
     // print_r($donation);
     // echo "</pre>";
     
-    $recieptNO = $reciepts; 
+    $recieptNO = $donation['payment']['serialCode']; 
     $id = $donation['id'];
     $formId = $donation['form']['id'];
     $fullName = $donation['donor']['first_name'].' '.$donation['donor']['last_name'];
@@ -123,6 +121,9 @@
     $color = $donation['payment']['status']['color'];
     $form_currency  = give_get_currency( $id );
 
+    $current_user = wp_get_current_user();
+    $check_fundraiser = Helpers::check_fundraiser($current_user, $formId);
+
     $tip_amount = give_get_meta( $id, '_give_tip_amount', true );
     $fee = give_get_meta( $id, '_give_fee_amount', true );
     if( ! isset( $fee ) ) {
@@ -131,13 +132,12 @@
 
     $donation_total = give_get_meta( $id, '_give_payment_total', true );
 
-    if( isset( $tip_amount ) ) {
-        $donation_total = ( $donation_total - $tip_amount) - $fee;
+    if( isset( $tip_amount ) && is_numeric($donation_total) && is_numeric($tip_amount) ) {
+        $donation_total = ($donation_total - $tip_amount) - (float) $fee;
         $donation_total = give_currency_filter( give_format_amount( $donation_total, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $formId ) ] );
         $tip_amount = give_currency_filter( give_format_amount( $tip_amount, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $id ) ] );
         $fee = give_currency_filter( give_format_amount( $fee, [ 'sanitize' => false ] ), [ 'currency_code' => give_get_currency( $formId ) ] );
     }
-
 ?>
 <div class="give-donor-dashboard-tab-content view-receipt-details" id="receipt-no-<?php echo $id; ?>" style="display:none;">
    <div class="give-donor-dashboard-heading"><?php echo sprintf(__('Donation Receipt #%s', 'give-kindness'), $recieptNO); ?></div>
@@ -183,10 +183,12 @@
          <div class="give-donor-dashboard-donation-receipt__value"><?php echo $tip_amount; ?></div>
       </div>
       <?php endif; ?>
+      <?php if( $fee != 0 ): ?>
       <div class="give-donor-dashboard-donation-receipt__row">
          <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Donation Fee', 'give-kindness'); ?></div>
          <div class="give-donor-dashboard-donation-receipt__value"><?php echo $fee; ?></div>
       </div>
+      <?php endif; ?>
       <div class="give-donor-dashboard-donation-receipt__row">
          <div class="give-donor-dashboard-donation-receipt__detail"> <?php echo __('Total Donation', 'give-kindness'); ?></div>
          <div class="give-donor-dashboard-donation-receipt__value"><?php echo $amount; ?></div>
@@ -205,6 +207,5 @@
       </a>
    </div>
 </div>
-<?php $reciepts--; ?>
 <?php endforeach; ?>
 <?php endif; ?>
