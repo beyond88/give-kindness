@@ -100,11 +100,7 @@
 
 <?php if( ! empty( $donations ) ) : ?>
 <?php foreach( $donations as $donation ): ?>
-<?php 
-
-    // echo "<pre>";
-    // print_r($donation);
-    // echo "</pre>";
+<?php
     
     $recieptNO = $donation['payment']['serialCode']; 
     $id = $donation['id'];
