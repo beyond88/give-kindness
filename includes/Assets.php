@@ -85,13 +85,17 @@ class Assets {
         foreach ( $scripts as $handle => $script ) {
             $deps = isset( $script['deps'] ) ? $script['deps'] : false;
 
-            wp_enqueue_script( $handle, $script['src'], $deps, $script['version'], true );
+            if ( is_page( 'give-kindness' ) ) {
+                wp_enqueue_script( $handle, $script['src'], $deps, $script['version'], true );
+            }
         }
 
         foreach ( $styles as $handle => $style ) {
             $deps = isset( $style['deps'] ) ? $style['deps'] : false;
 
-            wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
+            if ( is_page( 'give-kindness' ) ) {
+                wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
+            }
         }
 
 
