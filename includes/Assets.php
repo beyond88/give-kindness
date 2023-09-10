@@ -85,7 +85,7 @@ class Assets {
         foreach ( $scripts as $handle => $script ) {
             $deps = isset( $script['deps'] ) ? $script['deps'] : false;
 
-            if ( is_page( 'give-kindness' ) ) {
+            if ( is_page( 'give-kindness-dashboard' ) ) {
                 wp_enqueue_script( $handle, $script['src'], $deps, $script['version'], true );
             }
         }
@@ -93,9 +93,9 @@ class Assets {
         foreach ( $styles as $handle => $style ) {
             $deps = isset( $style['deps'] ) ? $style['deps'] : false;
 
-            if ( is_page( 'give-kindness' ) ) {
+            //if ( is_page( 'give-kindness' ) ) {
                 wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
-            }
+            //}
         }
 
 
