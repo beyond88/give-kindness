@@ -37,7 +37,12 @@ class Assets {
                 'src'     => GIVE_KINDNESS_ASSETS . '/js/ie8gallery.js',
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/ie8gallery.js' ),
                 'deps'    => [ 'jquery' ]
-            ],  
+            ], 
+            'give_kindness-tinymce' => [
+                'src'     => GIVE_KINDNESS_ASSETS . '/js/tinymce.min.js',
+                'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/tinymce.min.js' ),
+                'deps'    => [ 'jquery' ]
+            ],   
             'give_kindness-admin-script' => [
                 'src'     => GIVE_KINDNESS_ASSETS . '/js/admin.js',
                 'version' => filemtime( GIVE_KINDNESS_PATH . '/assets/js/admin.js' ),

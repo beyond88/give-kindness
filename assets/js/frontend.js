@@ -2046,8 +2046,10 @@ function editCampaign(dat){
   jQuery('#gke-medical-condition').val(medical_condition);
   jQuery('#gke-medical-document').val(medical_document_type);
   jQuery('#gke-campaign-email').val(campaign_email);
-  jQuery('#gke-campaign-detail').text(campaign_detail);
-  tinymce.get( jQuery("#gke-campaign-detail").attr( 'id' ) ).setContent(campaign_detail);
+  if(campaign_detail != ''){
+    tinymce.get( jQuery("#gke-campaign-detail").attr( 'id' ) ).setContent(campaign_detail);
+  }
+  
   jQuery('#gke-campaign-country').val(campaign_country);
   jQuery('#gke-government-assistance').val(government_assistance);
   jQuery('#gke-government-assistance-details').val(government_assistance_details);
